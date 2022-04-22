@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.DAO;
+import dao.Admin_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.user;
+import entities.user;
 
 /**
  *
@@ -60,7 +60,7 @@ public class userList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        DAO dao = new DAO();
+        Admin_DAO dao = new Admin_DAO();
         List<user> ListUser = dao.getAllUser();
         
         request.setAttribute("ListUser", ListUser);
@@ -79,7 +79,7 @@ public class userList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String txt = request.getParameter("search");
-        DAO dao = new DAO();
+        Admin_DAO dao = new Admin_DAO();
         List<user> ListUser = dao.search(txt);
         request.setAttribute("ListUser", ListUser);
         request.getRequestDispatcher("user_list.jsp").forward(request, response);

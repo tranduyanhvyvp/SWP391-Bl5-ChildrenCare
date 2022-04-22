@@ -7,7 +7,7 @@ package controller;
 
 import JavaFunc.randomString;
 import JavaFunc.sendEmail;
-import dao.DAO;
+import dao.Admin_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,8 +19,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.role;
-import model.user;
+import entities.role;
+import entities.user;
 
 /**
  *
@@ -67,7 +67,7 @@ public class userAdding extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DAO dao = new DAO();
+        Admin_DAO dao = new Admin_DAO();
         List<role> listRole = dao.ListRole();
         
         request.setAttribute("listRole", listRole);
@@ -94,7 +94,7 @@ public class userAdding extends HttpServlet {
         String gender= request.getParameter("gender");
         String username= request.getParameter("username");
         
-        DAO dao = new DAO();
+        Admin_DAO dao = new Admin_DAO();
         randomString ran = new randomString();
         sendEmail mail = new sendEmail();
         user check = dao.checkUsernameExist(username);

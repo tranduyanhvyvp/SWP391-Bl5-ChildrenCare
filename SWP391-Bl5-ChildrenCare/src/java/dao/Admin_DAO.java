@@ -11,14 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.role;
-import model.user;
+import entities.role;
+import entities.user;
 
 /**
  *
  * @author aDMIN
  */
-public class DAO {
+public class Admin_DAO {
 
     Connection conn = null;
     PreparedStatement ps = null;
@@ -26,7 +26,7 @@ public class DAO {
 
     public List<role> ListRole() {
         List<role> list = new ArrayList<>();
-        String query = "select * from [role] ";
+        String query = "select * from [roles]";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -43,7 +43,7 @@ public class DAO {
 
     public List<user> getAllUser() {
         List<user> list = new ArrayList<>();
-        String query = "select * from [role] r, Accounts a where r.role_id=a.role_id ";
+        String query = "select * from [Roles] r, Accounts a where r.id=a.role_id ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -117,7 +117,7 @@ public class DAO {
 
     public user searchUser(String uid) {
         List<user> list = new ArrayList<>();
-        String query = "SELECT * FROM Accounts a FULL OUTER JOIN [role] r ON a.role_id = r.role_id where a.account_id =?";
+        String query = "SELECT * FROM Accounts a FULL OUTER JOIN [roles] r ON a.role_id = r.id where a.account_id =?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -205,7 +205,7 @@ public class DAO {
     }
 
     public static void main(String[] args) {
-        DAO dao = new DAO();
+        Admin_DAO dao = new Admin_DAO();
         List<role> x = dao.ListRole();
         for (role object : x) {
             System.out.println(object);

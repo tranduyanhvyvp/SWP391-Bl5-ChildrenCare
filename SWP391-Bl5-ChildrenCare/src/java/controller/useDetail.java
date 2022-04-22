@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.DAO;
+import dao.Admin_DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.user;
+import entities.user;
 
 /**
  *
@@ -61,7 +61,7 @@ public class useDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 String uid = request.getParameter("uid");
-        DAO dao = new DAO();
+        Admin_DAO dao = new Admin_DAO();
         user userDetail = dao.searchUser(uid);
         request.setAttribute("userDetail", userDetail);
         request.getRequestDispatcher("user_detail.jsp").forward(request, response);
