@@ -90,7 +90,7 @@ public class Admin_DAO {
 
     public List<user> search(String txt) {
         List<user> list = new ArrayList<>();
-        String query = "SELECT * FROM Accounts a FULL OUTER JOIN [role] r ON a.role_id = r.role_id where fullname like ?  or phonenumber like ? or email like ?";
+        String query = "SELECT * FROM Accounts a FULL OUTER JOIN [Roles] r ON a.role_id = r.id where fullname like ?  or phonenumber like ? or email like ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
