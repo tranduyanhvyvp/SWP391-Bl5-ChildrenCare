@@ -31,7 +31,7 @@ public class DBContext {
     }
     /*Insert your other code right after this comment*/
  /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
-    private final String serverName = "DESKTOP-OV671IG";
+    private final String serverName = "localhost";
     private final String dbName = "ChildrenCare";
     private final String portNumber = "1433";
     private final String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
@@ -40,21 +40,21 @@ public class DBContext {
 
     public static void main(String[] args) {
         try {
-            Connection conn = null;
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            ArrayList<Service> list = new ArrayList<>();
-             String sql = "select * from Services";
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Service service = new Service();
-                service.setServices_id(rs.getInt("services_id"));
-                service.setTitle(rs.getString("title"));
-                list.add(service);
-            }
-            System.out.println(list.get(0).getServices_id());
+//            Connection conn = null;
+//            PreparedStatement ps = null;
+//            ResultSet rs = null;
+//            ArrayList<Service> list = new ArrayList<>();
+//             String sql = "select * from Services";
+//            conn = new DBContext().getConnection();
+//            ps = conn.prepareStatement(sql);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//                Service service = new Service();
+//                service.setServices_id(rs.getInt("services_id"));
+//                service.setTitle(rs.getString("title"));
+//                list.add(service);
+//            }
+//            System.out.println(list.get(0).getServices_id());
             System.out.println(new DBContext().getConnection());
             System.out.println("ok");
         } catch (Exception e) {

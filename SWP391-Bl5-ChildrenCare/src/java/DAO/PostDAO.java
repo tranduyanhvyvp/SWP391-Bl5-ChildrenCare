@@ -1,0 +1,494 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import context.DBContext;
+import entities.Category;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import entities.Post;
+import entities.Status;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author phuch
+ */
+public class PostDAO extends DBContext {
+
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    public ArrayList<Post> getPostList() throws Exception {
+        ArrayList<Post> posts = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post \n"
+                    + "inner join Manager \n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "order by post_date ";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                posts.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+
+        return posts;
+    }
+
+    public ArrayList<Post> get4Post1Page(int index) throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post \n"
+                    + "inner join Manager \n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (index * 4 - 4));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Post> getPostByCategory(int index, int categoryId) throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post\n"
+                    + "inner join Manager\n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "where Post.category_id = "+categoryId+"\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (index * 4 - 4));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Post> getPostByStatus(int index, int statusId) throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post\n"
+                    + "inner join Manager\n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "where Post.status_id = " + statusId + "\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (index * 4 - 4));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Post> searchPostbyTitle(String search, int index) throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post\n"
+                    + "inner join Manager\n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "where Post.title like '%" + search + "%'\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (index * 4 - 4));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Post> getSort(int index, String sort) throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post\n"
+                    + "inner join Manager\n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "ORDER BY " + sort + "\n"
+                    + "OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (index * 4 - 4));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Category> getCateName() throws SQLException {
+        ArrayList<Category> list = new ArrayList<>();
+        try {
+            String sql = "SELECT DISTINCT  Category.id,Category.name\n"
+                    + "FROM Post \n"
+                    + "inner join Category\n"
+                    + "on Post.category_id = Category.id";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Category category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                list.add(category);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Status> getStatus() throws SQLException {
+        ArrayList<Status> list = new ArrayList<>();
+        try {
+            String sql = "SELECT DISTINCT  Status.id,Status.name\n"
+                    + "FROM Post \n"
+                    + "inner join Status\n"
+                    + "on Post.status_id = Status.id";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Status status = new Status();
+                status.setId(rs.getInt("id"));
+                status.setName(rs.getString("name"));
+                list.add(status);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public int countPost() throws Exception {
+        String sql = "SELECT count(*) FROM Post";
+        try {
+            conn = getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return 0;
+    }
+
+    public int countPostbyCategory(int categoryID) throws Exception {
+        String sql = "SELECT count(*)\n"
+                + "FROM Post \n"
+                + "WHERE category_id = ?";
+        try {
+            conn = getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return 0;
+    }
+
+    public int countPostbyStatus(int statusID) throws Exception {
+        String sql = "SELECT count(*)\n"
+                + "FROM Post \n"
+                + "WHERE status_id = ?";
+        try {
+            conn = getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return 0;
+    }
+
+    public int countSearchPost(String search) throws Exception {
+        String sql = "SELECT count(*) FROM Post \n"
+                + "where title like '%" + search + "%'";
+        try {
+            conn = getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return 0;
+    }
+
+    public int totalPage() throws SQLException {
+        int total = 0;
+        String sql = "select count(*)\n"
+                + "from Post";
+        try {
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int totalA = rs.getInt(1);
+                total = totalA / 4;
+                if (totalA % 4 != 0) {
+                    total++;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return total;
+    }
+}
