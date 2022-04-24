@@ -19,14 +19,16 @@ public class feedback {
     private int star;
     private String content;
     private Date date_post;
+    private status status1;
 
-    public feedback(int id, String customer_name, String service_name, int star, String content, Date date_post) {
+    public feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, status status1) {
         this.id = id;
         this.customer_name = customer_name;
         this.service_name = service_name;
         this.star = star;
         this.content = content;
         this.date_post = date_post;
+        this.status1 = status1;
     }
 
     public int getId() {
@@ -77,9 +79,18 @@ public class feedback {
         this.date_post = date_post;
     }
 
+    public status getStatus1() {
+        return status1;
+    }
+
+    public void setStatus1(status status1) {
+        this.status1 = status1;
+    }
+
     @Override
     public String toString() {
-        return "feedback{" + "id=" + id + ", customer_name=" + customer_name + ", service_name=" + service_name + ", star=" + star + ", content=" + content + ", date_post=" + date_post + '}';
+        return "feedback{" + "id=" + id + ", customer_name=" + customer_name + ", service_name=" + service_name + ", star=" + star + ", content=" + content + ", date_post=" + date_post + ", status1=" + status1 + '}';
     }
+
 
 }

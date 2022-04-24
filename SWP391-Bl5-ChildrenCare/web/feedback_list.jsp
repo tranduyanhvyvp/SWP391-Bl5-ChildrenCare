@@ -21,6 +21,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
             body {
                 color: #566787;
@@ -236,6 +237,7 @@
                                 <th onclick="sortTable(2)">Rate Star <i class="fa fa-sort"></i></th>
                                 <th onclick="sortTable(3)">Content<i class="fa fa-sort"></i></th>
                                 <th onclick="sortTable(4)">Date<i class="fa fa-sort"></i></th>
+                                <th onclick="sortTable(5)">Status<i class="fa fa-sort"></i></th>    
                                 <th onclick="sortTable(6)">Actions</th>
                             </tr>
                         </thead>
@@ -259,6 +261,14 @@
                                     <td>${o.content}</td>
                                     <td>${o.date_post}</td>
                                     <td>
+
+                                        <select onchange="myFunction(${o.id}, this.value)">
+                                            <c:forEach var="i" items="${listStatus}">
+                                                <option value="${i.id}" ${o.status1.id==i.id ? "selected":""}>${i.name}</option>
+                                            </c:forEach> 
+                                        </select>
+                                    </td>
+                                    <td>
                                         <a href="/SWP391-Bl5-ChildrenCare/usedetail?uid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                                         <a href="/SWP391-Bl5-ChildrenCare/userdetailedit?uid=${o.id}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                         <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
@@ -280,6 +290,26 @@
                     </div>
                 </div>
             </div>  
-        </div>   
+        </div>
+
+        <script>
+            function myFunction(feedbackid, statusid) {              
+                    $.ajax({
+                        url: "/SWP391-Bl5-ChildrenCare/updatestatus",
+                        type: "get", //send it through get method
+                        data: {
+                            fbid:feedbackid,
+                            stid:statusid
+                        },
+                        success: function (data) {
+                                            
+                        },
+                        error: function (xhr) {
+                            //Do Something to handle error
+                        }
+                    });
+            }
+        </script>
+
     </body>
 </html>

@@ -6,11 +6,8 @@
 package controller;
 
 import dao.Feedback_DAO;
-import entities.feedback;
-import entities.status;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aDMIN
  */
-@WebServlet(name = "feedbackList", urlPatterns = {"/feedbacklist"})
-public class feedbackList extends HttpServlet {
+@WebServlet(name = "updateStatusFeedback", urlPatterns = {"/updatestatus"})
+public class updateStatusFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +38,10 @@ public class feedbackList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet feedbackList</title>");
+            out.println("<title>Servlet updateStatusFeedback</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet feedbackList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateStatusFeedback at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,13 +59,10 @@ public class feedbackList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+        String feedbackId = request.getParameter("fbid");
+        String statusId = request.getParameter("stid");
         Feedback_DAO dao = new Feedback_DAO();
-        List<feedback> listFeedback = dao.getListFeedback();
-        List<status> listStatus = dao.getAllStatus();
-        request.setAttribute("listFeedback", listFeedback);
-        request.setAttribute("listStatus", listStatus);
-        request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
+        dao.update(feedbackId, statusId);
     }
 
     /**
@@ -82,14 +76,7 @@ public class feedbackList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String search = request.getParameter("search");
-        Feedback_DAO dao = new Feedback_DAO();
-        List<feedback> listFeedback = dao.searchFeedBack(search);
-        List<status> listStatus = dao.getAllStatus();
-        request.setAttribute("listStatus", listStatus);
-        request.setAttribute("listFeedback", listFeedback);
-        request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
+
     }
 
     /**
