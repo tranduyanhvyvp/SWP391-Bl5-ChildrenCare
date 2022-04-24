@@ -105,7 +105,7 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("                    <h3><a href=\"#\">2009</a></h3>\n");
+      out.write("                    <h3><a href=\"PostListController?sort=author\">Author</a></h3>\n");
       out.write("                </div>\n");
       out.write("                <!--Posts List-->\n");
       out.write("                <div class=\"article\">\n");
@@ -245,7 +245,9 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
         do {
           out.write("\n");
           out.write("                            <li>\n");
-          out.write("                                <div class=\"section\"> <a href=\"#\"><img src=\"images/dental.jpg\" alt=\"\"></a> <span>");
+          out.write("                                <div class=\"section\"> <a href=\"#\"><img src=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${p.thumbnail}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" alt=\"\"></a> <span>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${p.author}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</span> <span>");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${p.post_date}", java.lang.String.class, (PageContext)_jspx_page_context, null));
