@@ -5,24 +5,16 @@
         <servlet-class>NewServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>blogListController</servlet-name>
-        <servlet-class>controller.blogListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>viewBlog</servlet-name>
-        <servlet-class>controller.viewBlog</servlet-class>
+        <servlet-name>userList</servlet-name>
+        <servlet-class>controller.userList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>blogListController</servlet-name>
-        <url-pattern>/blogListController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>viewBlog</servlet-name>
-        <url-pattern>/viewBlog</url-pattern>
+        <servlet-name>userList</servlet-name>
+        <url-pattern>/userlist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

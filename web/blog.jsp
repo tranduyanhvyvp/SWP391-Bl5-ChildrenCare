@@ -4,7 +4,6 @@
     Author     : aDMIN
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,16 +39,27 @@
     </div>
     <div class="article">
       <ul>
-      <c:forEach var="blog" items="${listBlog}">
-              <li class="first">
-          <div class="section"> <a href="#"><img src="images/man.jpg" alt=""></a> <span><a>${blog.customer_id}</a></span> <span><a href="#">${blog.post_date}</a></span> </div>
+        <li class="first">
+          <div class="section"> <a href="#"><img src="images/man.jpg" alt=""></a> <span><a href="#">Jean Michelle</a></span> <span><a href="#">Dec 3</a></span> </div>
           <div>
-            <h1><a href="viewBlog?id=${blog.blog_id}">${blog.title}</a></h1>
-            <p>${blog.content}</p>
+            <h1><a href="#">Family Improvement 101</a></h1>
+            <p>Lorem ipsumdolor sit amet, consec tetuer adipis cing elitsed diam non ummy nibh euismod tincidunt ut laoreet dolore magna. Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullacorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus.</p>
           </div>
         </li>
-          </c:forEach>
-        
+        <li>
+          <div class="section"> <a href="#"><img src="images/woman.jpg" alt=""></a> <span><a href="#">Ryan Rey</a></span> <span><a href="#">Nov 29</a></span> </div>
+          <div>
+            <h1><a href="#">Comfort and Care</a></h1>
+            <p>Lorem ipsumdolor sit amet, consect tetuer adipis cing elitsed diam non ummy nibh euismod tincidunt ut laoreet dolore magna. Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+          </div>
+        </li>
+        <li>
+          <div class="section"> <a href="#"><img src="images/nurse.jpg" alt=""></a> <span><a href="#">Mindy Hill</a></span> <span><a href="#">Nov 11</a></span> </div>
+          <div>
+            <h1><a href="#">Fighting Bad Behavior</a></h1>
+            <p>Lorem ipsumdolor sit amet, consec tetuer adipis cing elitsed diam non ummy nibh euismod tincidunt ut laoreet dolore magna. Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+          </div>
+        </li>
       </ul>
       <div id="paging">
         <ul>

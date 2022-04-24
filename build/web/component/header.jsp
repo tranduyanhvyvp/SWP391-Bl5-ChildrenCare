@@ -19,7 +19,7 @@
                     <li><a href="home.jsp">Home</a></li>
                     <li><a href="about.jsp">About us</a></li>
                     <li><a href="service.jsp">Services</a></li>
-                    <li><a href="blogListController">Blog</a></li>
+                    <li><a href="blog.jsp">Blog</a></li>
                     <li><a href="contact.jsp">Contact us</a></li>
                 </ul>
             </div>
