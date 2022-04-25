@@ -9,7 +9,6 @@ import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stter
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +35,24 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+//        try {
+//            String username = request.getParameter("username");
+//            String password = request.getParameter("password");
+//
+//            AccountDAO loginDAO = new AccountDAO();
+//            Account a = loginDAO.login(username, password);
+//            if (a == null) {
+//                request.setAttribute("mess", "Wrong Username or Password");
+//                request.getRequestDispatcher("login.jsp").forward(request, response);
+//            } else {
+//                HttpSession session = request.getSession();
+//                session.setAttribute("username", username);
+//                session.setMaxInactiveInterval(86400);
+//
+//                request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
+//            }
+//        } catch (Exception e) {
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +68,7 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        response.sendRedirect("login.jsp");
+        request.getRequestDispatcher("chang_password.jsp").forward(request, response);
     }
 
     /**
@@ -66,24 +82,35 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            
+            String newPassword = request.getParameter("newPassword");
+            String confirmNewPassword = request.getParameter("confirmNewPassword");
+
             AccountDAO loginDAO = new AccountDAO();
             Account a = loginDAO.login(username, password);
             if (a == null) {
-                request.setAttribute("mess", "Wrong Username or Password");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.setAttribute("mess", "Wrong Password");
+                request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
             } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setMaxInactiveInterval(86400);
+                // tiep tuc update va tra ve update thanh cong
+                
+                if (!newPassword.equals(confirmNewPassword)) {
+                    request.setAttribute("mess", "Wrong Confirm Password");
+                    request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
+                } else {
+                    AccountDAO changePasswordDAO = new AccountDAO();
+                    changePasswordDAO.updatePassword(username, newPassword);
+                    request.setAttribute("mess", "Succesful");
+                    request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
+                }
 
-                request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
             }
+
         } catch (Exception e) {
+            System.out.println("Loi roi");
         }
     }
 

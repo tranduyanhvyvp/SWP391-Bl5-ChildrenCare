@@ -8,22 +8,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <html>
     <style>
@@ -100,14 +100,29 @@
 
         <jsp:include page="component/header.jsp"></jsp:include>
 
-        <div class="content">
+            <div class="content">
 
 
 
 
-            <form action="RegisterController" method="post">
+                <form action="RegisterController" method="post">
 
-                <div class="container">
+                    <div class="container">
+
+
+
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="images/${editUser.avatar}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                        <div class="mt-3">
+                            <h4>${editUser.fullname}</h4>
+                            <p class="text-secondary mb-1">Full Stack Developer</p>
+                            <p class="text-muted font-size-sm">${editUser.address}</p>
+                            <button class="btn btn-primary">Follow</button>
+                            <button class="btn btn-outline-primary">Message</button>
+                        </div>
+                    </div>
+
+
                     <label for="uname"><b>Username:</b></label>
                     <input type="text" placeholder="Enter Username" name="username" required>
 
@@ -142,12 +157,12 @@
                     <span class="psw"><a href="login.jsp">Back</a></span>
                     <br>
                     <p class="text-danger">
-                       ${mess}
+                        ${mess}
                     </p>
                 </div>
 
 
-                
+
             </form>
 
         </div>

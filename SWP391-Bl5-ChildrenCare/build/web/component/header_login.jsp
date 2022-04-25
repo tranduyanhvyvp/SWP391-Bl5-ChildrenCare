@@ -1,8 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : Apr 13, 2022, 3:36:38 PM
-    Author     : aDMIN
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,8 +16,9 @@
                     <li><a href="service.jsp">Services</a></li>
                     <li><a href="blog.jsp">Blog</a></li>
                     <li><a href="contact.jsp">Contact us</a></li>
-                    <li><a href="login.jsp">Login</a></li>
-<!--                    <li><a href="change_password.jsp">Change Password</a></li>-->
+                    <li><a href="login.jsp">${sessionScope.username}</a></li>
+                    <li><a href="UserProfileController">Profile</a></li>
+                    <li><a href="use_change_password.jsp">Change Password</a></li>
                 </ul>
             </div>
         </div>

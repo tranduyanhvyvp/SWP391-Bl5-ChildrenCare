@@ -9,20 +9,20 @@ import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author stter
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "UserProfileController", urlPatterns = {"/UserProfileController"})
+public class UserProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +36,6 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +51,19 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        response.sendRedirect("login.jsp");
+
+        try {
+            HttpSession session = request.getSession();
+            String userName = session.getAttribute("username").toString();
+
+            AccountDAO dao = new AccountDAO();
+            Account acc = dao.checkAccountExit(userName);
+
+            request.setAttribute("acc", acc);
+            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
+        } catch (Exception e) {
+        }
+
     }
 
     /**
@@ -67,24 +78,30 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+//        request.getRequestDispatcher("login.jsp").forward(request, response);
+        
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            
-            AccountDAO loginDAO = new AccountDAO();
-            Account a = loginDAO.login(username, password);
-            if (a == null) {
-                request.setAttribute("mess", "Wrong Username or Password");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setMaxInactiveInterval(86400);
+            String user = request.getParameter("username");
+            String dob = request.getParameter("dob");
+            String fullName = request.getParameter("fullName");
+            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            int gender = Integer.parseInt(request.getParameter("gender"));
+            String address = request.getParameter("address");
+            String avatar = request.getParameter("avatar");
+//            Part part = request.getPart("avatar");
 
-                request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
+            AccountDAO updateProfile = new AccountDAO();
+            if (avatar != null && !avatar.isEmpty()) {
+                updateProfile.updateAvatar(user, avatar);
             }
+            updateProfile.updateProfile(user, fullName, gender, address, dob, phoneNumber);
+            
+            response.sendRedirect("UserProfileController");
+//            request.getRequestDispatcher("UserProfileController").forward(request, response);
+          
         } catch (Exception e) {
         }
+
     }
 
     /**

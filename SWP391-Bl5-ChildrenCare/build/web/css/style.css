@@ -20,7 +20,7 @@ img {
 #header div {
 	margin: 0 auto;
 	overflow: hidden;
-	width: 960px;
+	width: 1200px;
 }
 #header div img {
 	float: left;
@@ -47,7 +47,7 @@ img {
 	line-height: 30px;
 	text-align: center;
 	text-decoration: none;
-	width: 90px;
+	width: 115px;
 }
 #header div ul li a:hover {
 	color: #82ae3f;

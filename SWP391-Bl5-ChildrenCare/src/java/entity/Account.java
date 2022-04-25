@@ -19,12 +19,13 @@ public class Account {
     private int phoneNumber;
     private String username;
     private String password;
-    private int role;
+    private int role_id;
+    private String avatar;
 
     public Account() {
     }
 
-    public Account(int id, String fullName, int gender, String address, String email, String dob, int phoneNumber, String username, String password, int role) {
+    public Account(int id, String fullName, int gender, String address, String email, String dob, int phoneNumber, String username, String password, int role_id, String avatar) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
@@ -34,7 +35,8 @@ public class Account {
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.role_id = role_id;
+        this.avatar = avatar;
     }
 
     public int getId() {
@@ -109,18 +111,30 @@ public class Account {
         this.password = password;
     }
 
-    public int getRole() {
-        return role;
+    public int getRole_id() {
+        return role_id;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", fullName=" + fullName + ", gender=" + gender + ", address=" + address + ", email=" + email + ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", username=" + username + ", password=" + password + ", role=" + role + '}';
+        return "Account{" + "id=" + id + ", fullName=" + fullName + ", gender=" + gender + ", address=" + address + ", email=" + email + ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", username=" + username + ", password=" + password + ", role_id=" + role_id + ", avatar=" + avatar + '}';
     }
+
     
+
     
+
+   
 }

@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.LoginDAO;
+import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,6 +35,11 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            
+//            if (roleId == 1) {
+//                
+//            }
+            
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             String rePass = request.getParameter("rePassword");
@@ -43,13 +48,12 @@ public class RegisterController extends HttpServlet {
             
             String email = request.getParameter("email");
             int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            String address = request.getParameter("address");
-            
+            String address = request.getParameter("address");            
             if(!pass.equals(rePass)){
                 request.setAttribute("mess", "Wrong Password");
                     request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
-                LoginDAO loginDAO = new LoginDAO();
+                AccountDAO loginDAO = new AccountDAO();
                 Account a = loginDAO.checkAccountExit(user);
                 if(a == null){
                     loginDAO.register(user, pass, fullName, gender, email, phoneNumber, address);

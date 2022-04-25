@@ -22,6 +22,7 @@
                     <li><a href="blog.jsp">Blog</a></li>
                     <li><a href="contact.jsp">Contact us</a></li>
                     <li><a href="login.jsp">Login</a></li>
+<!--                    <li><a href="change_password.jsp">Change Password</a></li>-->
                 </ul>
             </div>
         </div>

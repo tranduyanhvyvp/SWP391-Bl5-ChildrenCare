@@ -119,12 +119,7 @@
 
                     <label for="fullname"><b>Full name:</b></label>
                     <input type="text" placeholder="Enter Full Name" name="fullName" required>
-
-
-
-
                     <label for="gender"><b>Gender: </b></label>
-
 
                     <form>
                         <label class="radio-inline">
@@ -133,24 +128,13 @@
                         <label class="radio-inline">
                             <input type="radio"  name="gender" value="0">Female    
                         </label>
-
                     </form>
-
                     <br>
                     <br>
                     <label for="email"><b>Email:</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" onchange="ValidateEmail()" required>
-<!--                    <div class="invalid-feedback" id="EmailCheck"
-                         style="display: none;">You have entered an invalid
-                        email address!</div>-->
-
-
+                    <input type="text" placeholder="Enter Email" name="email" required>
                     <label for="phone"><b>Mobile:</b></label>
                     <input  type="text" placeholder="Enter Phone Number" name="phoneNumber" onchange="CheckPhone()" required>
-<!--                    <div class="invalid-feedback" id="PhoneNumberCheck"
-                         style="display: none;">Phone number invalid!!.Must be
-                        10 numbers (0...)</div>-->
-
                     <label for="address"><b>Address:</b></label>
                     <input type="text" placeholder="Enter Address" name="address" required>
 
