@@ -4,10 +4,10 @@
     Author     : doqua
 --%>
 
-<%@page import="model.Product"%>
+<%@page import="model.Services"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="dao.ProductDAO"%>
+<%@page import="dao.ServicesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -20,30 +20,14 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        <style>
-            /* Make the image fully responsive */
-            .carousel-inner img {
-                width: 960px;
-                height: 441px;
-            }
-        </style>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/product.css">
+        
+        <link rel="stylesheet" type="text/css" href="css/styleService.css">
+        <link rel="stylesheet" type="text/css" href="css/services.css">
         <title>Special School | Services</title>
     </head>
     <body>
-        <jsp:useBean id="a" class="dao.ProductDAO" scope="request"></jsp:useBean>
-            <div id="header">
-                <div> <a href="index.html"><img src="images/logo.gif" alt=""></a>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About us</a></li>
-                        <li class="current"><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
-                    </ul>
-                </div>
-            </div>
+        <jsp:useBean id="a" class="dao.ServicesDAO" scope="request"></jsp:useBean>
+            <jsp:include page="component/header.jsp"></jsp:include>
             <div class="content">
 
                 <div id="demo" class="carousel slide" data-ride="carousel" style="margin: 0 auto;">
@@ -51,8 +35,8 @@
                     <div class="carousel-inner">
                     <%
                         Boolean active = false;
-                        ArrayList<Product> list2 = (ArrayList<Product>) request.getAttribute("listP");
-                        for (Product p : list2) {
+                        ArrayList<Services> list2 = (ArrayList<Services>) request.getAttribute("listP");
+                        for (Services p : list2) {
                             if (!active) {
                                 active = true;
                     %>
@@ -102,8 +86,8 @@
                         <ul class="products homepage">
 
                             <%
-                                ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("listP");
-                                for (Product p : list) {
+                                ArrayList<Services> list = (ArrayList<Services>) request.getAttribute("listP");
+                                for (Services p : list) {
                             %>
 
                             <li class="preorder"><span class="tagimg "></span> <a
@@ -112,10 +96,10 @@
                                     <h3><%=p.getTitle()%></h3>
                                     <h4>
                                         Original price:
-                                        <%=nf.format(p.getOriginalPrice())%>$
+                                        <%=nf.format(p.getOriginal_price())%>$
                                         </br>
                                         Sale price:
-                                        <%=nf.format(p.getSalePrice())%>$
+                                        <%=nf.format(p.getSale_price())%>$
                                     </h4> 
 
                                     <p class="info">
@@ -133,14 +117,17 @@
 
                     </div>
                 </div>
+
                 <ul>
 
                     <c:forEach begin="1" end="${a.totalPage()}" var="i">
-                        <li class="pagination"><a class="page-link" href="PagingServlet?index=${i}">${i}</a></li>
+                        <li class="pagination"><a class="page-link" href="ServicesServlet?index=${i}">${i}</a></li>
                         </c:forEach>
 
 
                 </ul>
+
+
 
             </div>
 
@@ -148,7 +135,7 @@
 
 
         <div>
-            <jsp:include page="footer.jsp"></jsp:include>
+            <jsp:include page="component/footer.jsp"></jsp:include>
         </div>
 
     </body>

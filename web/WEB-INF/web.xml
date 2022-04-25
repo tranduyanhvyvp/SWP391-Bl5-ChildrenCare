@@ -30,7 +30,11 @@
     </servlet>
     <servlet>
         <servlet-name>PagingServlet</servlet-name>
-        <servlet-class>controller.PagingServlet</servlet-class>
+        <servlet-class>controller.ser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicesServlet</servlet-name>
+        <servlet-class>controller.ServicesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>PagingServlet</servlet-name>
         <url-pattern>/PagingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicesServlet</servlet-name>
+        <url-pattern>/ServicesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
