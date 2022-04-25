@@ -20,6 +20,27 @@ public class feedback {
     private String content;
     private Date date_post;
     private status status1;
+    private int userId;
+
+    public feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, status status1, int userId) {
+        this.id = id;
+        this.customer_name = customer_name;
+        this.service_name = service_name;
+        this.star = star;
+        this.content = content;
+        this.date_post = date_post;
+        this.status1 = status1;
+        this.userId = userId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
 
     public feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, status status1) {
         this.id = id;

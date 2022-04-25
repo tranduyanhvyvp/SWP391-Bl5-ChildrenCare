@@ -207,16 +207,14 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                            <div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+                            <div class="col-sm-8"><h2>Feedback <b>Details</b></h2></div>
                             <div class="col-sm-4">
 
 
 
 
 
-                                <form action="/SWP391-Bl5-ChildrenCare/useradding" method="GET">
-                                    <input class="btn btn-primary" type="submit" value="Add" />
-                                </form>
+
 
                                 <div class="search-box">
                                     <i class="material-icons">&#xE8B6;</i>
@@ -247,15 +245,15 @@
                                     <td>${o.customer_name}</td>
                                     <td>${o.service_name}</td>
 
-                                    <td><input class="star star-5" id="star-5" type="radio" name="${o.id}" ${o.star==5 ? "checked":""}/>
+                                    <td><input class="star star-5" id="star-5" type="radio"  ${o.star==5 ? "checked":""}/>
                                         <label class="star star-5" for="star-5" ></label>
-                                        <input class="star star-4" id="star-4" type="radio" name="${o.id}" ${o.star==4 ? "checked":""}/>
+                                        <input class="star star-4" id="star-4" type="radio"  ${o.star==4 ? "checked":""}/>
                                         <label class="star star-4" for="star-4"></label>
-                                        <input class="star star-3" id="star-3" type="radio" name="${o.id}" ${o.star==3 ? "checked":""}/>
+                                        <input class="star star-3" id="star-3" type="radio"  ${o.star==3 ? "checked":""}/>
                                         <label class="star star-3" for="star-3"></label>
-                                        <input class="star star-2" id="star-2" type="radio" name="${o.id}" ${o.star==2 ? "checked":""}/>
+                                        <input class="star star-2" id="star-2" type="radio"  ${o.star==2 ? "checked":""}/>
                                         <label class="star star-2" for="star-2"></label>
-                                        <input class="star star-1" id="star-1" type="radio" name="${o.id}" ${o.star==1 ? "checked":""}/>
+                                        <input class="star star-1" id="star-1" type="radio"  ${o.star==1 ? "checked":""}/>
                                         <label class="star star-1" for="star-1"></label>
                                     </td>
                                     <td>${o.content}</td>
@@ -269,9 +267,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <a href="/SWP391-Bl5-ChildrenCare/usedetail?uid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                                        <a href="/SWP391-Bl5-ChildrenCare/userdetailedit?uid=${o.id}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                        <a href="/SWP391-Bl5-ChildrenCare/feedbackdetails?fid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                        
                                     </td>
                                 </tr>
 
@@ -311,5 +308,7 @@
             }
         </script>
 
+        
+        
     </body>
 </html>

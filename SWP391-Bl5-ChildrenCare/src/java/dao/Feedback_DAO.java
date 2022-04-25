@@ -80,6 +80,36 @@ public class Feedback_DAO {
         return list;
     }
 
+    public feedback searchFeedBackById(String search) {
+
+        String query = "select  sf.id,a.fullname, s.title, sf.content, sf.date, sf.star, st.id, st.name,a.account_id\n"
+                + "from Service_feedback sf, Services s,Accounts a, Status st\n"
+                + "where sf.id =?\n"
+                + "and	sf.service_id = s.id\n"
+                + "and sf.status_id = st.id\n"
+                + "and sf.customer_id =a.account_id";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, search);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new feedback(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(6),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        new status(rs.getInt(7), rs.getString(8)),
+                        rs.getInt(9)
+                );
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public List<status> getAllStatus() {
         List<status> list = new ArrayList<>();
         String query = "select * from Status";
@@ -114,12 +144,10 @@ public class Feedback_DAO {
 
     public static void main(String[] args) {
         Feedback_DAO dao = new Feedback_DAO();
-        List<status> x = dao.getAllStatus();
-        for (status object : x) {
-            System.out.println(object);
-        }
 
-        dao.update("7", "1");
+
+        feedback a = dao.searchFeedBackById("7");
+        System.out.println(a);
 
     }
 }
