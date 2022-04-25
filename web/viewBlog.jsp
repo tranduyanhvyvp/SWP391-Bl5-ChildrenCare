@@ -14,6 +14,20 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
 </head>
+
+<style>
+    footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+    div.content {
+    background: #ffffff url(../images/bg-content2.gif) repeat-x bottom center;
+    padding-bottom: 50vh;
+}
+</style>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
 <div class="content">
@@ -28,8 +42,10 @@
       </ul>
 
 
-</div>
-<jsp:include page="component/footer.jsp"></jsp:include>
+      <footer>
+          <jsp:include page="component/footer.jsp"></jsp:include>
+
+      </footer>
 </body>
 </html>
 

@@ -5,8 +5,8 @@
  */
 package controller;
 
-import dao.blogDAO;
-import entity.blog;
+import DAO.BlogDAO;
+import entities.Blog;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,8 +48,8 @@ public class viewBlog extends HttpServlet {
             throws ServletException, IOException {
         try{
                     int id = Integer.parseInt(request.getParameter("id"));
-                    blogDAO blogDAO = new blogDAO();
-                    blog blog = blogDAO.getBlogByID(id);
+                    BlogDAO blogDAO = new BlogDAO();
+                    Blog blog = blogDAO.getBlogByID(id);
                     request.setAttribute("blog", blog);
                     request.getRequestDispatcher("viewBlog.jsp").forward(request, response);
 

@@ -17,10 +17,10 @@
             <div> <a href="home.jsp"><img src="images/logo.gif" alt=""></a>
                 <ul>
                     <li><a href="home.jsp">Home</a></li>
-                    <li><a href="about.jsp">About us</a></li>
+                    <li><a href="about.jsp">Post List</a></li>
                     <li><a href="service.jsp">Services</a></li>
-                    <li><a href="blog.jsp">Blog</a></li>
-                    <li><a href="contact.jsp">Contact us</a></li>
+                    <li><a href="blog.jsp">Blogs</a></li>
+                    <li><a href="login">Login</a></li>
                 </ul>
             </div>
         </div>

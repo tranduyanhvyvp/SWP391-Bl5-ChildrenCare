@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package DAO;
 
 import context.DBContext;
-import entity.blog;
+import entities.Blog;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,42 +16,65 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author phuch
  */
-public class blogDAO {
-        Connection conn = null;
+
+
+public class BlogDAO extends DBContext{
+    Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
-    public ArrayList<blog> getAllBlog() throws Exception{
+    public ArrayList<Blog> getLatestBlog() {
+        ArrayList<Blog> list = new ArrayList<>();
+        try {
+            String sql = "select * from Blog order by post_date ASC";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Blog(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(7),
+                        rs.getDate(3),
+                        rs.getString(4),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+
+    }
+     public ArrayList<Blog> getAllBlog() throws Exception{
         DBContext db = new DBContext();
-        String sql = "select * from Blogs";
-        ArrayList<blog> listBlog = new ArrayList<>();
+        String sql = "select * from Blog";
+        ArrayList<Blog> list = new ArrayList<>();
         try{
             conn = db.getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String title = rs.getString(2);
-                String content = rs.getString(3);
-                Date postDate = rs.getDate(4);
-                String status = rs.getString(5);
-                int cusID = rs.getInt(6);
-                int staffID = rs.getInt(7);
-                blog blog = new blog(id, title, content, postDate, status, cusID, staffID);
-                listBlog.add(blog);
+               {
+                list.add(new Blog(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(7),
+                        rs.getDate(3),
+                        rs.getString(4),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+            }
                 
             }
-            return listBlog;
+            return list;
         }catch(Exception e){
             e.printStackTrace();
         }
         return null;
     }
-    public blog getBlogByID(int id) throws Exception{
+    public Blog getBlogByID(int id) throws Exception{
         DBContext db = new DBContext();
-        String sql ="select * from Blogs where blog_id = ?";
+        String sql ="select * from Blog where id = ?";
         try{
             conn = db.getConnection();
             ps = conn.prepareStatement(sql);
@@ -59,12 +83,12 @@ public class blogDAO {
             while (rs.next()) {
                 int Blogid = rs.getInt(1);
                 String title = rs.getString(2);
-                String content = rs.getString(3);
-                Date postDate = rs.getDate(4);
-                String status = rs.getString(5);
-                int cusID = rs.getInt(6);
-                int staffID = rs.getInt(7);
-                blog blog = new blog(Blogid, title, content, postDate, status, cusID, staffID);
+                String content = rs.getString(7);
+                Date postDate = rs.getDate(3);
+                String status = rs.getString(4);
+                int accID = rs.getInt(5);
+                int category_ID = rs.getInt(6);
+                Blog blog = new Blog(Blogid, title, content, postDate, status, accID, category_ID);
                 return blog;
                 
             }
@@ -74,5 +98,5 @@ public class blogDAO {
         }
         return null;
     }
-
-}            
+    
+}
