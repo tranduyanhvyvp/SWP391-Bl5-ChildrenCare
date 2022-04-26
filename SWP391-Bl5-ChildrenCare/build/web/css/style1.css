@@ -253,7 +253,7 @@ div.content div#blog div.sidebar h3 {
     padding: 10px 0 10px 10px;
 }
 div.content div#blog div.sidebar h3 a {
-    /*background: url(../images/arrow.gif) no-repeat 180px 7px;*/
+    background: url(../images/arrow.gif) no-repeat 180px 7px;
     color: #fc9400;
     display: block;
     text-decoration: none;
@@ -262,7 +262,7 @@ div.content div#blog div.sidebar h3 a:hover, div.content div#blog div.sidebar p 
     color: #b96914;
 }
 div.content div#blog div.sidebar h3.first a {
-    /*background: url(../images/arrow.gif) no-repeat 180px -16px;*/
+    background: url(../images/arrow.gif) no-repeat 180px -16px;
 }
 div.content div#blog div.sidebar h3 span {
     color: #b96914;
@@ -396,4 +396,7 @@ div.section a img{
     width: 100px;
     height: 100px;
     border: 0;
+}
+div.content div#blog div.article ul li div.button{
+    text-align: -webkit-right;
 }

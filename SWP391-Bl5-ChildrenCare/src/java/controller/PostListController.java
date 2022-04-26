@@ -72,22 +72,22 @@ public class PostListController extends HttpServlet {
             String categoryId = request.getParameter("categoryId");
             String statusId = request.getParameter("statusId");
             String sort = request.getParameter("sort");
+            String by = request.getParameter("by");
             if (indexPage == null) {
                 indexPage = "1";
             }
             int index = Integer.parseInt(indexPage);
             int count = 0;
-            if (search != null) {
-                if (search.equals("")) {
-                    count = postDAO.countSearchPost(search);
-                }
-            } else if (categoryId != null) {
-                count = postDAO.countPostbyCategory(Integer.parseInt(categoryId));
-            } else if (statusId != null) {
-                count = postDAO.countPostbyStatus(Integer.parseInt(statusId));
-            } else {
-                count = postDAO.countPost();
-            }
+            
+           if(search != null){
+               count = postDAO.countSearchPost(search);
+           } else if(categoryId != null){
+               count = postDAO.countPostbyCategory(Integer.parseInt("categoryId"));
+           } else if(statusId != null){
+               count = postDAO.countPostbyStatus(Integer.parseInt("statusId"));
+           }else{
+               count = postDAO.countPost();
+           }
 
             int numberPost = 4;
             int endPage = count / numberPost;
