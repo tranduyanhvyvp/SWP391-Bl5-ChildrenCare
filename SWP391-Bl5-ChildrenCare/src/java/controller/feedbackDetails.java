@@ -8,6 +8,7 @@ package controller;
 import dao.Admin_DAO;
 import dao.Feedback_DAO;
 import entities.feedback;
+import entities.feedbackImage;
 import entities.status;
 import entities.user;
 import java.io.IOException;
@@ -70,8 +71,13 @@ public class feedbackDetails extends HttpServlet {
         feedback feedback1 = dao.searchFeedBackById(fid);
         String uid = Integer.toString(feedback1.getUserId());
         user user1 = dao1.searchUser(uid);
-        List<status> listStatus = dao.getAllStatus();
         
+        List<status> listStatus = dao.getAllStatus();
+        List<feedbackImage> listImage = dao.feedbackImage(fid);
+        feedbackImage firstindex = listImage.get(0);
+        
+        request.setAttribute("firstindex", firstindex);
+        request.setAttribute("listImage", listImage);
         request.setAttribute("listStatus", listStatus);
         request.setAttribute("feedback", feedback1);
         request.setAttribute("user1", user1);

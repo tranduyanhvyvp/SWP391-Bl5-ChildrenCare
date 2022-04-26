@@ -63,8 +63,8 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="card">
-                            
-                            
+
+
                             <form action="userdetailedit?uid=${editUser.id}" method="POST">
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -111,6 +111,15 @@
                                             <input type="text" class="form-control" name="address" value="${editUser.address}">
                                         </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Avatar</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="file" class="form-control" id="img" name="img" accept="image/*">
+                                            
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
@@ -121,7 +130,7 @@
                             </form>
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

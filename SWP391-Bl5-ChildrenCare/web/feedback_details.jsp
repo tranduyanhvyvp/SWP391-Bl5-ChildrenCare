@@ -20,6 +20,12 @@
         <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -51,6 +57,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="card mt-3">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -169,72 +176,30 @@
                         </div>
 
 
-
-
-
-                        <div id="carouselDarkVariant" class="carousel slide carousel-fade carousel-dark" data-mdb-ride="carousel">
-                            <!-- Indicators -->
-                            <div class="carousel-indicators">
-                                <button
-                                    data-mdb-target="#carouselDarkVariant"
-                                    data-mdb-slide-to="0"
-                                    class="active"
-                                    aria-current="true"
-                                    aria-label="Slide 1"
-                                    ></button>
-                                <button
-                                    data-mdb-target="#carouselDarkVariant"
-                                    data-mdb-slide-to="1"
-                                    aria-label="Slide 1"
-                                    ></button>
-                                <button
-                                    data-mdb-target="#carouselDarkVariant"
-                                    data-mdb-slide-to="2"
-                                    aria-label="Slide 1"
-                                    ></button>
-                            </div>
-
-                            <!-- Inner -->
+                        <div id="demo" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <!-- Single item -->
-                                <div class="carousel-item active">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(19).webp" class="d-block w-100" alt="Motorbike Smoke"/>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>First slide label</h5>
-                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                    </div>
-                                </div>
 
-                                <!-- Single item -->
-                                <div class="carousel-item">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(35).webp" class="d-block w-100" alt="Mountaintop"/>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Second slide label</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </div>
+                                <c:forEach var="o" items="${listImage}">
+                                    <div class="${o.id ==firstindex.id ? "carousel-item active":"carousel-item"}">
+                                        <img src="${o.image}" alt="Los Angeles" width="1100" height="500">
 
-                                <!-- Single item -->
-                                <div class="carousel-item">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(40).webp" class="d-block w-100" alt="Woman Reading a Book"/>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Third slide label</h5>
-                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                                     </div>
-                                </div>
+                                </c:forEach>
+
+
+
+
                             </div>
-                            <!-- Inner -->
-
-                            <!-- Controls -->
-                            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-mdb-target="#carouselDarkVariant" data-mdb-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a>
                         </div>
+
+
+
 
 
                     </div>
@@ -244,6 +209,10 @@
         </div>
 
         <style type="text/css">
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
             body{
                 margin-top:20px;
                 color: #1a202c;

@@ -7,6 +7,7 @@ package dao;
 
 import context.DBContext;
 import entities.feedback;
+import entities.feedbackImage;
 import entities.role;
 import entities.status;
 import java.sql.Connection;
@@ -142,12 +143,33 @@ public class Feedback_DAO {
         }
     }
 
+    public List<feedbackImage> feedbackImage(String feedbackId) {
+        List<feedbackImage> list = new ArrayList<>();
+        String query = "select * from Service_feedback_img where service_feedback_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, feedbackId);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new feedbackImage(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3)
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         Feedback_DAO dao = new Feedback_DAO();
-
-
-        feedback a = dao.searchFeedBackById("7");
-        System.out.println(a);
+        List<feedbackImage> a = dao.feedbackImage("7");
+        for (feedbackImage image : a) {
+            System.out.println(image);
+        }
+        
 
     }
 }

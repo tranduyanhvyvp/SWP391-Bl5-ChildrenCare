@@ -87,9 +87,11 @@ public class feedbackList extends HttpServlet {
         Feedback_DAO dao = new Feedback_DAO();
         List<feedback> listFeedback = dao.searchFeedBack(search);
         List<status> listStatus = dao.getAllStatus();
-        request.setAttribute("listStatus", listStatus);
         request.setAttribute("listFeedback", listFeedback);
+        request.setAttribute("listStatus", listStatus);
         request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
+        
+                
     }
 
     /**
