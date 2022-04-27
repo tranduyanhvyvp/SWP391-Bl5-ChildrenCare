@@ -143,11 +143,7 @@ public class AccountDAO extends DBContext {
 
     public static void main(String[] args) {
         AccountDAO dao = new AccountDAO();
-        Account a = dao.checkAccountExit("chiennghiem4");
+        Account a = dao.login("duyanhh", "123456");
         System.out.println(a);
-//        List<Account> list = dao.getAccount("chiennghiem4");
-//        for (Account account : list) {
-//            System.out.println(account);
-//        }
     }
 }

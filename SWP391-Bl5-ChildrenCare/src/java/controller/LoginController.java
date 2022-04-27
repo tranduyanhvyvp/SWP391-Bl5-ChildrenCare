@@ -78,7 +78,7 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
                 HttpSession session = request.getSession();
-                session.setAttribute("username", username);
+                session.setAttribute("account", a);
                 session.setMaxInactiveInterval(86400);
 
                 request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
