@@ -5,16 +5,17 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Special School | Posts</title>
+        <title>Special School | Blog</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style1.css">
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
     </head>
-    <body>
+     <body>
         <jsp:include page="component/header.jsp"></jsp:include>
 
             <div class="content">
@@ -36,12 +37,12 @@
                     <h3 class="first"><a href="PostListController?sort=category_id">Category</a></h3>
                     <div>
                         <c:forEach items="${category}" var="c">
-                            <p><a href="PostListController?categoryId?=${c.id}">${c.name} </a></p>
+                            <p><a href="PostListController?categoryId=${c.id}">${c.name} </a></p>
                         </c:forEach>
                     </div>
                     <h3><a href="PostListController?sort=status_id">Status</a></h3>
                     <c:forEach items="${status}" var="s">
-                        <p><a href="PostListController?statusId?=${s.id}">${s.name} </a></p>
+                        <p><a href="PostListController?statusId=${s.id}">${s.name} </a></p>
                     </c:forEach>
                     <h3><a href="PostListController?sort=author">Author</a></h3>
                 </div>
@@ -50,11 +51,11 @@
                     <ul>
                         <c:forEach items="${posts}" var="p">
                             <li>
-                                <div id="section" class="section"> <a href="#"><img src="${p.thumbnail}" alt=""></a> <span>${p.author}</span> <span>${p.post_date}</span> </div>
+                                <div id="section" class="section"> <a href="PostDetailController?id=${p.id}"><img src="${p.thumbnail}" alt=""></a> <span>${p.author}</span> <span>${p.post_date}</span> </div>
                                 <div id="info">
-                                    <h1><a href="#">${p.title}</a></h1>
+                                    <h1><a href="PostDetailController?id=${p.id}">${p.title}</a></h1>
                                     <p>${p.brief}...</p>
-                                    <a href="" class="read-more">Read more</a>
+                                    <a href="PostDetailController?id=${p.id}" class="read-more">Read more</a>
                                 </div>
                                 <div id="button" style="text-align: -webkit-right;">
                                     <button id="hide">Hide</button>

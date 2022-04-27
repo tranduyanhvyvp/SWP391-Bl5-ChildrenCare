@@ -82,9 +82,9 @@ public class PostListController extends HttpServlet {
            if(search != null){
                count = postDAO.countSearchPost(search);
            } else if(categoryId != null){
-               count = postDAO.countPostbyCategory(Integer.parseInt("categoryId"));
+               count = postDAO.countPostbyCategory(categoryId);
            } else if(statusId != null){
-               count = postDAO.countPostbyStatus(Integer.parseInt("statusId"));
+               count = postDAO.countPostbyStatus(statusId);
            }else{
                count = postDAO.countPost();
            }
@@ -108,10 +108,10 @@ public class PostListController extends HttpServlet {
                     request.setAttribute("posts", posts);
                 }
             } else if (categoryId != null) {
-                ArrayList<Post> posts = postDAO.getPostByCategory(index, Integer.parseInt(categoryId));
+                ArrayList<Post> posts = postDAO.getPostByCategory(index, categoryId);
                 request.setAttribute("posts", posts);
             } else if (statusId != null) {
-                ArrayList<Post> posts = postDAO.getPostByStatus(index, Integer.parseInt(statusId));
+                ArrayList<Post> posts = postDAO.getPostByStatus(index, statusId);
                 request.setAttribute("posts", posts);
             }else if (sort != null) {
                 ArrayList<Post> posts = postDAO.getSort(index, sort);

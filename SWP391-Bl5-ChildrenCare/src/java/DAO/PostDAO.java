@@ -27,16 +27,15 @@ public class PostDAO extends DBContext {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public ArrayList<Post> getPostList() throws Exception {
-        ArrayList<Post> posts = new ArrayList<>();
+    public Post getPostById(int id) throws Exception {
         try {
             String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
                     + "from Post \n"
-                    + "inner join Manager \n"
+                    + "inner join Manager\n"
                     + "on Post.manager_id = Manager.id\n"
                     + "inner join Accounts\n"
                     + "on Manager.account_id = Accounts.account_id\n"
-                    + "order by post_date ";
+                    + "where Post.id = " + id + "";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -51,7 +50,7 @@ public class PostDAO extends DBContext {
                 post.setThumbnail(rs.getString("thumbnail"));
                 post.setCategoty_id(rs.getInt("category_id"));
                 post.setStatus_id(rs.getInt("status_id"));
-                posts.add(post);
+                return post;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +66,7 @@ public class PostDAO extends DBContext {
             }
         }
 
-        return posts;
+        return null;
     }
 
     public ArrayList<Post> get4Post1Page(int index) throws Exception {
@@ -114,7 +113,50 @@ public class PostDAO extends DBContext {
         return list;
     }
 
-    public ArrayList<Post> getPostByCategory(int index, int categoryId) throws Exception {
+    public ArrayList<Post> get3LatestPost() throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post \n"
+                    + "inner join Manager\n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET 0 ROWS  FETCH NEXT 3 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title").substring(0, 30));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Post> getPostByCategory(int index, String categoryId) throws Exception {
         ArrayList<Post> list = new ArrayList<>();
         try {
             String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
@@ -123,7 +165,7 @@ public class PostDAO extends DBContext {
                     + "on Post.manager_id = Manager.id\n"
                     + "inner join Accounts\n"
                     + "on Manager.account_id = Accounts.account_id\n"
-                    + "where Post.category_id = "+categoryId+"\n"
+                    + "where Post.category_id = " + categoryId + "\n"
                     + "order by post_date DESC\n"
                     + "OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY";
             conn = new DBContext().getConnection();
@@ -159,7 +201,7 @@ public class PostDAO extends DBContext {
         return list;
     }
 
-    public ArrayList<Post> getPostByStatus(int index, int statusId) throws Exception {
+    public ArrayList<Post> getPostByStatus(int index, String statusId) throws Exception {
         ArrayList<Post> list = new ArrayList<>();
         try {
             String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
@@ -382,7 +424,7 @@ public class PostDAO extends DBContext {
         return 0;
     }
 
-    public int countPostbyCategory(int categoryID) throws Exception {
+    public int countPostbyCategory(String categoryID) throws Exception {
         String sql = "SELECT count(*)\n"
                 + "FROM Post \n"
                 + "WHERE category_id = ?";
@@ -409,7 +451,7 @@ public class PostDAO extends DBContext {
         return 0;
     }
 
-    public int countPostbyStatus(int statusID) throws Exception {
+    public int countPostbyStatus(String statusID) throws Exception {
         String sql = "SELECT count(*)\n"
                 + "FROM Post \n"
                 + "WHERE status_id = ?";
@@ -490,5 +532,30 @@ public class PostDAO extends DBContext {
             }
         }
         return total;
+    }
+
+    public void updatePost(Post post, int id) throws SQLException {
+        try {
+            String sql = "UPDATE Post\n"
+                    + "SET title = ?, content = ?, category_id = ?, status_id = ?\n"
+                    + "WHERE id = ?";
+            conn = getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, post.getTitle());
+            ps.setString(2, post.getContent());
+            ps.setInt(3, post.getCategoty_id());
+            ps.setInt(4, post.getStatus_id());
+            ps.setInt(5, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+        }
     }
 }
