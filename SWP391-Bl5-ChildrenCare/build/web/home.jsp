@@ -20,7 +20,7 @@
                 <div>
                     <div>
                     <c:forEach items="${listBlog}" var="b">
-                        <h2><a href="blogdetail?id=${b.id}">${b.title}</a></h2>
+                        <h3><a href="blogdetail?id=${b.id}">${b.title}</a></h3>
                         <p>${b.content}</p>                        
 
                     </c:forEach>
@@ -49,28 +49,55 @@
                 .column img{
                     width: 100%;
                 }
+                .img-text{
+                    position: absolute;
+                    top: 85%;
+                    left: 20%;
+                    transform: translate(-50%, -50%);
+                }
+                .container{
+                    background-color: white;
+                    margin-bottom: 15px;
+                }
+                #myCarousel{
+                    margin-bottom: 50px;
+                }
+                h4{
+                    position: relative;
+                    left: 50%;
+                    
+                }
+                .column a {
+                    text-decoration: none;
+                    color: black;
+                }
             </style>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
-                <style>
-                    .img-text{
-                        position: absolute;
-                        top: 85%;
-                        left: 20%;
-                        transform: translate(-50%, -50%);
-                    }
-                </style>
 
                 <section class="regular slider">
-                    <div class="column">
-                        <img src="images/dental.jpg">
-                    </div>
-                    <div class="column">
-                        <img src="images/child_keep.jpg">
-                    </div>
-                    <div class="column">
-                        <img src="images/vaccine.jpg">
-                    </div>
+                    <c:forEach items="${listService}" var="ls">
+                        <div class="column">
+                            <img src="${ls.thumbnail}">
+                            <a href="/detail.jsp?id=1"><h4>${ls.title}</h4></a>
+                            
+                        </div>
+                    </c:forEach>
+                    <!--                    <div class="column">
+                                            <img src="images/dental.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/child_keep.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/vaccine.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/vaccine.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/vaccine.jpg">
+                                        </div>-->
 
                 </section>
             </div>
