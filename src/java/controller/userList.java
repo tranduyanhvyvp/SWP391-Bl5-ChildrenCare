@@ -6,6 +6,7 @@
 package controller;
 
 import dao.Admin_DAO;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entity.user;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +40,7 @@ public class userList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet userList</title>");            
+            out.println("<title>Servlet userList</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet userList at " + request.getContextPath() + "</h1>");
@@ -59,12 +61,19 @@ public class userList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Admin_DAO dao = new Admin_DAO();
-        List<user> ListUser = dao.getAllUser();
-        
-        request.setAttribute("ListUser", ListUser);
-        request.getRequestDispatcher("user_list.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 1) {
+            response.sendRedirect("home.jsp");
+        } else {
+            Admin_DAO dao = new Admin_DAO();
+            List<user> ListUser = dao.getAllUser();
+
+            request.setAttribute("ListUser", ListUser);
+            request.getRequestDispatcher("user_list.jsp").forward(request, response);
+        }
+
     }
 
     /**
