@@ -23,7 +23,7 @@
                             <div class="card" style="background-color:#e7e7e7;padding: 20px;">
                                 <h2>Edit Post</h2>
                                 <input type="hidden" name="id" value="${post.id}"/>
-                                <h5>Title: <input type="text" name="title" value="${post.title}"/></h5>
+                            <h5>Title: <input type="text" name="title" style="width: 500px;" value="${post.title}"/></h5>
                             <h5>${post.author}, ${post.post_date}</h5>
                             <div class="fakeimg" style="height:400px;"><img src="${post.thumbnail}"/></div>
                             <h5>Edit Content</h5>

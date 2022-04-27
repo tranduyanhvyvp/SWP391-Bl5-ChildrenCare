@@ -155,6 +155,48 @@ public class PostDAO extends DBContext {
         }
         return list;
     }
+    public ArrayList<Post> get2LatestPost() throws Exception {
+        ArrayList<Post> list = new ArrayList<>();
+        try {
+            String sql = "select Post.id, Post.title, Post.content, Post.post_date, Accounts.fullname as author, Post.thumbnail, Post.category_id,Post.status_id\n"
+                    + "from Post \n"
+                    + "inner join Manager\n"
+                    + "on Post.manager_id = Manager.id\n"
+                    + "inner join Accounts\n"
+                    + "on Manager.account_id = Accounts.account_id\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET 0 ROWS  FETCH NEXT 2 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title").substring(0, 30));
+                post.setContent(rs.getString("content"));
+                post.setBrief(rs.getString("content").substring(0, 300));
+                post.setPost_date(rs.getDate("post_date"));
+                post.setAuthor(rs.getString("author"));
+                post.setThumbnail(rs.getString("thumbnail"));
+                post.setCategoty_id(rs.getInt("category_id"));
+                post.setStatus_id(rs.getInt("status_id"));
+                list.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
 
     public ArrayList<Post> getPostByCategory(int index, String categoryId) throws Exception {
         ArrayList<Post> list = new ArrayList<>();
