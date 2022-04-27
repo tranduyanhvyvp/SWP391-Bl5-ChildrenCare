@@ -28,6 +28,10 @@ public class Services {
         this.thumbnail = thumbnail;
         this.status_id = status_id;
     }
+    public Services(int id) {
+        this.id = id;
+        
+    }
 
     public int getId() {
         return id;

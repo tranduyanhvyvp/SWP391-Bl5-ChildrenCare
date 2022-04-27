@@ -629,3 +629,7 @@ strong {
                 width: 960px;
                 height: 441px;
             }
+            .searchbox{
+                float: right;
+                height: 50px;
+            }            

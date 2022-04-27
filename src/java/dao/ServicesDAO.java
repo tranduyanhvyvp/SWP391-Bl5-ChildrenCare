@@ -134,22 +134,12 @@ public class ServicesDAO extends DBContext {
         return p;
     }
 
-    public ArrayList<Services> searchList(String ten_san_pham, String ten_the_loai) throws Exception {
+    public ArrayList<Services> getTop5() throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "";
-        if (!ten_san_pham.equals("") && !ten_the_loai.equals("")) {
-            sql = "SELECT * FROM product, category WHERE ten_san_pham like N'%" + ten_san_pham + "%' AND product.ma_the_loai = category.ma_the_loai AND ten_the_loai=N'" + ten_the_loai + "'";
-        } else {
-            if (ten_san_pham.equals("")) {
-                sql = "SELECT * FROM product, category WHERE product.ma_the_loai = category.ma_the_loai AND ten_the_loai=N'" + ten_the_loai + "'";
-            } else {
-                if (ten_the_loai.equals("")) {
-                    sql = "SELECT * FROM product, category WHERE ten_san_pham like  N'%" + ten_san_pham + "%' AND product.ma_the_loai = category.ma_the_loai";
-                }
-            }
-        }
+        
+        String sql = "select top 5* from [Services] order by id";
         ArrayList<Services> list = new ArrayList<>();
         try {
 
@@ -175,16 +165,18 @@ public class ServicesDAO extends DBContext {
         return list;
     }
 
-    public ArrayList<Services> paging(int index) {
+    
+    public ArrayList<Services> paging(int index,String searchText) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM [Services] order by [Services].updated_date  desc  OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY ";
+        String sql = "SELECT * FROM [Services] where title like N'%" + searchText + "%' order by [Services].updated_date  desc  OFFSET ? ROWS  FETCH NEXT 4 ROWS ONLY ";
 
         ArrayList<Services> list = new ArrayList<>();
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
+         
             ps.setInt(1, (index * 4 - 4));
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -206,12 +198,12 @@ public class ServicesDAO extends DBContext {
         return null;
     }
 
-    public int totalPage() {
+    public int totalPage(String searchText) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         int total = 0;
-        String sql = "select count(*) from Services";
+        String sql = "select count(*) from Services where  title like N'%" + searchText + "%'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);

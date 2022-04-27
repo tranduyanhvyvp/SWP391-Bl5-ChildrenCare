@@ -3,7 +3,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About us</a></li>
-                        <li class="current"><a href="services.html">Services</a></li>
+                        <li class="current"><a href="ServicesServlet">Services</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact us</a></li>
                     </ul>

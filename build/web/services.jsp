@@ -20,23 +20,25 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        
+
         <link rel="stylesheet" type="text/css" href="css/styleService.css">
         <link rel="stylesheet" type="text/css" href="css/services.css">
         <title>Special School | Services</title>
     </head>
     <body>
         <jsp:useBean id="a" class="dao.ServicesDAO" scope="request"></jsp:useBean>
-            <jsp:include page="component/header.jsp"></jsp:include>
+        <jsp:include page="component/header.jsp"></jsp:include>
             <div class="content">
 
                 <div id="demo" class="carousel slide" data-ride="carousel" style="margin: 0 auto;">
 
                     <div class="carousel-inner">
                     <%
+                        String searchText =(String) request.getAttribute("searchText");
+                                int totalPage = Integer.parseInt(request.getAttribute("totalPage").toString());
                         Boolean active = false;
-                        ArrayList<Services> list2 = (ArrayList<Services>) request.getAttribute("listP");
-                        for (Services p : list2) {
+                        ArrayList<Services> listTop5 = (ArrayList<Services>) request.getAttribute("listTop5");
+                        for (Services p : listTop5) {
                             if (!active) {
                                 active = true;
                     %>
@@ -77,7 +79,12 @@
 
             <div id="services" style="margin: 0 auto;">
                 <div id="content_center" >
-
+                    <form accept-charset="utf-8" method="post" action="ServicesServlet" name="ServicesServlet">
+                        <div class="searchbox">
+                            <input accept-charset="utf-8" type="text" value="<%=searchText%>"  name="title" placeholder="Service title" style="width:150px">
+                            <input type="submit" value="Search" name="search">
+                        </div>
+                    </form>
                     <%                            NumberFormat nf = NumberFormat.getInstance();
                         nf.setMinimumFractionDigits(0);
                     %>
@@ -86,6 +93,8 @@
                         <ul class="products homepage">
 
                             <%
+                                
+                                
                                 ArrayList<Services> list = (ArrayList<Services>) request.getAttribute("listP");
                                 for (Services p : list) {
                             %>
@@ -120,8 +129,8 @@
 
                 <ul>
 
-                    <c:forEach begin="1" end="${a.totalPage()}" var="i">
-                        <li class="pagination"><a class="page-link" href="ServicesServlet?index=${i}">${i}</a></li>
+                    <c:forEach begin="1" end="<%=totalPage%>" var="i">
+                        <li class="pagination"><a class="page-link" href="ServicesServlet?index=${i}&title=${searchText}">${i}</a></li>
                         </c:forEach>
 
 

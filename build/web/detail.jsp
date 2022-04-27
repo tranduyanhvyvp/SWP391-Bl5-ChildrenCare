@@ -1,9 +1,6 @@
-<%-- 
-    Document   : detail
-    Created on : Oct 31, 2020, 9:45:54 PM
-    Author     : DELL
---%>
 
+
+<%@page import="model.Account"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="dao.ServicesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,7 +21,7 @@
                 <div class="content">
                    
                 <%
-
+                    Account account = (Account) session.getAttribute("account");
                     String id = "";
                     if (request.getParameter("id") != null) {
                         id = request.getParameter("id");
@@ -62,18 +59,27 @@
 
                             </table>
                         </div>
-
+                        <% if(account != null) { %>
                         <div
                             style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; padding: 10px; clear: both;">
 
                             <form action="CartServlet" method="post">
-                                
+                                <input type="hidden" value="1" name="soluong"/>
                                 <input type="hidden" value="setCart" name="command"/>
                                 <input type="hidden" value="<%=id%>" name="id"/>
                                 <input type="submit" value="Add to Cart" class="btn">
                             </form>	
                         </div>
+                        <%} else { %>
+			<div
+                            style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; padding: 10px; clear: both;">
 
+                            <form action="login.jsp" method="post">
+                                
+                                <input type="submit" value="Add to Cart" class="btn">
+                            </form>	
+                        </div>
+			<%} %>
 
 
                    
