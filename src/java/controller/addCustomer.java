@@ -8,7 +8,7 @@ package controller;
 import dao.CustomerDAO;
 import JavaFunc.randomString;
 import JavaFunc.sendEmail;
-import entities.Customer;
+import entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

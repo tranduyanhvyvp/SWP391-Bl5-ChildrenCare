@@ -6,7 +6,7 @@
 package dao;
 
 import context.DBContext;
-import entities.Customer;
+import entity.Customer;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

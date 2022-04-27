@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Customer {
 
-    public Customer (int id, String fullname, boolean gender, String address, String emaii, Date dob, String phoneNumber, String role, String avatar) {
+    public Customer(int id, String fullname, boolean gender, String address, String emaii, Date dob, String phoneNumber, String role, String avatar) {
         this.id = id;
         this.fullname = fullname;
         this.gender = gender;
@@ -110,6 +110,5 @@ public class Customer {
     public String toString() {
         return "user{" + "id=" + id + ", fullname=" + fullname + ", gender=" + gender + ", address=" + address + ", emaii=" + emaii + ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", role=" + role + ", avatar=" + avatar + '}';
     }
-    
-    
+
 }

@@ -29,6 +29,9 @@
                         <c:if test="${sessionScope.account.role_id==2}">
                         <li><a href="/SWP391-Bl5-ChildrenCare/feedbacklist">Feedback List</a></li>
                         </c:if>
+                        <c:if test="${sessionScope.account.role_id==2}">
+                        <li><a href="/SWP391-Bl5-ChildrenCare/manageCustomer">Manager Customer</a></li>
+                        </c:if>
                     <li><a href="UserProfileController">Profile</a></li>
                     <li><a href="use_change_password.jsp">Change Password</a></li>
                 </ul>
