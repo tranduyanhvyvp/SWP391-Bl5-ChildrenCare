@@ -35,24 +35,7 @@ public class ChangePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        try {
-//            String username = request.getParameter("username");
-//            String password = request.getParameter("password");
-//
-//            AccountDAO loginDAO = new AccountDAO();
-//            Account a = loginDAO.login(username, password);
-//            if (a == null) {
-//                request.setAttribute("mess", "Wrong Username or Password");
-//                request.getRequestDispatcher("login.jsp").forward(request, response);
-//            } else {
-//                HttpSession session = request.getSession();
-//                session.setAttribute("username", username);
-//                session.setMaxInactiveInterval(86400);
-//
-//                request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
-//            }
-//        } catch (Exception e) {
-//        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

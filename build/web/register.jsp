@@ -8,22 +8,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <html>
     <style>
@@ -100,54 +100,56 @@
 
         <jsp:include page="component/header.jsp"></jsp:include>
 
-        <div class="content">
+            <div class="content">
 
 
 
 
-            <form action="RegisterController" method="post">
+                <form action="RegisterController" method="post">
 
-                <div class="container">
-                    <label for="uname"><b>Username:</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <div class="container">
+                        <label for="uname"><b>Username:</b></label>
+                        <input type="text" placeholder="Enter Username" name="username" required>
 
-                    <label for="psw"><b>Password:</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
+                        <label for="psw"><b>Password:</b></label>
+                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                        <input type="checkbox" onclick="myFunction()">Show Password
+                        <br>
+                        <label for="psw"><b>Confirm Password:</b></label>
+                        <input type="password" placeholder="Enter Confirm Password" name="rePassword" id ="confirmNewPassword" required>
+                        <input type="checkbox" onclick="myFunction1()">Show Password
+                        <br>
+                        <label for="fullname"><b>Full name:</b></label>
+                        <input type="text" placeholder="Enter Full Name" name="fullName" required>
+                        <label for="gender"><b>Gender: </b></label>
 
-                    <label for="psw"><b>Confirm Password:</b></label>
-                    <input type="password" placeholder="Enter Confirm Password" name="rePassword" required>
+                        <form>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value ="1" checked>Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio"  name="gender" value="0">Female    
+                            </label>
+                        </form>
+                        <br>
+                        <br>
+                        <label for="email"><b>Email:</b></label>
+                        <input type="text" placeholder="Enter Email" name="email" required>
+                        <label for="phone"><b>Mobile:</b></label>
+                        <input  type="text" placeholder="Enter Phone Number" name="phoneNumber" onchange="CheckPhone()" required>
+                        <label for="address"><b>Address:</b></label>
+                        <input type="text" placeholder="Enter Address" name="address" required>
 
-                    <label for="fullname"><b>Full name:</b></label>
-                    <input type="text" placeholder="Enter Full Name" name="fullName" required>
-                    <label for="gender"><b>Gender: </b></label>
-
-                    <form>
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value ="1" checked>Male
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio"  name="gender" value="0">Female    
-                        </label>
-                    </form>
-                    <br>
-                    <br>
-                    <label for="email"><b>Email:</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-                    <label for="phone"><b>Mobile:</b></label>
-                    <input  type="text" placeholder="Enter Phone Number" name="phoneNumber" onchange="CheckPhone()" required>
-                    <label for="address"><b>Address:</b></label>
-                    <input type="text" placeholder="Enter Address" name="address" required>
-
-                    <button type="submit">Sign-up</button>
-                    <span class="psw"><a href="login.jsp">Back</a></span>
-                    <br>
-                    <p class="text-danger">
-                       ${mess}
+                        <button type="submit">Sign-up</button>
+                        <span class="psw"><a href="login.jsp">Back</a></span>
+                        <br>
+                        <p class="text-danger">
+                        ${mess}
                     </p>
                 </div>
 
 
-                
+
             </form>
 
         </div>
@@ -166,6 +168,27 @@
             <p class="footnote">Copyright &copy; 2012 <a href="#">School Name</a> All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></p>
         </div>
     </body>
+    
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            }  else {
+                x.type = "password";
+            }
+        }
+        function myFunction1() {
+            var x = document.getElementById("confirmNewPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            }  else {
+                x.type = "password";
+            }
+        }
+    </script>
+    
+    
 </html>
 
 <!--<script>

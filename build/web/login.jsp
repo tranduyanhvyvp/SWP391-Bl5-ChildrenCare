@@ -110,7 +110,7 @@
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>
 
-                    <span class="psw"><a href="#">Reset Password</a></span>
+                    <span class="psw"><a href="user_email_input.jsp">Reset Password</a></span>
 
                     <span class="psw"><a href="register.jsp">Register</a>&emsp;&emsp;&emsp;&emsp;</span>
 

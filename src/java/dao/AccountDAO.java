@@ -43,7 +43,8 @@ public class AccountDAO extends DBContext {
                         rs.getString(8),
                         rs.getString(9),
                         rs.getInt(10),
-                        rs.getString(11));
+                        rs.getString(11),
+                        rs.getInt(12));
                 return a;
             }
 
@@ -71,7 +72,8 @@ public class AccountDAO extends DBContext {
                         rs.getString(8),
                         rs.getString(9),
                         rs.getInt(10),
-                        rs.getString(11));
+                        rs.getString(11),
+                        rs.getInt(12));
                 return a;
             }
 
@@ -81,7 +83,7 @@ public class AccountDAO extends DBContext {
     }
 
     public void register(String user, String pass, String fullName, int gender, String email, int phoneNumber, String address) {
-        String query = "INSERT INTO Accounts () VALUES(?,?,?,?,'04/20/2022',?,?,?,4,0)";
+        String query = "INSERT INTO Accounts VALUES(?,?,?,?,'04/20/2022',?,?,?,4,'NULL','0')";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -135,6 +137,46 @@ public class AccountDAO extends DBContext {
             ps.setString(4, dob);
             ps.setInt(5, phonenumber);
             ps.setString(6, user);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public Account checkEmail(String email) {
+        try {
+            String query = "SELECT * FROM Accounts WHERE email = ?";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getInt(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getInt(10),
+                        rs.getString(11),
+                        rs.getInt(12));
+                return a;
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public Account checkStatus(String email) {
+        try {
+            String query = "UPDATE Accounts SET  status = '1' WHERE email = ?";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
             ps.executeUpdate();
         } catch (Exception e) {
         }

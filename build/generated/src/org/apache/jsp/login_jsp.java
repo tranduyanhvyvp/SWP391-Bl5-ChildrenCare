@@ -155,7 +155,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <label for=\"psw\"><b>Password</b></label>\n");
       out.write("                    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>\n");
       out.write("\n");
-      out.write("                    <span class=\"psw\"><a href=\"#\">Reset Password</a></span>\n");
+      out.write("                    <span class=\"psw\"><a href=\"user_email_input.jsp\">Reset Password</a></span>\n");
       out.write("\n");
       out.write("                    <span class=\"psw\"><a href=\"register.jsp\">Register</a>&emsp;&emsp;&emsp;&emsp;</span>\n");
       out.write("\n");
