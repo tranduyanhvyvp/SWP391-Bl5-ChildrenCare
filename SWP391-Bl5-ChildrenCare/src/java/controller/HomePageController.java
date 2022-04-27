@@ -5,8 +5,8 @@
  */
 package controller;
 
-import DAO.BlogDAO;
-import DAO.ServiceDAO;
+import dao.BlogDAO;
+import dao.ServiceDAO;
 import dao.DAO;
 import entity.Blog;
 import entity.Service;

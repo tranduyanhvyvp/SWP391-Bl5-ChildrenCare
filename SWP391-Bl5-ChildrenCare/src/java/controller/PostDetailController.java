@@ -6,7 +6,7 @@
 package controller;
 
 import entity.Post;
-import DAO.PostDAO;
+import dao.PostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

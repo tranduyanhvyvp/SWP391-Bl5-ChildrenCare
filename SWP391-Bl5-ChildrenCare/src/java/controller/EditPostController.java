@@ -5,7 +5,7 @@
  */
 package controller;
 
-import DAO.PostDAO;
+import dao.PostDAO;
 import entity.Category;
 import entity.Post;
 import entity.Status;
