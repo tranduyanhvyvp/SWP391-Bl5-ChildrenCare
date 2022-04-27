@@ -6,9 +6,9 @@
 package controller;
 
 import DAO.PostDAO;
-import entities.Category;
-import entities.Post;
-import entities.Status;
+import entity.Category;
+import entity.Post;
+import entity.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;

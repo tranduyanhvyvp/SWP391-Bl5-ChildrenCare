@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package entity;
 
 /**
  *
  * @author phuch
  */
-public class Status {
+public class Category {
     private int id;
     private String name;
 
-    public Status() {
+    public Category() {
     }
 
-    public Status(int id, String name) {
+    public Category(int id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -6,13 +6,13 @@
 package DAO;
 
 import context.DBContext;
-import entities.Category;
+import entity.Category;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import entities.Post;
-import entities.Status;
+import entity.Post;
+import entity.Status;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

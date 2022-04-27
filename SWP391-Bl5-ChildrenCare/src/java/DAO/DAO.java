@@ -6,8 +6,8 @@
 package dao;
 
 import context.DBContext;
-import entities.Blog;
-import entities.Service;
+import entity.Blog;
+import entity.Service;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

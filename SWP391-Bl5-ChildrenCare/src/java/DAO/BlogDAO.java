@@ -6,7 +6,7 @@
 package DAO;
 
 import context.DBContext;
-import entities.Blog;
+import entity.Blog;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

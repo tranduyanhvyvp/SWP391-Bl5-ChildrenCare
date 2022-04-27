@@ -6,7 +6,7 @@
 package controller;
 
 import DAO.PostDAO;
-import entities.Category;
+import entity.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entities.Post;
-import entities.Status;
+import entity.Post;
+import entity.Status;
 
 /**
  *

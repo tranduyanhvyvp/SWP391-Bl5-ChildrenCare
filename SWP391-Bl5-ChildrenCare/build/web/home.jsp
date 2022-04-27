@@ -34,52 +34,59 @@
         </div>
         <div class="container">
             <h2>Our Services</h2>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
+            <script type="text/javascript">
+                $(document).on('ready', function () {
+                    $(".regular").slick({
+                        dots: true,
+                        infinite: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    });
+                });
+            </script>
+            <style>
+                * {
+                    box-sizing: border-box;
+                }
+                .column {
+                    float: left;
+                    width: 33.33%;
+                    padding: 5px;
+                }
+                .regular slider::after{
+                    content: "";
+                    clear: both;
+                    display: table;
+                }
+            </style>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-               
-                    <div class="item active">
-                        <img src="images/health_check.jpg"  style="width:100%; ">
-                        <div class="carousel-caption">
-                            <h3>Health check</h3>
-                            <p>Book a child health check</p>
-                        </div>
+
+                <section class="regular slider">
+                    <div class="column">
+                        <img src="images/health_check.jpg">
                     </div>
-
-                    <div class="item">
-                        <img src="images/dental.jpg"  style="width:100%;">
-                        <div class="carousel-caption">
-                            <h3>Dental</h3>
-                            <p>Book a dental service</p>
-                        </div>
+                    <div class="column">
+                        <img src="images/dental.jpg">
                     </div>
-
-                    <div class="item">
-                        <img src="images/child_keep.jpg" style="width:100%;">
-                        <div class="carousel-caption">
-                            <h3>Child Keep</h3>
-                            <p>Book a child keep service</p>
-                        </div>
+                    <div class="column">
+                        <img src="images/health_check.jpg">
                     </div>
-
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                    <div class="column">
+                        <img src="images/health_check.jpg">
+                    </div>
+                    <div class="column">
+                        <img src="images/health_check.jpg">
+                    </div>
+                    <div class="column">
+                        <img src="images/health_check.jpg">
+                    </div>
+                </section>
             </div>
         </div>
         <jsp:include page="component/footer.jsp"></jsp:include>
