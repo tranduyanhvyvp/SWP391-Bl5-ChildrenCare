@@ -99,6 +99,26 @@ public class BlogDAO extends DBContext{
         return null;
     }
     
-    
+    public ArrayList<Blog> get2LatestBlog() {
+        ArrayList<Blog> list = new ArrayList<>();
+        try {
+            String sql = "select * \n"
+                    + "from Blog\n"
+                    + "order by post_date DESC\n"
+                    + "OFFSET 0 ROWS  FETCH NEXT 5 ROWS ONLY";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Blog blog = new Blog();
+                blog.setId(rs.getInt("id"));
+                blog.setTitle(rs.getString("title"));
+                blog.setContent(rs.getString("content"));
+                list.add(blog);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
     
 }

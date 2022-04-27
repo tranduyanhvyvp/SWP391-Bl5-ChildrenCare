@@ -4,29 +4,105 @@
     Author     : aDMIN
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<title>Special School</title>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
-</head>
-<body>
-<jsp:include page="component/header.jsp"></jsp:include>
-<div id="content">
-  <div>
-    <div>
-      <h1>The Special School</h1>
-      <p>This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text. You can remove any link to our website from this website template, you're free to use this website template without linking back to us. If you're having problems editing this website template, then don't hesitate to ask for help on the Forum.</p>
-      <h2>They are Special</h2>
-      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequeat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-      <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis quifacit eorum claritatem. Investigationes demonstraverunt lectores legere me luis quod ii legunt saepius.</p>
-    </div>
-  </div>
-</div>
-<jsp:include page="component/footer.jsp"></jsp:include>
-</body>
+    <head>
+        <title>Special School</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
+    </head>
+    <body>
+        <jsp:include page="component/header.jsp"></jsp:include>
+            <div id="content">
+                <div>
+                    <div>
+                    <c:forEach items="${listBlog}" var="b">
+                        <h3><a href="blogdetail?id=${b.id}">${b.title}</a></h3>
+                        <p>${b.content}</p>                        
+
+                    </c:forEach>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container">
+            <h2>Our Services</h2>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
+            <script type="text/javascript">
+                $(document).on('ready', function () {
+                    $(".regular").slick({
+                        dots: true,
+                        infinite: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    });
+                });
+            </script>
+            <style>
+                .column img{
+                    width: 100%;
+                }
+                .img-text{
+                    position: absolute;
+                    top: 85%;
+                    left: 20%;
+                    transform: translate(-50%, -50%);
+                }
+                .container{
+                    background-color: white;
+                    margin-bottom: 15px;
+                }
+                #myCarousel{
+                    margin-bottom: 50px;
+                }
+                h4{
+                    position: relative;
+                    left: 50%;
+                    
+                }
+                .column a {
+                    text-decoration: none;
+                    color: black;
+                }
+            </style>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+
+                <section class="regular slider">
+                    <c:forEach items="${listService}" var="ls">
+                        <div class="column">
+                            <img src="${ls.thumbnail}">
+                            <a href="/detail.jsp?id=1"><h4>${ls.title}</h4></a>
+                            
+                        </div>
+                    </c:forEach>
+                    <!--                    <div class="column">
+                                            <img src="images/dental.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/child_keep.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/vaccine.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/vaccine.jpg">
+                                        </div>
+                                        <div class="column">
+                                            <img src="images/vaccine.jpg">
+                                        </div>-->
+
+                </section>
+            </div>
+        </div>
+        <jsp:include page="component/footer.jsp"></jsp:include>
+    </body>
 </html>
 
