@@ -7,13 +7,11 @@ package controller;
 
 import dao.BlogDAO;
 import dao.ServiceDAO;
-import dao.DAO;
 import entity.Blog;
 import entity.Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -70,8 +68,8 @@ public class HomePageController extends HttpServlet {
         try{
             BlogDAO blog = new BlogDAO();
             ServiceDAO service = new ServiceDAO();
-            ArrayList<Service> listService = service.getToptService();
-            ArrayList<Blog> listBlog = blog.getHomeLatestBlog();
+            ArrayList<Service> listService = service.get5LatestService();
+            ArrayList<Blog> listBlog = blog.get2LatestBlog();
             request.setAttribute("listService", listService);
             request.setAttribute("listBlog", listBlog);
             request.getRequestDispatcher("home.jsp").forward(request, response);

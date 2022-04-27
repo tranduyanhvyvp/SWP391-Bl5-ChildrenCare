@@ -12,9 +12,6 @@
         <title>Special School</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
     </head>
     <body>
@@ -49,43 +46,32 @@
                 });
             </script>
             <style>
-                * {
-                    box-sizing: border-box;
-                }
-                .column {
-                    float: left;
-                    width: 33.33%;
-                    padding: 5px;
-                }
-                .regular slider::after{
-                    content: "";
-                    clear: both;
-                    display: table;
+                .column img{
+                    width: 100%;
                 }
             </style>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
-
+                <style>
+                    .img-text{
+                        position: absolute;
+                        top: 85%;
+                        left: 20%;
+                        transform: translate(-50%, -50%);
+                    }
+                </style>
 
                 <section class="regular slider">
-                    <div class="column">
-                        <img src="images/health_check.jpg">
-                    </div>
                     <div class="column">
                         <img src="images/dental.jpg">
                     </div>
                     <div class="column">
-                        <img src="images/health_check.jpg">
+                        <img src="images/child_keep.jpg">
                     </div>
                     <div class="column">
-                        <img src="images/health_check.jpg">
+                        <img src="images/vaccine.jpg">
                     </div>
-                    <div class="column">
-                        <img src="images/health_check.jpg">
-                    </div>
-                    <div class="column">
-                        <img src="images/health_check.jpg">
-                    </div>
+
                 </section>
             </div>
         </div>
