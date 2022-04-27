@@ -17,8 +17,20 @@
         <servlet-class>controller.manageCustomer</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ServicesServlet</servlet-name>
+        <servlet-class>controller.ServicesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>addCustomer</servlet-name>
         <servlet-class>controller.addCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicesController</servlet-name>
+        <servlet-class>controller.ServicesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.CartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -44,10 +56,6 @@
         <servlet-name>userList</servlet-name>
         <servlet-class>controller.userList</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ServicesServlet</servlet-name>
-        <servlet-class>controller.ServicesServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>userList</servlet-name>
         <url-pattern>/userlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicesController</servlet-name>
+        <url-pattern>/ServicesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
