@@ -5,6 +5,7 @@
  */
 package controller;
 
+import JavaFunc.sendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stter
  */
-@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
-public class ChangePasswordController extends HttpServlet {
+@WebServlet(name = "InputEmailController", urlPatterns = {"/InputEmailController"})
+public class InputEmailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +36,18 @@ public class ChangePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet InputEmailController</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet InputEmailController at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +63,8 @@ public class ChangePasswordController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.getRequestDispatcher("chang_password.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("user_email_input.jsp").forward(request, response);
     }
 
     /**
@@ -65,31 +78,38 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        processRequest(request, response);
+        
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String newPassword = request.getParameter("newPassword");
-            String confirmNewPassword = request.getParameter("confirmNewPassword");
+            String email = request.getParameter("email");
 
-            AccountDAO loginDAO = new AccountDAO();
-            Account a = loginDAO.login(username, password);
+            AccountDAO checkEmailDAO = new AccountDAO();
+            Account a = checkEmailDAO.checkEmail(email);
+
+            sendEmail mail = new sendEmail();
+
+            // tiep tuc update va tra ve update thanh cong
             if (a == null) {
-                request.setAttribute("mess", "Wrong Password");
-                request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
+                request.setAttribute("mess", "Email Incorrect");
+                request.getRequestDispatcher("user_email_input.jsp").forward(request, response);
             } else {
-                // tiep tuc update va tra ve update thanh cong
-                
-                if (!newPassword.equals(confirmNewPassword)) {
-                    request.setAttribute("mess", "Wrong Confirm Password");
-                    request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
-                } else {
-                    AccountDAO changePasswordDAO = new AccountDAO();
-                    changePasswordDAO.updatePassword(username, newPassword);
-                    request.setAttribute("mess", "Succesful");
-                    request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
+                try {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("acc", a);
+                    session.setMaxInactiveInterval(3600);
+                    
+                    request.getRequestDispatcher("user_email_confirm.jsp").forward(request, response);
+                    String link = "http://localhost:8080/SWP_Bl5_ChildrenCare_Demo/user_reset_password.jsp";
+                    mail.sendText(email, link);
+                                       
+                    
+                } catch (Exception e) {
+                    request.getRequestDispatcher("user_input_email.jsp").forward(request, response);
                 }
 
+//                request.getRequestDispatcher("user_reset_password.jsp").forward(request, response);
+//                request.setAttribute("mess", "Exact email");
+//                request.getRequestDispatcher("user_input_email.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

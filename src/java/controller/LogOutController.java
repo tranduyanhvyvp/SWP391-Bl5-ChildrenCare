@@ -5,8 +5,6 @@
  */
 package controller;
 
-import dao.AccountDAO;
-import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stter
  */
-@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
-public class ChangePasswordController extends HttpServlet {
+@WebServlet(name = "LogOutController", urlPatterns = {"/LogOutController"})
+public class LogOutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +33,11 @@ public class ChangePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        HttpSession session = request.getSession();
+        session.removeAttribute("account");
+        response.sendRedirect("home.jsp");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +53,6 @@ public class ChangePasswordController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.getRequestDispatcher("chang_password.jsp").forward(request, response);
     }
 
     /**
@@ -65,36 +66,7 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String newPassword = request.getParameter("newPassword");
-            String confirmNewPassword = request.getParameter("confirmNewPassword");
-
-            AccountDAO loginDAO = new AccountDAO();
-            Account a = loginDAO.login(username, password);
-            if (a == null) {
-                request.setAttribute("mess", "Wrong Password");
-                request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
-            } else {
-                // tiep tuc update va tra ve update thanh cong
-                
-                if (!newPassword.equals(confirmNewPassword)) {
-                    request.setAttribute("mess", "Wrong Confirm Password");
-                    request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
-                } else {
-                    AccountDAO changePasswordDAO = new AccountDAO();
-                    changePasswordDAO.updatePassword(username, newPassword);
-                    request.setAttribute("mess", "Succesful");
-                    request.getRequestDispatcher("use_change_password.jsp").forward(request, response);
-                }
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Loi roi");
-        }
+        processRequest(request, response);
     }
 
     /**

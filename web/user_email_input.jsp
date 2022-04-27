@@ -1,9 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : Apr 18, 2022, 2:24:18 PM
-    Author     : stter
---%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +18,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <html>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -78,6 +71,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
             padding-top: 16px;
         }
 
+        .container.mess{
+            color: red;
+        }
+
         /* Change styles for span and cancel button on extra small screens */
         @media screen and (max-width: 300px) {
             span.psw {
@@ -90,7 +87,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         }
     </style>
     <head>
-        <title>Register Page</title>
+        <title>Reset Password</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
@@ -104,53 +101,47 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 
 
 
-
-                <form action="RegisterController" method="post">
+                <form action="<%=request.getContextPath()%>/InputEmailController" method="post">
 
                     <div class="container">
-                        <label for="uname"><b>Username:</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" required>
 
-                        <label for="psw"><b>Password:</b></label>
-                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
-                        <input type="checkbox" onclick="myFunction()">Show Password
-                        <br>
-                        <label for="psw"><b>Confirm Password:</b></label>
-                        <input type="password" placeholder="Enter Confirm Password" name="rePassword" id ="confirmNewPassword" required>
-                        <input type="checkbox" onclick="myFunction1()">Show Password
-                        <br>
-                        <label for="fullname"><b>Full name:</b></label>
-                        <input type="text" placeholder="Enter Full Name" name="fullName" required>
-                        <label for="gender"><b>Gender: </b></label>
-
-                        <form>
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" value ="1" checked>Male
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio"  name="gender" value="0">Female    
-                            </label>
-                        </form>
-                        <br>
-                        <br>
-                        <label for="email"><b>Email:</b></label>
+                        <label for="psw"><b>Email</b></label>
                         <input type="text" placeholder="Enter Email" name="email" required>
-                        <label for="phone"><b>Mobile:</b></label>
-                        <input  type="text" placeholder="Enter Phone Number" name="phoneNumber" onchange="CheckPhone()" required>
-                        <label for="address"><b>Address:</b></label>
-                        <input type="text" placeholder="Enter Address" name="address" required>
 
-                        <button type="submit">Sign-up</button>
-                        <span class="psw"><a href="login.jsp">Back</a></span>
                         <br>
                         <p class="text-danger">
                         ${mess}
                     </p>
+
+                    <button type="submit" >Accept</button>
+
+
                 </div>
 
-
-
             </form>
+
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
 
         </div>
         <div id="footer">
@@ -168,56 +159,6 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
             <p class="footnote">Copyright &copy; 2012 <a href="#">School Name</a> All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></p>
         </div>
     </body>
-    
-    <script>
-        function myFunction() {
-            var x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            }  else {
-                x.type = "password";
-            }
-        }
-        function myFunction1() {
-            var x = document.getElementById("confirmNewPassword");
-            if (x.type === "password") {
-                x.type = "text";
-            }  else {
-                x.type = "password";
-            }
-        }
-    </script>
-    
-    
+
 </html>
 
-<!--<script>
-    function CheckPhone() {
-        var phone = document.getElementById("phoneNumber").value;
-        var ph = /^[0]{1}[0-9]{9}$/
-        if (phone.match(ph)) {
-            document.getElementById("PhoneNumberCheck").style.display = "none";
-            document.getElementById("phoneNumber").style.borderColor = "#ced4da";
-            return true;
-        } else {
-            document.getElementById("PhoneNumberCheck").style.display = "block";
-            document.getElementById("phoneNumber").style.borderColor = "red";
-            return false;
-        }
-    }
-    function ValidateEmail() {
-        var mail = document.getElementById("Email").value;
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (mail.match(mailformat)) {
-
-            document.getElementById("EmailCheck").style.display = "none";
-            document.getElementById("Email").style.borderColor = "#ced4da";
-            return true;
-        } else {
-
-            document.getElementById("EmailCheck").style.display = "block";
-            document.getElementById("Email").style.borderColor = "red";
-            return false;
-        }
-    }
-</script>-->

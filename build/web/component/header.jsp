@@ -18,22 +18,27 @@
             <div> <a href="home.jsp"><img src="images/logo.gif" alt=""></a>
                 <ul>
                     <li><a href="home.jsp">Home</a></li>
-                    <li><a href="about.jsp">About us</a></li>
+                    <li><a href="PostListController">Posts</a></li>
                     <li><a href="service.jsp">Services</a></li>
                     <li><a href="blog.jsp">Blog</a></li>
-                    <li><a href="contact.jsp">Contact us</a></li>
-                    <li><a href="login.jsp">${sessionScope.account.fullName}</a></li>
-                        <c:if test="${sessionScope.account.role_id==1}">
-                        <li><a href="/SWP391-Bl5-ChildrenCare/userlist">User List</a></li>
+                        <c:if test="${sessionScope.account != null}">
+                        <li><a href="UserProfileController">${sessionScope.account.username}</a></li>
+                        <li><a href="LogOutController">Logout</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.account == null}">
+                        <li><a href="login.jsp">Login</a></li>                      
+                        </c:if>
+
+                    <c:if test="${sessionScope.account.role_id==1}">
+                        <li><a href="/SWP391-Bl5-ChildrenCare-chiennt/userlist">User List</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account.role_id==2}">
-                        <li><a href="/SWP391-Bl5-ChildrenCare/feedbacklist">Feedback List</a></li>
+                        <li><a href="/SWP391-Bl5-ChildrenCare-chiennt/feedbacklist">Feedback List</a></li>
                         </c:if>
-                        <c:if test="${sessionScope.account.role_id==2}">
-                        <li><a href="/SWP391-Bl5-ChildrenCare/manageCustomer">Manager Customer</a></li>
-                        </c:if>
-                    <li><a href="UserProfileController">Profile</a></li>
-                    <li><a href="use_change_password.jsp">Change Password</a></li>
+
+
+
+
                 </ul>
             </div>
         </div>

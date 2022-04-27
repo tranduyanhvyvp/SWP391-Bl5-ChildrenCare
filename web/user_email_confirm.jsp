@@ -2,22 +2,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <html>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -74,7 +74,7 @@
         .container.mess{
             color: red;
         }
-       
+
         /* Change styles for span and cancel button on extra small screens */
         @media screen and (max-width: 300px) {
             span.psw {
@@ -87,7 +87,7 @@
         }
     </style>
     <head>
-        <title>Login Page</title>
+        <title>Reset Password</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
@@ -97,41 +97,34 @@
 
         <jsp:include page="component/header.jsp"></jsp:include>
 
-        <div class="content">
+            <div class="content">
 
 
 
-            <form action="LoginController" method="post">
+                <form action="InputEmailController" method="post">
 
-                <div class="container">
-                    <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <div class="container">
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
+                        <label for="psw"><b>You need to check your Email: ${sessionScope.acc.email} </b></label>
 
-                    <span class="psw"><a href="user_email_input.jsp">Reset Password</a></span>
-
-                    <span class="psw"><a href="register.jsp">Register</a>&emsp;&emsp;&emsp;&emsp;</span>
-
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-
-                    <button type="submit" >Login</button>
                     
-                    
+                    <br>
+                    <span ><a href="user_email_input.jsp">Back</a></span>
+
+                    <br>
+                    <span ><a href="user_register_confirm.jsp">next</a></span>
+                    <br>
                     <p class="text-danger">
-                       ${mess}
+                        ${mess}
                     </p>
+
+
                 </div>
 
             </form>
 
 
-            
+
             <br>
             <br>
             <br>
@@ -169,4 +162,7 @@
             <p class="footnote">Copyright &copy; 2012 <a href="#">School Name</a> All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></p>
         </div>
     </body>
+
+
 </html>
+

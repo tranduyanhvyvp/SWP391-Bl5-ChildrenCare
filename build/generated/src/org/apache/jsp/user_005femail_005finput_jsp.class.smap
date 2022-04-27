@@ -1,0 +1,16 @@
+SMAP
+user_005femail_005finput_jsp.java
+JSP
+*S JSP
+*F
++ 0 user_email_input.jsp
+user_email_input.jsp
+*L
+1,97:44
+98:141,3
+99,5:144
+104:149,3
+105,8:152
+113:160,3
+114,52:163
+*E

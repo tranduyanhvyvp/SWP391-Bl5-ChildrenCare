@@ -1,3 +1,9 @@
+<%-- 
+    Document   : register
+    Created on : Apr 18, 2022, 2:24:18 PM
+    Author     : stter
+--%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +24,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <html>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -71,10 +78,6 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
             padding-top: 16px;
         }
 
-        .container.mess{
-            color: red;
-        }
-
         /* Change styles for span and cancel button on extra small screens */
         @media screen and (max-width: 300px) {
             span.psw {
@@ -87,7 +90,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         }
     </style>
     <head>
-        <title>Change Password</title>
+        <title>Confirm Register</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
@@ -95,65 +98,34 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
     <body>
 
 
-        <jsp:include page="component/header_login.jsp"></jsp:include>
+        <jsp:include page="component/header.jsp"></jsp:include>
 
             <div class="content">
 
 
 
-                <form action="ChangePasswordController" method="post">
+
+                <form action="RegisterConfirmController" method="post">
 
                     <div class="container">
+                        <label for="psw"><b>Registration confirmation</b></label>
+                        <br>
+                        <label for="psw"><b>Your Email:  </b></label>
+                        <input type="text"  name="email"  value="${sessionScope.acc.email}" readonly>
+                    <br>    
+                    <label for="psw"><b>Your username: </b></label>
+                    <input type="text" name="username" value="${sessionScope.acc.username} " readonly>
 
-                        <label for="psw"><b>Username</b></label>
-                        <input type="text" value="${sessionScope.username}" name="username" readonly>
-
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Current Password" name="password" id="password" required>
-                    <input type="checkbox" onclick="myFunction()">Show Password
-
+                    <button type="submit">Accept</button>
                     <br>
-                    <label for="psw"><b>New Password</b></label>
-                    <input type="password" placeholder="Enter New Password" name="newPassword" id="newPassword" required>
-                    <input type="checkbox" onclick="myFunction1()">Show Password
-
-                    <br>
-                    <label for="psw"><b>Confirm New Password</b></label>
-                    <input type="password" placeholder="Enter Confirm New Password" name="confirmNewPassword" id="confirmNewPassword" required>
-                    <input type="checkbox" onclick="myFunction2()">Show Password
-
-                    <br>
-                    <button type="submit" >Save Changes</button>
-
                     <p class="text-danger">
                         ${mess}
                     </p>
                 </div>
 
+
+
             </form>
-
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
 
         </div>
         <div id="footer">
@@ -172,31 +144,6 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         </div>
     </body>
 
-    <script>
-        function myFunction() {
-            var x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            }  else {
-                x.type = "password";
-            }
-        }
-        function myFunction1() {
-            var x = document.getElementById("newPassword");
-            if (x.type === "password") {
-                x.type = "text";
-            }  else {
-                x.type = "password";
-            }
-        }
-        function myFunction2() {
-            var x = document.getElementById("confirmNewPassword");
-            if (x.type === "password") {
-                x.type = "text";
-            }  else {
-                x.type = "password";
-            }
-        }
-    </script>
+
 </html>
 
