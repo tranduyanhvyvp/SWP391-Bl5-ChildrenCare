@@ -65,7 +65,7 @@ public class userList extends HttpServlet {
         HttpSession session = request.getSession();
         Account acc1 = (Account) session.getAttribute("account");
 
-        if (acc1.getRole_id()==1) {
+        if (acc1.getRole_id()!=1) {
             response.sendRedirect("home.jsp");
         } else {
             Admin_DAO dao = new Admin_DAO();
