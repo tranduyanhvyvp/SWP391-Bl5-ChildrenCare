@@ -16,7 +16,7 @@
                     <li><a href="service.jsp">Services</a></li>
                     <li><a href="blog.jsp">Blog</a></li>
                     <li><a href="contact.jsp">Contact us</a></li>
-                    <li><a href="login.jsp">${sessionScope.username}</a></li>
+                    <li><a href="login.jsp">${sessionScope.account.fullName}</a></li>
                     <li><a href="UserProfileController">Profile</a></li>
                     <li><a href="use_change_password.jsp">Change Password</a></li>
                 </ul>

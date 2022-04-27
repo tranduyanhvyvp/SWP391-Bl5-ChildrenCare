@@ -44,7 +44,7 @@
     <body>
 
 
-        <jsp:include page="component/header_login.jsp"></jsp:include>
+        <jsp:include page="component/header.jsp"></jsp:include>
 
             <div class="content">
                 <div class="container">
@@ -62,6 +62,7 @@
                                             <p class="text-muted font-size-sm">${acc.phoneNumber}</p>
                                             <p class="text-muted font-size-sm">${acc.dob}</p>
                                             <p class="text-muted font-size-sm">${acc.address}</p>
+                                            <span class="psw"><a href="user_change_password.jsp">Change Password</a></span>
                                         </div>
                                     </div>
                                     <hr class="my-4">
@@ -78,7 +79,7 @@
                                                 <h6 class="mb-0">Username</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" name="username" value="${sessionScope.username}" readonly>
+                                                <input type="text" class="form-control" name="username" value="${sessionScope.account.username}" readonly>
                                             </div>
                                         </div>
                                             <div class="row mb-3">

@@ -21,11 +21,12 @@ public class Account {
     private String password;
     private int role_id;
     private String avatar;
+    private int status;
 
     public Account() {
     }
 
-    public Account(int id, String fullName, int gender, String address, String email, String dob, int phoneNumber, String username, String password, int role_id, String avatar) {
+    public Account(int id, String fullName, int gender, String address, String email, String dob, int phoneNumber, String username, String password, int role_id, String avatar, int status) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
@@ -37,6 +38,7 @@ public class Account {
         this.password = password;
         this.role_id = role_id;
         this.avatar = avatar;
+        this.status = status;
     }
 
     public int getId() {
@@ -127,11 +129,20 @@ public class Account {
         this.avatar = avatar;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" + "id=" + id + ", fullName=" + fullName + ", gender=" + gender + ", address=" + address + ", email=" + email + ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", username=" + username + ", password=" + password + ", role_id=" + role_id + ", avatar=" + avatar + '}';
+    public int getStatus() {
+        return status;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "id=" + id + ", fullName=" + fullName + ", gender=" + gender + ", address=" + address + ", email=" + email + ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", username=" + username + ", password=" + password + ", role_id=" + role_id + ", avatar=" + avatar + ", status=" + status + '}';
+    }
+
+    
     
 
     

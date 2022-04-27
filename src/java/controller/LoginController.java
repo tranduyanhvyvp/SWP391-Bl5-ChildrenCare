@@ -70,18 +70,24 @@ public class LoginController extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            
+
             AccountDAO loginDAO = new AccountDAO();
             Account a = loginDAO.login(username, password);
             if (a == null) {
                 request.setAttribute("mess", "Wrong Username or Password");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setMaxInactiveInterval(86400);
+                if (a.getStatus() == 0) {
+                    request.setAttribute("mess", "Your email has not been verified");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                } else {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("account", a);
+                    session.setMaxInactiveInterval(86400);
 
-                request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
+                    request.getRequestDispatcher("home_user_login.jsp").forward(request, response);
+                }
+
             }
         } catch (Exception e) {
         }

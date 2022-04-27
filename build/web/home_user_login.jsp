@@ -9,7 +9,7 @@
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
     </head>
     <body>
-        <jsp:include page="component/header_login.jsp"></jsp:include>
+        <jsp:include page="component/header.jsp"></jsp:include>
             <div id="content">
                 <div>
                     <div>
