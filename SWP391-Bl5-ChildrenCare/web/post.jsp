@@ -60,6 +60,7 @@
                                 <div id="button" style="text-align: -webkit-right;">
                                     <button id="hide">Hide</button>
                                     <button id="show">Show</button>
+                                    <button id="edit"><a href="EditPostController?id=${p.id}"/>Edit</button>
                                 </div>
 
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

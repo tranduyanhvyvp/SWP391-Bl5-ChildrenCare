@@ -21,20 +21,22 @@ public class BlogDAO extends DBContext{
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    public ArrayList<Blog> getLatestBlog() {
+    public ArrayList<Blog> getHomeLatestBlog() {
         ArrayList<Blog> list = new ArrayList<>();
         try {
-            String sql = "select * from Blogs order by post_date ASC";
+            String sql = "select * from Blog order by post_date DESC";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Blog(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getDate(4),
-                        rs.getString(5),
-                        rs.getInt(6)));
+                Blog blog = new Blog();
+                blog.setId(rs.getInt("id"));
+                blog.setTitle(rs.getString("title"));
+                blog.setPost_date(rs.getDate("post_date"));
+                blog.setAccount_id(rs.getInt("account_id"));
+                blog.setCategory_id(rs.getInt("category_id"));
+                blog.setContent(rs.getString("content"));
+                list.add(blog);
             }
         } catch (Exception e) {
             e.printStackTrace();

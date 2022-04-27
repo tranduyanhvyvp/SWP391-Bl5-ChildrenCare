@@ -30,7 +30,7 @@ public class ServiceDAO extends DBContext{
             rs = ps.executeQuery();
             while (rs.next()) {
                 Service service = new Service();
-                service.setServices_id(rs.getInt("services_id"));
+                service.setId(rs.getInt("id"));
                 service.setTitle(rs.getString("title"));
                 list.add(service);
             }

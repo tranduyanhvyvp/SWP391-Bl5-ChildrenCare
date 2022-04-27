@@ -427,7 +427,7 @@ public class PostDAO extends DBContext {
     public int countPostbyCategory(String categoryID) throws Exception {
         String sql = "SELECT count(*)\n"
                 + "FROM Post \n"
-                + "WHERE category_id = ?";
+                + "WHERE category_id = "+categoryID+"";
         try {
             conn = getConnection();
             ps = conn.prepareStatement(sql);
@@ -454,7 +454,7 @@ public class PostDAO extends DBContext {
     public int countPostbyStatus(String statusID) throws Exception {
         String sql = "SELECT count(*)\n"
                 + "FROM Post \n"
-                + "WHERE status_id = ?";
+                + "WHERE status_id = "+statusID+"";
         try {
             conn = getConnection();
             ps = conn.prepareStatement(sql);
