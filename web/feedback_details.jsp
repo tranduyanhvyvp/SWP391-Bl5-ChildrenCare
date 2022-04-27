@@ -35,7 +35,7 @@
                 <nav aria-label="breadcrumb" class="main-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/SWP391-Bl5-ChildrenCare-chiennt/userlist">User</a></li>
+                        <li class="breadcrumb-item"><a href="/SWP391-Bl5-ChildrenCare/userlist">User</a></li>
                         <li class="breadcrumb-item active" aria-current="page">User Profile</li>
                     </ol>
                 </nav>
@@ -169,7 +169,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank" href="/SWP391-Bl5-ChildrenCare-chiennt/userdetailedit?uid=${userDetail.id}">Edit</a>
+                                        <a class="btn btn-info " target="__blank" href="/SWP391-Bl5-ChildrenCare/userdetailedit?uid=${userDetail.id}">Edit</a>
                                     </div>
                                 </div>
                             </div>
@@ -275,7 +275,7 @@
         <script>
             function myFunction(feedbackid, statusid) {
                 $.ajax({
-                    url: "/SWP391-Bl5-ChildrenCare-chiennt/updatestatus",
+                    url: "/SWP391-Bl5-ChildrenCare/updatestatus",
                     type: "get", //send it through get method
                     data: {
                         fbid: feedbackid,
