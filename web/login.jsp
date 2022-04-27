@@ -108,7 +108,8 @@
                     <input type="text" placeholder="Enter Username" name="username" required>
 
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                    <input type="checkbox" onclick="myFunction()">Show Password
 
                     <span class="psw"><a href="user_email_input.jsp">Reset Password</a></span>
 
@@ -169,4 +170,18 @@
             <p class="footnote">Copyright &copy; 2012 <a href="#">School Name</a> All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></p>
         </div>
     </body>
+    
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+    </script>
+    
+    
 </html>

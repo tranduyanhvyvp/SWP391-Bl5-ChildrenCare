@@ -101,29 +101,38 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 
 
 
-                <form action="InputEmailController" method="post">
+                <form action="ResetPasswordController" method="post">
 
-                    <div class="container">
+                <div class="container">
 
-                        <label for="psw"><b>You need to check your Email: ${sessionScope.acc.email} </b></label>
+                    <label for="psw"><b>Email</b></label>
+                    <input type="text" value="${sessionScope.acc.email}" name="email" readonly>
 
-                    
+                    <br>    
+                    <label for="psw"><b>Your username: </b></label>
+                    <input type="text" name="username" value="${sessionScope.acc.username} " readonly>
+                    <br>    
+                    <label for="psw"><b>New Password</b></label>
+
+                    <input type="password" placeholder="Enter New Password" name="password" id="password" required>
+                    <input type="checkbox" onclick="myFunction()">Show Password
+
                     <br>
-                    
-                    <span ><a href="user_email_input.jsp">Back</a></span>
+                    <label for="psw"><b>New Password</b></label>
+                    <input type="password" placeholder="Enter Confirm New Password" name="newPassword" id="newPassword" required>
+                    <input type="checkbox" onclick="myFunction1()">Show Password
+
                     <br>
-                    
-                    <span ><a href="user_register_confirm.jsp">Status Register</a></span>
+                    <!--                    <label for="psw"><b>Confirm New Password</b></label>
+                                        <input type="password" placeholder="Enter Confirm New Password" name="confirmNewPassword" id="confirmNewPassword" required>
+                                        <input type="checkbox" onclick="myFunction2()">Show Password-->
+
                     <br>
-                    
-                    <span ><a href="user_reset_password.jsp">Reset Pass</a></span>
-                    <br>
-                    
+                    <button type="submit" >Save Changes</button>
+
                     <p class="text-danger">
                         ${mess}
                     </p>
-
-
                 </div>
 
             </form>
@@ -168,6 +177,31 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         </div>
     </body>
 
-
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction1() {
+            var x = document.getElementById("newPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction2() {
+            var x = document.getElementById("confirmNewPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </html>
 

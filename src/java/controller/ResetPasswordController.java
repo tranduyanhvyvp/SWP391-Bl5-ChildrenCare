@@ -5,6 +5,8 @@
  */
 package controller;
 
+import JavaFunc.randomString;
+import JavaFunc.sendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -14,15 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author stter
  */
-@WebServlet(name = "UserProfileController", urlPatterns = {"/UserProfileController"})
-public class UserProfileController extends HttpServlet {
+@WebServlet(name = "ResetPasswordController", urlPatterns = {"/ResetPasswordController"})
+public class ResetPasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,6 +36,18 @@ public class UserProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet ResetPasswordController</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet ResetPasswordController at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,23 +63,7 @@ public class UserProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-        try {
-            HttpSession session = request.getSession();
-//            String userName = session.getAttribute("username").toString();
-
-            Account acc1 = (Account) session.getAttribute("account");
-
-            String username = acc1.getUsername();
-
-            AccountDAO dao = new AccountDAO();
-            Account acc = dao.checkAccountExit(username);
-
-            request.setAttribute("acc", acc);
-            request.getRequestDispatcher("user_profile.jsp").forward(request, response);
-        } catch (Exception e) {
-        }
-
+        request.getRequestDispatcher("user_reset_password.jsp").forward(request, response);
     }
 
     /**
@@ -82,30 +78,35 @@ public class UserProfileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-//        request.getRequestDispatcher("login.jsp").forward(request, response);
-
+        
         try {
-            String user = request.getParameter("username");
-            String dob = request.getParameter("dob");
-            String fullName = request.getParameter("fullName");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            int gender = Integer.parseInt(request.getParameter("gender"));
-            String address = request.getParameter("address");
-            String avatar = request.getParameter("avatar");
-//            Part part = request.getPart("avatar");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String newPassword = request.getParameter("newPassword");
 
-            AccountDAO updateProfile = new AccountDAO();
-            if (avatar != null && !avatar.isEmpty()) {
-                updateProfile.updateAvatar(user, avatar);
+            AccountDAO loginDAO = new AccountDAO();
+            randomString ran = new randomString();
+            sendEmail mail = new sendEmail();
+            
+            Account a = loginDAO.login(username, password);
+
+            // tiep tuc update va tra ve update thanh cong
+            if (!password.equals(newPassword)) {
+                request.setAttribute("mess", "Wrong Confirm Password");
+                request.getRequestDispatcher("user_reset_password.jsp").forward(request, response);
+            } else {
+                AccountDAO changePasswordDAO = new AccountDAO();
+                changePasswordDAO.updatePassword(username, newPassword);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                
+                
+//                request.getRequestDispatcher("ResetPasswordController?email="${email}).forward(request, response);
             }
-            updateProfile.updateProfile(user, fullName, gender, address, dob, phoneNumber);
-
-            response.sendRedirect("UserProfileController");
-//            request.getRequestDispatcher("UserProfileController").forward(request, response);
 
         } catch (Exception e) {
+            System.out.println("Loi roi");
         }
-
+        
     }
 
     /**
