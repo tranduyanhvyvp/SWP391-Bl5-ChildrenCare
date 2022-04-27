@@ -7,10 +7,10 @@ package controller;
 
 import dao.Admin_DAO;
 import dao.Feedback_DAO;
-import entities.feedback;
-import entities.feedbackImage;
-import entities.status;
-import entities.user;
+import entity.feedback;
+import entity.feedbackImage;
+import entity.status;
+import entity.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

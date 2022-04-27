@@ -109,11 +109,16 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 
                     
                     <br>
+                    
                     <span ><a href="user_email_input.jsp">Back</a></span>
-
                     <br>
-                    <span ><a href="user_register_confirm.jsp">next</a></span>
+                    
+                    <span ><a href="user_register_confirm.jsp">Status Register</a></span>
                     <br>
+                    
+                    <span ><a href="user_reset_password.jsp">Reset Pass</a></span>
+                    <br>
+                    
                     <p class="text-danger">
                         ${mess}
                     </p>

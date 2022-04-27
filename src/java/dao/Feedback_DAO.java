@@ -6,10 +6,10 @@
 package dao;
 
 import context.DBContext;
-import entities.feedback;
-import entities.feedbackImage;
-import entities.role;
-import entities.status;
+import entity.feedback;
+import entity.feedbackImage;
+import entity.status;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

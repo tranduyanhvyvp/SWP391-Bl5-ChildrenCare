@@ -211,7 +211,7 @@
                                 
 
 
-                                <form action="/SWP391-Bl5-ChildrenCare-chiennt/useradding" method="GET">
+                                <form action="/SWP391-Bl5-ChildrenCare/useradding" method="GET">
                                     <input class="btn btn-primary" type="submit" value="Add" />
                                 </form>
                                 

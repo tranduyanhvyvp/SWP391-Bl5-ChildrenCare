@@ -6,8 +6,8 @@
 package controller;
 
 import dao.Feedback_DAO;
-import entities.feedback;
-import entities.status;
+import entity.feedback;
+import entity.status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

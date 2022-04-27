@@ -11,8 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import entities.role;
-import entities.user;
+import entity.role;
+import entity.user;
 
 /**
  *

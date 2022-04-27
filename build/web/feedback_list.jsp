@@ -267,7 +267,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <a href="/SWP391-Bl5-ChildrenCare-chiennt/feedbackdetails?fid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                        <a href="/SWP391-Bl5-ChildrenCare/feedbackdetails?fid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                                         
                                     </td>
                                 </tr>
@@ -292,7 +292,7 @@
         <script>
             function myFunction(feedbackid, statusid) {              
                     $.ajax({
-                        url: "/SWP391-Bl5-ChildrenCare-chiennt/updatestatus",
+                        url: "/SWP391-Bl5-ChildrenCare/updatestatus",
                         type: "get", //send it through get method
                         data: {
                             fbid:feedbackid,

@@ -57,7 +57,9 @@ public class RegisterController extends HttpServlet {
                 Account a = loginDAO.checkAccountExit(user);
                 if(a == null){
                     loginDAO.register(user, pass, fullName, gender, email, phoneNumber, address);
-                    response.sendRedirect("login.jsp");
+                    
+                    //Lam Send email
+                    response.sendRedirect("user_email_confirm.jsp");
                 } else{
                     request.setAttribute("mess", "Duplicae Username");
                     request.getRequestDispatcher("register.jsp").forward(request, response);

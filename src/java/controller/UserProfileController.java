@@ -54,10 +54,14 @@ public class UserProfileController extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            String userName = session.getAttribute("username").toString();
+//            String userName = session.getAttribute("username").toString();
+
+            Account acc1 = (Account) session.getAttribute("account");
+
+            String username = acc1.getUsername();
 
             AccountDAO dao = new AccountDAO();
-            Account acc = dao.checkAccountExit(userName);
+            Account acc = dao.checkAccountExit(username);
 
             request.setAttribute("acc", acc);
             request.getRequestDispatcher("user_profile.jsp").forward(request, response);
@@ -79,7 +83,7 @@ public class UserProfileController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 //        request.getRequestDispatcher("login.jsp").forward(request, response);
-        
+
         try {
             String user = request.getParameter("username");
             String dob = request.getParameter("dob");
@@ -95,10 +99,10 @@ public class UserProfileController extends HttpServlet {
                 updateProfile.updateAvatar(user, avatar);
             }
             updateProfile.updateProfile(user, fullName, gender, address, dob, phoneNumber);
-            
+
             response.sendRedirect("UserProfileController");
 //            request.getRequestDispatcher("UserProfileController").forward(request, response);
-          
+
         } catch (Exception e) {
         }
 

@@ -19,8 +19,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entities.role;
-import entities.user;
+import entity.role;
+import entity.user;
 
 /**
  *

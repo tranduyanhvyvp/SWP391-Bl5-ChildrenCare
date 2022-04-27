@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package entity;
 
 /**
  *
@@ -16,6 +16,10 @@ public class status {
     public status(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public status() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

@@ -8,6 +8,7 @@
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/nbproject/build-impl.xml</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/service.jsp</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/entity/Account.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/feedbackList.java</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/component/header.jsp</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/home.jsp</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/contact.jsp</file>
@@ -19,6 +20,7 @@
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/WEB-INF/web.xml</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/blog.jsp</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/component/footer.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/entity/feedback.java</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/demojsp.jsp</file>
             <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/ChangePasswordController.java</file>
         </group>
