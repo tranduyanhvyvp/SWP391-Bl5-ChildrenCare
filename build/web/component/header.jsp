@@ -28,12 +28,14 @@
                         <c:if test="${sessionScope.account == null}">
                         <li><a href="login.jsp">Login</a></li>                      
                         </c:if>
-
-                    <c:if test="${sessionScope.account.role_id==1}">
-                        <li><a href="/SWP391-Bl5-ChildrenCare-chiennt/userlist">User List</a></li>
+                        <c:if test="${sessionScope.account.role_id==2}">
+                        <li><a href="/SWP391-Bl5-ChildrenCare/manageCustomer">Manager Customer</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.account.role_id==1}">
+                        <li><a href="/SWP391-Bl5-ChildrenCare/userlist">User List</a></li>
                         </c:if>
                         <c:if test="${sessionScope.account.role_id==2}">
-                        <li><a href="/SWP391-Bl5-ChildrenCare-chiennt/feedbacklist">Feedback List</a></li>
+                        <li><a href="/SWP391-Bl5-ChildrenCare/feedbacklist">Feedback List</a></li>
                         </c:if>
 
 

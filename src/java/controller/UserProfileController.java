@@ -54,10 +54,15 @@ public class UserProfileController extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            String userName = session.getAttribute("username").toString();
 
+            
+            Account acc1= (Account) session.getAttribute("account");
+            
+            String username = acc1.getUsername();
+            
+            
             AccountDAO dao = new AccountDAO();
-            Account acc = dao.checkAccountExit(userName);
+            Account acc = dao.checkAccountExit(username);
 
             request.setAttribute("acc", acc);
             request.getRequestDispatcher("user_profile.jsp").forward(request, response);
