@@ -3,8 +3,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/doqua/Documents/NetBeansProjects/SWP/src/java/controller/ServicesServlet.java</file>
-            <file>file:/C:/Users/doqua/Documents/NetBeansProjects/SWP/src/java/dao/ServicesDAO.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/home_user_login.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/nbproject/build-impl.xml</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/service.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/blogList.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/manageCustomer.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/home.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/UserProfileController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/contact.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/PostDetailController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/dao/DAO.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/feedback_details.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/RegisterController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/dao/AccountDAO.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/WEB-INF/web.xml</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/blog.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/postDetail.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/HomePageController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/component/header_login.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/JavaFunc/sendEmail.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/EditPostController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/entity/Account.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/feedbackList.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/post.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/component/header.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/feedback_list.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/userList.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/viewBlog.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/user_profile.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/LoginController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/component/footer.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/entity/feedback.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/useDetail.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/web/demojsp.jsp</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/ChangePasswordController.java</file>
+            <file>file:/F:/GithubRespository/ChildrendCare/SWP391-Bl5-ChildrenCare/src/java/controller/addCustomer.java</file>
         </group>
     </open-files>
 </project-private>

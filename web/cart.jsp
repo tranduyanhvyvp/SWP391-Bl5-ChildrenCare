@@ -1,7 +1,7 @@
 
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Cart"%>
+<%@page import="entity.Cart"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="dao.ServicesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -62,15 +62,15 @@
 
                         </div>
                         <div class="product-quantity cart_quantity_button">
-                            <a class="cart_quantity_down" href="CartServlet?command=deleteCart&id=<%=c.getService().getId()%>"> - </a>
+                            <a class="cart_quantity_down" href="CartController?command=deleteCart&id=<%=c.getService().getId()%>"> - </a>
                             <input class="cart_quantity_input" type="number" value="<%=c.getQuantity()%>" disabled="disabled"/>
-                            <a class="cart_quantity_up" href="CartServlet?command=addCart&id=<%=c.getService().getId()%>"> + </a>
+                            <a class="cart_quantity_up" href="CartController?command=addCart&id=<%=c.getService().getId()%>"> + </a>
                         </div>
                         <div class="product-line-price" style="text-align: right"><%=nf.format(serviceDAO.getServicetById(
                                     c.getService().getId()).getSale_price() * c.getQuantity())%>$
 
 
-                            <a href="CartServlet?command=removeCart&id=<%=c.getService().getId()%>"><img style="margin-left: 10px" src="images/delete.png"></a>
+                            <a href="CartController?command=removeCart&id=<%=c.getService().getId()%>"><img style="margin-left: 10px" src="images/delete.png"></a>
                         </div>
 
                     </div>
@@ -91,7 +91,7 @@
                     <a class="checkout" href="reservation_details.jsp"  style="text-decoration: none;">Check Out</a>
                     <%} else { %>
 
-                    <a class="checkout" href="ServicesServlet" style="text-decoration: none;">Services List</a>
+                    <a class="checkout" href="ServicesController" style="text-decoration: none;">Services List</a>
                     <%}%>
                 </div>
 

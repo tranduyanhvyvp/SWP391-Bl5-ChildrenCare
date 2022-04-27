@@ -4,7 +4,7 @@
     Author     : doqua
 --%>
 
-<%@page import="model.Services"%>
+<%@page import="entity.Services"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="dao.ServicesDAO"%>
@@ -79,7 +79,7 @@
 
             <div id="services" style="margin: 0 auto;">
                 <div id="content_center" >
-                    <form accept-charset="utf-8" method="post" action="ServicesServlet" name="ServicesServlet">
+                    <form accept-charset="utf-8" method="post" action="ServicesController" name="ServicesController">
                         <div class="searchbox">
                             <input accept-charset="utf-8" type="text" value="<%=searchText%>"  name="title" placeholder="Service title" style="width:150px">
                             <input type="submit" value="Search" name="search">
@@ -130,7 +130,7 @@
                 <ul>
 
                     <c:forEach begin="1" end="<%=totalPage%>" var="i">
-                        <li class="pagination"><a class="page-link" href="ServicesServlet?index=${i}&title=${searchText}">${i}</a></li>
+                        <li class="pagination"><a class="page-link" href="ServicesController?index=${i}&title=${searchText}">${i}</a></li>
                         </c:forEach>
 
 

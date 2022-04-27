@@ -1,8 +1,9 @@
 
 
-<%@page import="model.Account"%>
+<%@page import="entity.Account"%>
+
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Cart"%>
+<%@page import="entity.Cart"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="dao.ServicesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

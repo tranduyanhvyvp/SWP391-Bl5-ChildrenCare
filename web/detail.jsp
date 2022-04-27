@@ -1,6 +1,7 @@
 
 
-<%@page import="model.Account"%>
+<%@page import="entity.Account"%>
+
 <%@page import="java.text.NumberFormat"%>
 <%@page import="dao.ServicesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -63,7 +64,7 @@
                         <div
                             style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; padding: 10px; clear: both;">
 
-                            <form action="CartServlet" method="post">
+                            <form action="CartController" method="post">
                                 <input type="hidden" value="1" name="soluong"/>
                                 <input type="hidden" value="setCart" name="command"/>
                                 <input type="hidden" value="<%=id%>" name="id"/>
@@ -71,7 +72,7 @@
                             </form>	
                         </div>
                         <%} else { %>
-			<div
+                        <div
                             style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 10px; padding: 10px; clear: both;">
 
                             <form action="login.jsp" method="post">
@@ -80,6 +81,7 @@
                             </form>	
                         </div>
 			<%} %>
+			
 
 
                    
