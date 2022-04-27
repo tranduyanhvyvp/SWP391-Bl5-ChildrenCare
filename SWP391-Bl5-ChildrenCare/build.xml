@@ -7,8 +7,13 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
+<<<<<<< HEAD
 <project name="SWP_Bl5_ChildrenCare_Demo" default="default" basedir=".">
     <description>Builds, tests, and runs the project SWP_Bl5_ChildrenCare_Demo.</description>
+=======
+<project name="SWPBl5" default="default" basedir=".">
+    <description>Builds, tests, and runs the project SWPBl5.</description>
+>>>>>>> anhtd
     <import file="nbproject/build-impl.xml"/>
     <!--
 
