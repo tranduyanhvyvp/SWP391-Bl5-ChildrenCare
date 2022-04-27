@@ -3,7 +3,11 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
+<<<<<<< HEAD
             <name>SWP_Bl5_ChildrenCare_Demo</name>
+=======
+            <name>SWPBl5</name>
+>>>>>>> anhtd
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
@@ -11,6 +15,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+<<<<<<< HEAD
                     <file>${file.reference.activation.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -20,15 +25,25 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.sqljdbc42.jar-1}</file>
+=======
+                    <file>${file.reference.javaee-endorsed-api-7.0.jar}</file>
+>>>>>>> anhtd
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
+<<<<<<< HEAD
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
+=======
+                <root id="src.dir" name="Source Packages"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.src.dir" name="Test Packages"/>
+>>>>>>> anhtd
             </test-roots>
         </data>
     </configuration>

@@ -34,7 +34,7 @@
     <head>
         <title>Profile Page</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style1.css">
         <title>profile edit data and skills - Bootdey.com</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
