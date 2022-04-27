@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" href="css/style1.css">
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css"><![endif]-->
     </head>
-     <body>
+    <body>
         <jsp:include page="component/header.jsp"></jsp:include>
 
             <div class="content">
@@ -57,11 +57,15 @@
                                     <p>${p.brief}...</p>
                                     <a href="PostDetailController?id=${p.id}" class="read-more">Read more</a>
                                 </div>
-                                <div id="button" style="text-align: -webkit-right;">
-                                    <button id="hide">Hide</button>
-                                    <button id="show">Show</button>
-                                    <button id="edit"><a href="EditPostController?id=${p.id}" style="text-decoration: none;"/>Edit</button>
-                                </div>
+                                <c:if test="${sessionScope.account.role_id==2}">
+                                    <div id="button" style="text-align: -webkit-right;">
+                                        <button id="hide">Hide</button>
+                                        <button id="show">Show</button>
+                                        <button id="edit"><a href="EditPostController?id=${p.id}" style="text-decoration: none;"/>Edit</button>
+                                    </div>
+                                </c:if>
+
+
 
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                                 <script>

@@ -5,17 +5,22 @@
  */
 package controller;
 
+import dao.CustomerDAO;
 import dao.Feedback_DAO;
+import entity.Account;
+import entity.Customer;
 import entity.feedback;
 import entity.status;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,13 +67,23 @@ public class feedbackList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        Feedback_DAO dao = new Feedback_DAO();
-        List<feedback> listFeedback = dao.getListFeedback();
-        List<status> listStatus = dao.getAllStatus();
-        request.setAttribute("listFeedback", listFeedback);
-        request.setAttribute("listStatus", listStatus);
-        request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 2) {
+            response.sendRedirect("home.jsp");
+        } else {
+            request.setCharacterEncoding("UTF-8");
+            Feedback_DAO dao = new Feedback_DAO();
+            List<feedback> listFeedback = dao.getListFeedback();
+            List<status> listStatus = dao.getAllStatus();
+            request.setAttribute("listFeedback", listFeedback);
+            request.setAttribute("listStatus", listStatus);
+            request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
+        }
+
+
     }
 
     /**
@@ -90,8 +105,7 @@ public class feedbackList extends HttpServlet {
         request.setAttribute("listFeedback", listFeedback);
         request.setAttribute("listStatus", listStatus);
         request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
-        
-                
+
     }
 
     /**

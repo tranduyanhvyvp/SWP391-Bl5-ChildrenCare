@@ -5,20 +5,25 @@
  */
 package controller;
 
+import dao.Feedback_DAO;
 import dao.PostDAO;
+import entity.Account;
 import entity.Category;
 import entity.Post;
+import entity.feedback;
 import entity.status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -66,15 +71,24 @@ public class EditPostController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            PostDAO postDAO = new PostDAO();
-            Post post = postDAO.getPostById(id);
-            ArrayList<Category> category = postDAO.getCateName();
-            ArrayList<status> status = postDAO.getStatus();
-            request.setAttribute("category", category);
-            request.setAttribute("post", post);
-            request.setAttribute("status", status);
-            request.getRequestDispatcher("/manager/postDetailEdit.jsp").forward(request, response);
+
+            HttpSession session = request.getSession();
+            Account acc1 = (Account) session.getAttribute("account");
+
+            if (acc1.getRole_id() != 2) {
+                response.sendRedirect("home.jsp");
+            } else {
+                int id = Integer.parseInt(request.getParameter("id"));
+                PostDAO postDAO = new PostDAO();
+                Post post = postDAO.getPostById(id);
+                ArrayList<Category> category = postDAO.getCateName();
+                ArrayList<status> status = postDAO.getStatus();
+                request.setAttribute("category", category);
+                request.setAttribute("post", post);
+                request.setAttribute("status", status);
+                request.getRequestDispatcher("/manager/postDetailEdit.jsp").forward(request, response);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

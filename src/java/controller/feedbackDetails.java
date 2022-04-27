@@ -7,6 +7,7 @@ package controller;
 
 import dao.Admin_DAO;
 import dao.Feedback_DAO;
+import entity.Account;
 import entity.feedback;
 import entity.feedbackImage;
 import entity.status;
@@ -19,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -65,23 +67,32 @@ public class feedbackDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fid = request.getParameter("fid");
-        Feedback_DAO dao = new Feedback_DAO();
-        Admin_DAO dao1 = new Admin_DAO();
-        feedback feedback1 = dao.searchFeedBackById(fid);
-        String uid = Integer.toString(feedback1.getUserId());
-        user user1 = dao1.searchUser(uid);
-        
-        List<status> listStatus = dao.getAllStatus();
-        List<feedbackImage> listImage = dao.feedbackImage(fid);
-        feedbackImage firstindex = listImage.get(0);
-        
-        request.setAttribute("firstindex", firstindex);
-        request.setAttribute("listImage", listImage);
-        request.setAttribute("listStatus", listStatus);
-        request.setAttribute("feedback", feedback1);
-        request.setAttribute("user1", user1);
-        request.getRequestDispatcher("feedback_details.jsp").forward(request, response);
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 2) {
+            response.sendRedirect("home.jsp");
+        } else {
+            String fid = request.getParameter("fid");
+            Feedback_DAO dao = new Feedback_DAO();
+            Admin_DAO dao1 = new Admin_DAO();
+            feedback feedback1 = dao.searchFeedBackById(fid);
+            String uid = Integer.toString(feedback1.getUserId());
+            user user1 = dao1.searchUser(uid);
+
+            List<status> listStatus = dao.getAllStatus();
+            List<feedbackImage> listImage = dao.feedbackImage(fid);
+            feedbackImage firstindex = listImage.get(0);
+
+            request.setAttribute("firstindex", firstindex);
+            request.setAttribute("listImage", listImage);
+            request.setAttribute("listStatus", listStatus);
+            request.setAttribute("feedback", feedback1);
+            request.setAttribute("user1", user1);
+            request.getRequestDispatcher("feedback_details.jsp").forward(request, response);
+        }
+
     }
 
     /**
