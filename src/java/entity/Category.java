@@ -7,19 +7,18 @@ package entity;
 
 /**
  *
- * @author aDMIN
+ * @author phuch
  */
-public class status {
+public class Category {
     private int id;
     private String name;
 
-    public status(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Category() {
     }
 
-    public status() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Category(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {
@@ -36,11 +35,6 @@ public class status {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "status{" + "id=" + id + ", name=" + name + '}';
     }
     
 }

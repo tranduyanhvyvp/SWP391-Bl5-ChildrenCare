@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+    font-family: Arial;
+    background: #f1f1f1;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+    float: left;
+    width: 75%;
+    padding-left: 168px;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 40px;
+    padding-right: 96px;
+}
+
+/* Fake image */
+
+div.rightcolumn div.card div.fakeimg{
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+div.rightcolumn div.card div.fakeimg img{
+    width: 127%;
+    height: 100px;
+}
+.fakeimg img{
+    width: 95%;
+    height: 450px;
+    padding-right: 65px;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: #e7e7e7;
+    padding: 20px;
+    margin-top: 20px;
+}
+.row{
+    background: #ffffff url(../images/bg-content2.gif) repeat-x bottom center;
+    padding-bottom: 50px;
+
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+div.card p{
+    padding-top: 250px;
+}
+.row-edit{
+/*    background: #ffffff url(../images/bg-content2.gif) repeat-x bottom center;*/
+    padding-bottom: 50px;
+
+}
+.row-edit:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.card-edit {
+    background-color: #e7e7e7;
+    padding: 20px;
+    margin-top: 20px;
+}
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+        width: 100%;
+        padding: 0;
+    }
+}
