@@ -5,23 +5,23 @@
  */
 package controller;
 
-import dao.Admin_DAO;
-import entity.Account;
+import dao.ServicesDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.user;
-import javax.servlet.http.HttpSession;
+import entity.Services;
 
 /**
  *
- * @author aDMIN
+ * @author doqua
  */
-public class userList extends HttpServlet {
+public class ServicesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,20 +33,28 @@ public class userList extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet userList</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet userList at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String txt = request.getParameter("index");
+        String searchText = request.getParameter("title");
+        int index = 0;
+        if(txt == null){
+            index = 1;
+        }else{
+            index = Integer.parseInt(txt);
         }
+        if(searchText == null){
+            searchText="";
+        }
+        ServicesDAO productDao = new ServicesDAO();
+        ArrayList<Services> list = productDao.paging(index,searchText);
+        ArrayList<Services> listTop5 = productDao.getTop5();
+        int totalPage  = productDao.totalPage(searchText);
+        request.setAttribute("listP", list);
+        request.setAttribute("listTop5", listTop5);
+        request.setAttribute("searchText",searchText);
+        request.setAttribute("totalPage",totalPage);
+        request.getRequestDispatcher("services.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,20 +69,11 @@ public class userList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession();
-        Account acc1 = (Account) session.getAttribute("account");
-
-        if (acc1.getRole_id()!=1) {
-            response.sendRedirect("home.jsp");
-        } else {
-            Admin_DAO dao = new Admin_DAO();
-            List<user> ListUser = dao.getAllUser();
-
-            request.setAttribute("ListUser", ListUser);
-            request.getRequestDispatcher("user_list.jsp").forward(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ServicesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
@@ -88,11 +87,11 @@ public class userList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String txt = request.getParameter("search");
-        Admin_DAO dao = new Admin_DAO();
-        List<user> ListUser = dao.search(txt);
-        request.setAttribute("ListUser", ListUser);
-        request.getRequestDispatcher("user_list.jsp").forward(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ServicesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
