@@ -44,6 +44,10 @@
         <servlet-name>userList</servlet-name>
         <servlet-class>controller.userList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicesServlet</servlet-name>
+        <servlet-class>controller.ServicesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>

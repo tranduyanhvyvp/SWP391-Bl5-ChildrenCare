@@ -61,6 +61,7 @@ public class userList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         Account acc1 = (Account) session.getAttribute("account");
 
