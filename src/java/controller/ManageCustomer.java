@@ -70,7 +70,7 @@ public class ManageCustomer extends HttpServlet {
         Account acc1 = (Account) session.getAttribute("account");
 
         if (acc1.getRole_id() != 2) {
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
         } else {
             CustomerDAO dao = new CustomerDAO();
             ArrayList<Customer> ListUser = dao.getAllCustomer();

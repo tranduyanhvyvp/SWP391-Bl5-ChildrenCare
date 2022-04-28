@@ -72,7 +72,7 @@ public class FeedbackDetails extends HttpServlet {
         Account acc1 = (Account) session.getAttribute("account");
 
         if (acc1.getRole_id() != 2) {
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
         } else {
             String fid = request.getParameter("fid");
             FeedbackDAO dao = new FeedbackDAO();

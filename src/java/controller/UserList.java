@@ -66,7 +66,7 @@ public class UserList extends HttpServlet {
         Account acc1 = (Account) session.getAttribute("account");
 
         if (acc1.getRole_id()!=1) {
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
         } else {
             AdminDAO dao = new AdminDAO();
             List<User> ListUser = dao.getAllUser();

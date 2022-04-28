@@ -105,7 +105,7 @@ public class BlogDAO extends DBContext{
             String sql = "select * \n"
                     + "from Blog\n"
                     + "order by post_date DESC\n"
-                    + "OFFSET 0 ROWS  FETCH NEXT 5 ROWS ONLY";
+                    + "OFFSET 0 ROWS  FETCH NEXT 2 ROWS ONLY";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();

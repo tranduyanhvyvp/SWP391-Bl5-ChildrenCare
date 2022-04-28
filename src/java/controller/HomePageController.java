@@ -72,7 +72,7 @@ public class HomePageController extends HttpServlet {
             BlogDAO blog = new BlogDAO();
             ServiceDAO service = new ServiceDAO();
             ArrayList<Service> listService = service.get5LatestService();
-            ArrayList<Blog> listBlog = blog.getLatestBlog();
+            ArrayList<Blog> listBlog = blog.get2LatestBlog();
             request.setAttribute("listService", listService);
             request.setAttribute("listBlog", listBlog);
             request.getRequestDispatcher("home.jsp").forward(request, response);

@@ -76,7 +76,7 @@ public class EditPostController extends HttpServlet {
             Account acc1 = (Account) session.getAttribute("account");
 
             if (acc1.getRole_id() != 2) {
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
             } else {
                 int id = Integer.parseInt(request.getParameter("id"));
                 PostDAO postDAO = new PostDAO();

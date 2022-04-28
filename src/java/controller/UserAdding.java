@@ -5,8 +5,8 @@
  */
 package controller;
 
-import javafunc.RandomString;
-import javafunc.SendEmail;
+import JavaFunc.randomString;
+import JavaFunc.sendEmail;
 import dao.AdminDAO;
 import entity.Account;
 import java.io.IOException;
@@ -106,8 +106,8 @@ public class UserAdding extends HttpServlet {
         String username = request.getParameter("username");
 
         AdminDAO dao = new AdminDAO();
-        RandomString ran = new RandomString();
-        SendEmail mail = new SendEmail();
+        randomString ran = new randomString();
+        sendEmail mail = new sendEmail();
         User check = dao.checkUsernameExist(username);
         if (check == null) {
             try {

@@ -20,7 +20,7 @@
                 <div>
                     <div>
                     <c:forEach items="${listBlog}" var="b">
-                        <h3><a href="blogdetail?id=${b.id}">${b.title}</a></h3>
+                        <h3><a href="viewBlog?id=${b.id}">${b.title}</a></h3>
                         <p>${b.content}</p>                        
 
                     </c:forEach>

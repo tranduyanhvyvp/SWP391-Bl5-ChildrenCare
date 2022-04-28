@@ -6,8 +6,8 @@
 package controller;
 
 import dao.CustomerDAO;
-import javafunc.RandomString;
-import javafunc.SendEmail;
+import JavaFunc.randomString;
+import JavaFunc.sendEmail;
 import dao.FeedbackDAO;
 import entity.Account;
 import entity.Customer;
@@ -49,7 +49,7 @@ public class AddCustomer extends HttpServlet {
             Account acc1 = (Account) session.getAttribute("account");
 
             if (acc1.getRole_id() != 1) {
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
             } else {
                 request.getRequestDispatcher("addCustomer.jsp").forward(request, response);
             }
@@ -94,8 +94,8 @@ public class AddCustomer extends HttpServlet {
         String username = request.getParameter("username");
 
         CustomerDAO dao = new CustomerDAO();
-        RandomString ran = new RandomString();
-        SendEmail mail = new SendEmail();
+        randomString ran = new randomString();
+        sendEmail mail = new sendEmail();
         Customer check = dao.checkUsernameExist(username);
         if (check == null) {
             try {

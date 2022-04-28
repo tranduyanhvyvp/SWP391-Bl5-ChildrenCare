@@ -5,7 +5,7 @@
  */
 package controller;
 
-import javafunc.SendEmail;
+import JavaFunc.sendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -64,7 +64,7 @@ public class RegisterController extends HttpServlet {
                     //Lam Send email
                     
                     Account acc = loginDAO.checkEmail(email);
-                    SendEmail mail = new SendEmail();
+                    sendEmail mail = new sendEmail();
                     HttpSession session = request.getSession();
                     session.setAttribute("acc", acc);
                     session.setMaxInactiveInterval(86400);

@@ -5,8 +5,8 @@
  */
 package controller;
 
-import javafunc.RandomString;
-import javafunc.SendEmail;
+import JavaFunc.randomString;
+import JavaFunc.sendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -85,8 +85,8 @@ public class ResetPasswordController extends HttpServlet {
             String newPassword = request.getParameter("newPassword");
 
             AccountDAO loginDAO = new AccountDAO();
-            RandomString ran = new RandomString();
-            SendEmail mail = new SendEmail();
+            randomString ran = new randomString();
+            sendEmail mail = new sendEmail();
             
             Account a = loginDAO.login(username, password);
 

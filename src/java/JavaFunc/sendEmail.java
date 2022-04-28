@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafunc;
+package JavaFunc;
 
 import java.io.UnsupportedEncodingException;
 import java.net.Authenticator;
@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author aDMIN
  */
-public class SendEmail {
+public class sendEmail {
 
   public void sendText(String userMail, String password) throws AddressException, MessagingException {
     Properties mailServerProperties;

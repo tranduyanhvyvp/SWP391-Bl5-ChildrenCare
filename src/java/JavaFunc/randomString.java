@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafunc;
+package JavaFunc;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author aDMIN
  */
-public class RandomString {
+public class randomString {
 
     public String GennPass() {
         // create a string of uppercase and lowercase characters and numbers

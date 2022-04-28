@@ -35,7 +35,7 @@ public class LogOutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         session.removeAttribute("account");
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
         
         
     }
