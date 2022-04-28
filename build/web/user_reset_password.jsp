@@ -118,7 +118,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
                     <input type="checkbox" onclick="myFunction()">Show Password
 
                     <br>
-                    <label for="psw"><b>New Password</b></label>
+                    <label for="psw"><b>Confirm New Password</b></label>
                     <input type="password" placeholder="Enter Confirm New Password" name="newPassword" id="newPassword" required>
                     <input type="checkbox" onclick="myFunction1()">Show Password
 

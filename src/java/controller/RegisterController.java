@@ -5,6 +5,7 @@
  */
 package controller;
 
+import JavaFunc.sendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,38 +37,49 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
+
 //            if (roleId == 1) {
 //                
 //            }
-            
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             String rePass = request.getParameter("rePassword");
             String fullName = request.getParameter("fullName");
             int gender = Integer.parseInt(request.getParameter("gender"));
-            
+
             String email = request.getParameter("email");
             int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            String address = request.getParameter("address");            
-            if(!pass.equals(rePass)){
+            String address = request.getParameter("address");
+
+            if (!pass.equals(rePass)) {
                 request.setAttribute("mess", "Wrong Password");
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
                 AccountDAO loginDAO = new AccountDAO();
                 Account a = loginDAO.checkAccountExit(user);
-                if(a == null){
+
+                if (a == null) {
                     loginDAO.register(user, pass, fullName, gender, email, phoneNumber, address);
-                    
+
                     //Lam Send email
-                    response.sendRedirect("user_email_confirm.jsp");
-                } else{
+                    
+                    Account acc = loginDAO.checkEmail(email);
+                    sendEmail mail = new sendEmail();
+                    HttpSession session = request.getSession();
+                    session.setAttribute("acc", acc);
+                    session.setMaxInactiveInterval(86400);
+
+                    String link = "http://localhost:8080/SWP391-Bl5-ChildrenCare/user_register_confirm.jsp";
+                    mail.sendText(email, link);
+                    request.getRequestDispatcher("user_email_confirm.jsp").forward(request, response);
+
+                } else {
                     request.setAttribute("mess", "Duplicae Username");
                     request.getRequestDispatcher("register.jsp").forward(request, response);
-                    
+
                 }
             }
-            
+
         } catch (Exception e) {
         }
     }

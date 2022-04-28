@@ -153,7 +153,8 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\r\n");
       out.write("\r\n");
       out.write("                    <label for=\"psw\"><b>Password</b></label>\r\n");
-      out.write("                    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>\r\n");
+      out.write("                    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" id=\"password\" required>\r\n");
+      out.write("                    <input type=\"checkbox\" onclick=\"myFunction()\">Show Password\r\n");
       out.write("\r\n");
       out.write("                    <span class=\"psw\"><a href=\"user_email_input.jsp\">Reset Password</a></span>\r\n");
       out.write("\r\n");
@@ -216,6 +217,20 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <p class=\"footnote\">Copyright &copy; 2012 <a href=\"#\">School Name</a> All rights reserved | Website Template By <a target=\"_blank\" href=\"http://www.freewebsitetemplates.com/\">freewebsitetemplates.com</a></p>\r\n");
       out.write("        </div>\r\n");
       out.write("    </body>\r\n");
+      out.write("    \r\n");
+      out.write("    <script>\r\n");
+      out.write("        function myFunction() {\r\n");
+      out.write("            var x = document.getElementById(\"password\");\r\n");
+      out.write("            if (x.type === \"password\") {\r\n");
+      out.write("                x.type = \"text\";\r\n");
+      out.write("            } else {\r\n");
+      out.write("                x.type = \"password\";\r\n");
+      out.write("            }\r\n");
+      out.write("        }\r\n");
+      out.write("\r\n");
+      out.write("    </script>\r\n");
+      out.write("    \r\n");
+      out.write("    \r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
