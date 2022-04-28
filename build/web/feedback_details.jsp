@@ -153,7 +153,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Star</h6>
+                                        <h6 class="mb-0">Status</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <select onchange="myFunction(${feedback.id}, this.value)">
@@ -164,12 +164,6 @@
                                         </select>
 
 
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank" href="/SWP391-Bl5-ChildrenCare/userdetailedit?uid=${userDetail.id}">Edit</a>
                                     </div>
                                 </div>
                             </div>

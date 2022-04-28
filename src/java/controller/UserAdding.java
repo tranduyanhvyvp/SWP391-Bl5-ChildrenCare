@@ -5,26 +5,31 @@
  */
 package controller;
 
-import dao.Admin_DAO;
+import JavaFunc.RandomString;
+import JavaFunc.SendEmail;
+import dao.AdminDAO;
 import entity.Account;
-import entity.role;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import entity.role;
 import entity.user;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author aDMIN
  */
-@WebServlet(name = "useDetail", urlPatterns = {"/usedetail"})
-public class useDetail extends HttpServlet {
+@WebServlet(name = "userAdding", urlPatterns = {"/useradding"})
+public class UserAdding extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +48,10 @@ public class useDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet useDetail</title>");
+            out.println("<title>Servlet userAdding</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet useDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet userAdding at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,11 +76,11 @@ public class useDetail extends HttpServlet {
         if (acc1.getRole_id() != 1) {
             response.sendRedirect("home.jsp");
         } else {
-            String uid = request.getParameter("uid");
-            Admin_DAO dao = new Admin_DAO();
-            user userDetail = dao.searchUser(uid);
-            request.setAttribute("userDetail", userDetail);
-            request.getRequestDispatcher("user_detail.jsp").forward(request, response);
+            AdminDAO dao = new AdminDAO();
+            List<role> listRole = dao.ListRole();
+
+            request.setAttribute("listRole", listRole);
+            request.getRequestDispatcher("user_adding.jsp").forward(request, response);
         }
 
     }
@@ -91,7 +96,31 @@ public class useDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String fullname = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        String phonenumber = request.getParameter("phonenumber");
+        String role = request.getParameter("role");
+        String address = request.getParameter("address");
+        String dob = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String username = request.getParameter("username");
 
+        AdminDAO dao = new AdminDAO();
+        RandomString ran = new RandomString();
+        SendEmail mail = new SendEmail();
+        user check = dao.checkUsernameExist(username);
+        if (check == null) {
+            try {
+                String password = ran.GennPass();
+                dao.insertUser(fullname, gender, address, email, dob, phonenumber, username, password, role);
+                mail.sendText(email, password);
+                response.sendRedirect("userlist");
+            } catch (MessagingException ex) {
+                Logger.getLogger(UserAdding.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            response.sendRedirect("useradding");
+        }
     }
 
     /**

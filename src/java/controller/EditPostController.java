@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.Feedback_DAO;
+import dao.FeedbackDAO;
 import dao.PostDAO;
 import entity.Account;
 import entity.Category;

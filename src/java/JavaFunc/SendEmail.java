@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author aDMIN
  */
-public class sendEmail {
+public class SendEmail {
 
   public void sendText(String userMail, String password) throws AddressException, MessagingException {
     Properties mailServerProperties;

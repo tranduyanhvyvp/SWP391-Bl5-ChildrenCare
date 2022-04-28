@@ -5,7 +5,7 @@
  */
 package controller;
 
-import JavaFunc.sendEmail;
+import JavaFunc.SendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
@@ -86,7 +86,7 @@ public class InputEmailController extends HttpServlet {
             AccountDAO checkEmailDAO = new AccountDAO();
             Account a = checkEmailDAO.checkEmail(email);
 
-            sendEmail mail = new sendEmail();
+            SendEmail mail = new SendEmail();
 
             // tiep tuc update va tra ve update thanh cong
             if (a == null) {

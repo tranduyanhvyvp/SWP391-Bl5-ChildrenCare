@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author aDMIN
  */
-public class Feedback_DAO {
+public class FeedbackDAO {
 
     Connection conn = null;
     PreparedStatement ps = null;
@@ -164,7 +164,7 @@ public class Feedback_DAO {
     }
 
     public static void main(String[] args) {
-        Feedback_DAO dao = new Feedback_DAO();
+        FeedbackDAO dao = new FeedbackDAO();
         List<feedbackImage> a = dao.feedbackImage("7");
         for (feedbackImage image : a) {
             System.out.println(image);

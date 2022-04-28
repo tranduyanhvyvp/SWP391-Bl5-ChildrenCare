@@ -5,13 +5,7 @@
  */
 package controller;
 
-import dao.Admin_DAO;
-import dao.Feedback_DAO;
-import entity.Account;
-import entity.feedback;
-import entity.feedbackImage;
-import entity.status;
-import entity.user;
+import dao.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -20,14 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import entity.role;
+import entity.user;
 
 /**
  *
  * @author aDMIN
  */
-@WebServlet(name = "feedbackDetails", urlPatterns = {"/feedbackdetails"})
-public class feedbackDetails extends HttpServlet {
+@WebServlet(name = "userDetailEdit", urlPatterns = {"/userdetailedit"})
+public class UserDetailEdit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +41,10 @@ public class feedbackDetails extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet feedbackDetails</title>");
+            out.println("<title>Servlet userDetailEdit</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet feedbackDetails at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet userDetailEdit at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -67,32 +62,13 @@ public class feedbackDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        Account acc1 = (Account) session.getAttribute("account");
-
-        if (acc1.getRole_id() != 2) {
-            response.sendRedirect("home.jsp");
-        } else {
-            String fid = request.getParameter("fid");
-            Feedback_DAO dao = new Feedback_DAO();
-            Admin_DAO dao1 = new Admin_DAO();
-            feedback feedback1 = dao.searchFeedBackById(fid);
-            String uid = Integer.toString(feedback1.getUserId());
-            user user1 = dao1.searchUser(uid);
-
-            List<status> listStatus = dao.getAllStatus();
-            List<feedbackImage> listImage = dao.feedbackImage(fid);
-            feedbackImage firstindex = listImage.get(0);
-
-            request.setAttribute("firstindex", firstindex);
-            request.setAttribute("listImage", listImage);
-            request.setAttribute("listStatus", listStatus);
-            request.setAttribute("feedback", feedback1);
-            request.setAttribute("user1", user1);
-            request.getRequestDispatcher("feedback_details.jsp").forward(request, response);
-        }
-
+        String uid = request.getParameter("uid");
+        AdminDAO dao = new AdminDAO();
+        user editUser = dao.searchUser(uid);
+        List<role> listRole = dao.ListRole();
+        request.setAttribute("editUser", editUser);
+        request.setAttribute("listRole", listRole);
+        request.getRequestDispatcher("user_detail_edit.jsp").forward(request, response);
     }
 
     /**
@@ -106,7 +82,19 @@ public class feedbackDetails extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("uid");
+        String name = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String role = request.getParameter("role");
+        String address = request.getParameter("address");
+        
+        AdminDAO dao = new AdminDAO();
+        dao.update(id, name, address, email, phone, role);
+        user userDetail = dao.searchUser(id);
+        request.setAttribute("userDetail", userDetail);
+        request.getRequestDispatcher("user_detail.jsp").forward(request, response);
+        
     }
 
     /**

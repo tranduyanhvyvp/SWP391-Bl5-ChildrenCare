@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.Admin_DAO;
+import dao.AdminDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author aDMIN
  */
-public class userList extends HttpServlet {
+public class UserList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,7 +68,7 @@ public class userList extends HttpServlet {
         if (acc1.getRole_id()!=1) {
             response.sendRedirect("home.jsp");
         } else {
-            Admin_DAO dao = new Admin_DAO();
+            AdminDAO dao = new AdminDAO();
             List<user> ListUser = dao.getAllUser();
 
             request.setAttribute("ListUser", ListUser);
@@ -89,7 +89,7 @@ public class userList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String txt = request.getParameter("search");
-        Admin_DAO dao = new Admin_DAO();
+        AdminDAO dao = new AdminDAO();
         List<user> ListUser = dao.search(txt);
         request.setAttribute("ListUser", ListUser);
         request.getRequestDispatcher("user_list.jsp").forward(request, response);

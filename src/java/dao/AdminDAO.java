@@ -18,7 +18,7 @@ import entity.user;
  *
  * @author aDMIN
  */
-public class Admin_DAO {
+public class AdminDAO {
 
     Connection conn = null;
     PreparedStatement ps = null;
@@ -205,7 +205,7 @@ public class Admin_DAO {
     }
 
     public static void main(String[] args) {
-        Admin_DAO dao = new Admin_DAO();
+        AdminDAO dao = new AdminDAO();
         List<role> x = dao.ListRole();
         for (role object : x) {
             System.out.println(object);

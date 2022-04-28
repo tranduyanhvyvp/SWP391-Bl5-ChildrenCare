@@ -5,32 +5,26 @@
  */
 package controller;
 
-import dao.CustomerDAO;
-import JavaFunc.randomString;
-import JavaFunc.sendEmail;
-import dao.Feedback_DAO;
+import dao.AdminDAO;
 import entity.Account;
-import entity.Customer;
-import entity.feedback;
-import entity.status;
+import entity.role;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import entity.user;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author aDMIN
  */
-public class addCustomer extends HttpServlet {
+@WebServlet(name = "useDetail", urlPatterns = {"/usedetail"})
+public class UseDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,18 +38,17 @@ public class addCustomer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            Account acc1 = (Account) session.getAttribute("account");
-
-            if (acc1.getRole_id() != 1) {
-                response.sendRedirect("home.jsp");
-            } else {
-                request.getRequestDispatcher("addCustomer.jsp").forward(request, response);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet useDetail</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet useDetail at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -71,7 +64,20 @@ public class addCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 1) {
+            response.sendRedirect("home.jsp");
+        } else {
+            String uid = request.getParameter("uid");
+            AdminDAO dao = new AdminDAO();
+            user userDetail = dao.searchUser(uid);
+            request.setAttribute("userDetail", userDetail);
+            request.getRequestDispatcher("user_detail.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -85,34 +91,7 @@ public class addCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullname = request.getParameter("fullname");
-        String email = request.getParameter("email");
-        String phonenumber = request.getParameter("phonenumber");
-        String address = request.getParameter("address");
-        String dob = request.getParameter("dob");
-        String gender = request.getParameter("gender");
-        String username = request.getParameter("username");
 
-        CustomerDAO dao = new CustomerDAO();
-        randomString ran = new randomString();
-        sendEmail mail = new sendEmail();
-        Customer check = dao.checkUsernameExist(username);
-        if (check == null) {
-            try {
-                String password = ran.GennPass();
-                System.out.println("asdas");
-                dao.insertUser(fullname, gender, address, email, dob, phonenumber, username, password, "4", "???");
-                mail.sendText(email, password);
-                ArrayList<Customer> ListUser = dao.getAllCustomer();
-                System.out.println(ListUser);
-                request.setAttribute("ListUser", ListUser);
-                request.getRequestDispatcher("manageCustomer.jsp").forward(request, response);
-            } catch (IOException | MessagingException e) {
-                e.printStackTrace();
-            }
-        } else {
-            response.sendRedirect("blog.jsp");
-        }
     }
 
     /**

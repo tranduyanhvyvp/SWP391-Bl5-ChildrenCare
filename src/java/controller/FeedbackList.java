@@ -5,20 +5,29 @@
  */
 package controller;
 
-import dao.BlogDAO;
-import entity.Blog;
+import dao.CustomerDAO;
+import dao.FeedbackDAO;
+import entity.Account;
+import entity.Customer;
+import entity.feedback;
+import entity.status;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author aDMIN
  */
-public class blogList extends HttpServlet {
+@WebServlet(name = "feedbackList", urlPatterns = {"/feedbacklist"})
+public class FeedbackList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,6 +41,18 @@ public class blogList extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet feedbackList</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet feedbackList at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,15 +67,23 @@ public class blogList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-             BlogDAO blogDAO = new BlogDAO();
-        ArrayList<Blog> listBlog = blogDAO.getAllBlog();
-        request.setAttribute("listBlog", listBlog);
-        request.getRequestDispatcher("blog.jsp").forward(request, response);
-        }catch(Exception e){
-            e.printStackTrace();
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 2) {
+            response.sendRedirect("home.jsp");
+        } else {
+            request.setCharacterEncoding("UTF-8");
+            FeedbackDAO dao = new FeedbackDAO();
+            List<feedback> listFeedback = dao.getListFeedback();
+            List<status> listStatus = dao.getAllStatus();
+            request.setAttribute("listFeedback", listFeedback);
+            request.setAttribute("listStatus", listStatus);
+            request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
         }
-       
+
+
     }
 
     /**
@@ -68,7 +97,15 @@ public class blogList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        String search = request.getParameter("search");
+        FeedbackDAO dao = new FeedbackDAO();
+        List<feedback> listFeedback = dao.searchFeedBack(search);
+        List<status> listStatus = dao.getAllStatus();
+        request.setAttribute("listFeedback", listFeedback);
+        request.setAttribute("listStatus", listStatus);
+        request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
+
     }
 
     /**

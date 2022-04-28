@@ -5,24 +5,20 @@
  */
 package controller;
 
-import dao.Admin_DAO;
+import dao.BlogDAO;
+import entity.Blog;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.role;
-import entity.user;
 
 /**
  *
- * @author aDMIN
+ * @author ADMIN
  */
-@WebServlet(name = "userDetailEdit", urlPatterns = {"/userdetailedit"})
-public class userDetailEdit extends HttpServlet {
+public class BlogList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,18 +32,6 @@ public class userDetailEdit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet userDetailEdit</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet userDetailEdit at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,13 +46,15 @@ public class userDetailEdit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String uid = request.getParameter("uid");
-        Admin_DAO dao = new Admin_DAO();
-        user editUser = dao.searchUser(uid);
-        List<role> listRole = dao.ListRole();
-        request.setAttribute("editUser", editUser);
-        request.setAttribute("listRole", listRole);
-        request.getRequestDispatcher("user_detail_edit.jsp").forward(request, response);
+        try{
+             BlogDAO blogDAO = new BlogDAO();
+        ArrayList<Blog> listBlog = blogDAO.getAllBlog();
+        request.setAttribute("listBlog", listBlog);
+        request.getRequestDispatcher("blog.jsp").forward(request, response);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       
     }
 
     /**
@@ -82,19 +68,7 @@ public class userDetailEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("uid");
-        String name = request.getParameter("fullname");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String role = request.getParameter("role");
-        String address = request.getParameter("address");
-        
-        Admin_DAO dao = new Admin_DAO();
-        dao.update(id, name, address, email, phone, role);
-        user userDetail = dao.searchUser(id);
-        request.setAttribute("userDetail", userDetail);
-        request.getRequestDispatcher("user_detail.jsp").forward(request, response);
-        
+        processRequest(request, response);
     }
 
     /**

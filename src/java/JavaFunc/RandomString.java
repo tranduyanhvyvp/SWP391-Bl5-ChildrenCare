@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author aDMIN
  */
-public class randomString {
+public class RandomString {
 
     public String GennPass() {
         // create a string of uppercase and lowercase characters and numbers
