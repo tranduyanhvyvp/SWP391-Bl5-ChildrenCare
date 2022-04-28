@@ -6,8 +6,8 @@
 package controller;
 
 import dao.CustomerDAO;
-import JavaFunc.RandomString;
-import JavaFunc.SendEmail;
+import javafunc.RandomString;
+import javafunc.SendEmail;
 import dao.FeedbackDAO;
 import entity.Account;
 import entity.Customer;

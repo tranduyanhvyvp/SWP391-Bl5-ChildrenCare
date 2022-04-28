@@ -20,7 +20,7 @@
                     <li><a href="HomePageController">Home</a></li>
                     <li><a href="PostListController">Posts</a></li>
                     <li><a href="ServicesController">Services</a></li>
-                    <li><a href="blog.jsp">Blog</a></li>
+                    <li><a href="/SWP391-Bl5-ChildrenCare/blogList">Blog</a></li>
                         <c:if test="${sessionScope.account != null}">
                         <li><a href="UserProfileController">${sessionScope.account.username}</a></li>
                         <li><a href="LogOutController">Logout</a></li>

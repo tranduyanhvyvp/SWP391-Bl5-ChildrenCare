@@ -5,8 +5,8 @@
  */
 package controller;
 
-import JavaFunc.RandomString;
-import JavaFunc.SendEmail;
+import javafunc.RandomString;
+import javafunc.SendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;

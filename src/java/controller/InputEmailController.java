@@ -5,7 +5,7 @@
  */
 package controller;
 
-import JavaFunc.SendEmail;
+import javafunc.SendEmail;
 import dao.AccountDAO;
 import entity.Account;
 import java.io.IOException;
