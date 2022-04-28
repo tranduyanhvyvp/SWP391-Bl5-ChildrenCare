@@ -102,7 +102,7 @@ public class AccountDAO extends DBContext {
 
     public Account updatePassword(String user, String pass) {
         try {
-            String query = "UPDATE Accounts SET  password = ? WHERE username = ?";
+            String query = "UPDATE Accounts SET  password = ?, status = '1' WHERE username = ?";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, pass);

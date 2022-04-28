@@ -105,19 +105,19 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
 
                     <div class="container">
 
-                        <label for="psw"><b>You need to check your Email: ${sessionScope.acc.email} </b></label>
+                        <label for="psw"><b>Open email and check verification: ${sessionScope.acc.email} </b></label>
 
                     
                     <br>
                     
-                    <span ><a href="user_email_input.jsp">Back</a></span>
+                    <span ><a href="login.jsp">Back</a></span>
                     <br>
                     
-                    <span ><a href="user_register_confirm.jsp">Status Register</a></span>
+<!--                    <span ><a href="user_register_confirm.jsp">Status Register</a></span>
                     <br>
                     
                     <span ><a href="user_reset_password.jsp">Reset Pass</a></span>
-                    <br>
+                    <br>-->
                     
                     <p class="text-danger">
                         ${mess}

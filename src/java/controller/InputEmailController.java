@@ -98,13 +98,13 @@ public class InputEmailController extends HttpServlet {
                     session.setAttribute("acc", a);
                     session.setMaxInactiveInterval(3600);
                     
-                    request.getRequestDispatcher("user_email_confirm.jsp").forward(request, response);
-                    String link = "http://localhost:8080/SWP_Bl5_ChildrenCare_Demo/user_reset_password.jsp";
+                    
+                    String link = "http://localhost:8080/SWP391-Bl5-ChildrenCare/user_reset_password.jsp";
                     mail.sendText(email, link);
-                                       
+                    request.getRequestDispatcher("user_email_confirm.jsp").forward(request, response);                  
                     
                 } catch (Exception e) {
-                    request.getRequestDispatcher("user_input_email.jsp").forward(request, response);
+                    request.getRequestDispatcher("user_email_input.jsp").forward(request, response);
                 }
 
 //                request.getRequestDispatcher("user_reset_password.jsp").forward(request, response);
