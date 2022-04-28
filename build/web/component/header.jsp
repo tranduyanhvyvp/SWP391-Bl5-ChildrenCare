@@ -15,11 +15,11 @@
     <body>
 
         <div id="header">
-            <div> <a href="home.jsp"><img src="images/logo.gif" alt=""></a>
+            <div> <a href="HomePageController"><img src="images/logo.gif" alt=""></a>
                 <ul>
-                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="HomePageController">Home</a></li>
                     <li><a href="PostListController">Posts</a></li>
-                    <li><a href="service.jsp">Services</a></li>
+                    <li><a href="ServicesController">Services</a></li>
                     <li><a href="blog.jsp">Blog</a></li>
                         <c:if test="${sessionScope.account != null}">
                         <li><a href="UserProfileController">${sessionScope.account.username}</a></li>
@@ -37,10 +37,6 @@
                         <c:if test="${sessionScope.account.role_id==2}">
                         <li><a href="/SWP391-Bl5-ChildrenCare/feedbacklist">Feedback List</a></li>
                         </c:if>
-
-
-
-
                 </ul>
             </div>
         </div>

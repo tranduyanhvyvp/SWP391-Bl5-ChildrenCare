@@ -78,8 +78,8 @@
                 <section class="regular slider">
                     <c:forEach items="${listService}" var="ls">
                         <div class="column">
-                            <img src="${ls.thumbnail}">
-                            <a href="/detail.jsp?id=1"><h4>${ls.title}</h4></a>
+                            <img src="images/${ls.thumbnail}">
+                            <a href="/detail.jsp?id=${ls.id}"><h4>${ls.title}</h4></a>
                             
                         </div>
                     </c:forEach>
