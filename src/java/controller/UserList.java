@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.user;
+import entity.User;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -69,7 +69,7 @@ public class UserList extends HttpServlet {
             response.sendRedirect("home.jsp");
         } else {
             AdminDAO dao = new AdminDAO();
-            List<user> ListUser = dao.getAllUser();
+            List<User> ListUser = dao.getAllUser();
 
             request.setAttribute("ListUser", ListUser);
             request.getRequestDispatcher("user_list.jsp").forward(request, response);
@@ -90,7 +90,7 @@ public class UserList extends HttpServlet {
             throws ServletException, IOException {
         String txt = request.getParameter("search");
         AdminDAO dao = new AdminDAO();
-        List<user> ListUser = dao.search(txt);
+        List<User> ListUser = dao.search(txt);
         request.setAttribute("ListUser", ListUser);
         request.getRequestDispatcher("user_list.jsp").forward(request, response);
     }

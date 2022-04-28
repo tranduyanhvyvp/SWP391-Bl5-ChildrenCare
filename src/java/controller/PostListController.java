@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entity.Post;
-import entity.status;
+import entity.Status;
 
 /**
  *
@@ -120,7 +120,7 @@ public class PostListController extends HttpServlet {
                 ArrayList<Post> posts = postDAO.get4Post1Page(index);
                 request.setAttribute("posts", posts);
             }
-            ArrayList<status> status = postDAO.getStatus();
+            ArrayList<Status> status = postDAO.getStatus();
             request.setAttribute("status", status);
             ArrayList<Category> category = postDAO.getCateName();
             request.setAttribute("category", category);

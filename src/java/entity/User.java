@@ -11,9 +11,9 @@ import java.sql.Date;
  *
  * @author aDMIN
  */
-public class user {
+public class User {
 
-    public user(int id, String fullname, boolean gender, String address, String emaii, Date dob, String phoneNumber, String role, String avatar) {
+    public User(int id, String fullname, boolean gender, String address, String emaii, Date dob, String phoneNumber, String role, String avatar) {
         this.id = id;
         this.fullname = fullname;
         this.gender = gender;

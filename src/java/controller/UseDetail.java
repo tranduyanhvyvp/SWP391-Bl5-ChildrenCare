@@ -7,7 +7,7 @@ package controller;
 
 import dao.AdminDAO;
 import entity.Account;
-import entity.role;
+import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.user;
+import entity.User;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
@@ -73,7 +73,7 @@ public class UseDetail extends HttpServlet {
         } else {
             String uid = request.getParameter("uid");
             AdminDAO dao = new AdminDAO();
-            user userDetail = dao.searchUser(uid);
+            User userDetail = dao.searchUser(uid);
             request.setAttribute("userDetail", userDetail);
             request.getRequestDispatcher("user_detail.jsp").forward(request, response);
         }

@@ -14,8 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.role;
-import entity.user;
+import entity.Role;
+import entity.User;
 
 /**
  *
@@ -64,8 +64,8 @@ public class UserDetailEdit extends HttpServlet {
             throws ServletException, IOException {
         String uid = request.getParameter("uid");
         AdminDAO dao = new AdminDAO();
-        user editUser = dao.searchUser(uid);
-        List<role> listRole = dao.ListRole();
+        User editUser = dao.searchUser(uid);
+        List<Role> listRole = dao.ListRole();
         request.setAttribute("editUser", editUser);
         request.setAttribute("listRole", listRole);
         request.getRequestDispatcher("user_detail_edit.jsp").forward(request, response);
@@ -91,7 +91,7 @@ public class UserDetailEdit extends HttpServlet {
         
         AdminDAO dao = new AdminDAO();
         dao.update(id, name, address, email, phone, role);
-        user userDetail = dao.searchUser(id);
+        User userDetail = dao.searchUser(id);
         request.setAttribute("userDetail", userDetail);
         request.getRequestDispatcher("user_detail.jsp").forward(request, response);
         

@@ -6,9 +6,9 @@
 package dao;
 
 import context.DBContext;
-import entity.feedback;
-import entity.feedbackImage;
-import entity.status;
+import entity.Feedback;
+import entity.FeedbackImage;
+import entity.Status;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,8 +26,8 @@ public class FeedbackDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<feedback> getListFeedback() {
-        List<feedback> list = new ArrayList<>();
+    public List<Feedback> getListFeedback() {
+        List<Feedback> list = new ArrayList<>();
         String query = "select  sf.id,a.fullname, s.title, sf.content, sf.date, sf.star, st.id, st.name\n"
                 + "from Service_feedback sf, Services s,Accounts a, Status st\n"
                 + "where sf.customer_id =a.account_id\n"
@@ -38,13 +38,13 @@ public class FeedbackDAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new feedback(rs.getInt(1),
+                list.add(new Feedback(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(6),
                         rs.getString(4),
                         rs.getDate(5),
-                        new status(rs.getInt(7), rs.getString(8))
+                        new Status(rs.getInt(7), rs.getString(8))
                 ));
             }
         } catch (Exception e) {
@@ -52,8 +52,8 @@ public class FeedbackDAO {
         return list;
     }
 
-    public List<feedback> searchFeedBack(String search) {
-        List<feedback> list = new ArrayList<>();
+    public List<Feedback> searchFeedBack(String search) {
+        List<Feedback> list = new ArrayList<>();
         String query = "select  sf.id,a.fullname, s.title, sf.content, sf.date, sf.star, st.id, st.name\n"
                 + "from Service_feedback sf, Services s,Accounts a, Status st\n"
                 + "where a.fullname like ?  or sf.content like ?\n"
@@ -67,13 +67,13 @@ public class FeedbackDAO {
             ps.setString(2, "%" + search + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new feedback(rs.getInt(1),
+                list.add(new Feedback(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(6),
                         rs.getString(4),
                         rs.getDate(5),
-                        new status(rs.getInt(7), rs.getString(8))
+                        new Status(rs.getInt(7), rs.getString(8))
                 ));
             }
         } catch (Exception e) {
@@ -81,7 +81,7 @@ public class FeedbackDAO {
         return list;
     }
 
-    public feedback searchFeedBackById(String search) {
+    public Feedback searchFeedBackById(String search) {
 
         String query = "select  sf.id,a.fullname, s.title, sf.content, sf.date, sf.star, st.id, st.name,a.account_id\n"
                 + "from Service_feedback sf, Services s,Accounts a, Status st\n"
@@ -96,13 +96,13 @@ public class FeedbackDAO {
 
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new feedback(rs.getInt(1),
+                return new Feedback(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(6),
                         rs.getString(4),
                         rs.getDate(5),
-                        new status(rs.getInt(7), rs.getString(8)),
+                        new Status(rs.getInt(7), rs.getString(8)),
                         rs.getInt(9)
                 );
             }
@@ -111,15 +111,15 @@ public class FeedbackDAO {
         return null;
     }
 
-    public List<status> getAllStatus() {
-        List<status> list = new ArrayList<>();
+    public List<Status> getAllStatus() {
+        List<Status> list = new ArrayList<>();
         String query = "select * from Status";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new status(rs.getInt(1),
+                list.add(new Status(rs.getInt(1),
                         rs.getString(2)
                 ));
             }
@@ -143,8 +143,8 @@ public class FeedbackDAO {
         }
     }
 
-    public List<feedbackImage> feedbackImage(String feedbackId) {
-        List<feedbackImage> list = new ArrayList<>();
+    public List<FeedbackImage> feedbackImage(String feedbackId) {
+        List<FeedbackImage> list = new ArrayList<>();
         String query = "select * from Service_feedback_img where service_feedback_id = ?";
         try {
             conn = new DBContext().getConnection();
@@ -153,7 +153,7 @@ public class FeedbackDAO {
 
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new feedbackImage(rs.getInt(1),
+                list.add(new FeedbackImage(rs.getInt(1),
                         rs.getString(2),
                         rs.getInt(3)
                 ));
@@ -165,8 +165,8 @@ public class FeedbackDAO {
 
     public static void main(String[] args) {
         FeedbackDAO dao = new FeedbackDAO();
-        List<feedbackImage> a = dao.feedbackImage("7");
-        for (feedbackImage image : a) {
+        List<FeedbackImage> a = dao.feedbackImage("7");
+        for (FeedbackImage image : a) {
             System.out.println(image);
         }
         

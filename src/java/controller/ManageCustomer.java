@@ -9,7 +9,7 @@ import dao.AdminDAO;
 import dao.CustomerDAO;
 import entity.Account;
 import entity.Customer;
-import entity.user;
+import entity.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;

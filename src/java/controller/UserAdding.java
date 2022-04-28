@@ -20,8 +20,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.role;
-import entity.user;
+import entity.Role;
+import entity.User;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -77,7 +77,7 @@ public class UserAdding extends HttpServlet {
             response.sendRedirect("home.jsp");
         } else {
             AdminDAO dao = new AdminDAO();
-            List<role> listRole = dao.ListRole();
+            List<Role> listRole = dao.ListRole();
 
             request.setAttribute("listRole", listRole);
             request.getRequestDispatcher("user_adding.jsp").forward(request, response);
@@ -108,7 +108,7 @@ public class UserAdding extends HttpServlet {
         AdminDAO dao = new AdminDAO();
         RandomString ran = new RandomString();
         SendEmail mail = new SendEmail();
-        user check = dao.checkUsernameExist(username);
+        User check = dao.checkUsernameExist(username);
         if (check == null) {
             try {
                 String password = ran.GennPass();

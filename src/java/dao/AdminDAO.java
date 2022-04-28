@@ -11,8 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import entity.role;
-import entity.user;
+import entity.Role;
+import entity.User;
 
 /**
  *
@@ -24,15 +24,15 @@ public class AdminDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<role> ListRole() {
-        List<role> list = new ArrayList<>();
+    public List<Role> ListRole() {
+        List<Role> list = new ArrayList<>();
         String query = "select * from [roles]";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new role(rs.getInt(1),
+                list.add(new Role(rs.getInt(1),
                         rs.getString(2)
                 ));
             }
@@ -41,15 +41,15 @@ public class AdminDAO {
         return list;
     }
 
-    public List<user> getAllUser() {
-        List<user> list = new ArrayList<>();
+    public List<User> getAllUser() {
+        List<User> list = new ArrayList<>();
         String query = "select * from [Roles] r, Accounts a where r.id=a.role_id ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new user(rs.getInt(3),
+                list.add(new User(rs.getInt(3),
                         rs.getString(4),
                         rs.getBoolean(5),
                         rs.getString(6),
@@ -88,8 +88,8 @@ public class AdminDAO {
         }
     }
 
-    public List<user> search(String txt) {
-        List<user> list = new ArrayList<>();
+    public List<User> search(String txt) {
+        List<User> list = new ArrayList<>();
         String query = "SELECT * FROM Accounts a FULL OUTER JOIN [Roles] r ON a.role_id = r.id where fullname like ?  or phonenumber like ? or email like ?";
         try {
             conn = new DBContext().getConnection();
@@ -99,7 +99,7 @@ public class AdminDAO {
             ps.setString(3, "%" + txt + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new user(rs.getInt(1),
+                list.add(new User(rs.getInt(1),
                         rs.getString(2),
                         rs.getBoolean(3),
                         rs.getString(4),
@@ -115,8 +115,8 @@ public class AdminDAO {
         return list;
     }
 
-    public user searchUser(String uid) {
-        List<user> list = new ArrayList<>();
+    public User searchUser(String uid) {
+        List<User> list = new ArrayList<>();
         String query = "SELECT * FROM Accounts a FULL OUTER JOIN [roles] r ON a.role_id = r.id where a.account_id =?";
         try {
             conn = new DBContext().getConnection();
@@ -124,7 +124,7 @@ public class AdminDAO {
             ps.setString(1, uid);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new user(rs.getInt(1),
+                return new User(rs.getInt(1),
                         rs.getString(2),
                         rs.getBoolean(3),
                         rs.getString(4),
@@ -179,7 +179,7 @@ public class AdminDAO {
         }
     }
 
-    public user checkUsernameExist(String username) {
+    public User checkUsernameExist(String username) {
 
         String query = "SELECT * FROM Accounts a FULL OUTER JOIN [role] r ON a.role_id = r.role_id where username = ?";
         try {
@@ -188,7 +188,7 @@ public class AdminDAO {
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new user(rs.getInt(1),
+                return new User(rs.getInt(1),
                         rs.getString(2),
                         rs.getBoolean(3),
                         rs.getString(4),
@@ -206,11 +206,11 @@ public class AdminDAO {
 
     public static void main(String[] args) {
         AdminDAO dao = new AdminDAO();
-        List<role> x = dao.ListRole();
-        for (role object : x) {
+        List<Role> x = dao.ListRole();
+        for (Role object : x) {
             System.out.println(object);
         }
-        user check = dao.checkUsernameExist("duy1");
+        User check = dao.checkUsernameExist("duy1");
         System.out.println(check);
 
     }

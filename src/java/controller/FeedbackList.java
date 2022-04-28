@@ -9,8 +9,8 @@ import dao.CustomerDAO;
 import dao.FeedbackDAO;
 import entity.Account;
 import entity.Customer;
-import entity.feedback;
-import entity.status;
+import entity.Feedback;
+import entity.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -76,8 +76,8 @@ public class FeedbackList extends HttpServlet {
         } else {
             request.setCharacterEncoding("UTF-8");
             FeedbackDAO dao = new FeedbackDAO();
-            List<feedback> listFeedback = dao.getListFeedback();
-            List<status> listStatus = dao.getAllStatus();
+            List<Feedback> listFeedback = dao.getListFeedback();
+            List<Status> listStatus = dao.getAllStatus();
             request.setAttribute("listFeedback", listFeedback);
             request.setAttribute("listStatus", listStatus);
             request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
@@ -100,8 +100,8 @@ public class FeedbackList extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String search = request.getParameter("search");
         FeedbackDAO dao = new FeedbackDAO();
-        List<feedback> listFeedback = dao.searchFeedBack(search);
-        List<status> listStatus = dao.getAllStatus();
+        List<Feedback> listFeedback = dao.searchFeedBack(search);
+        List<Status> listStatus = dao.getAllStatus();
         request.setAttribute("listFeedback", listFeedback);
         request.setAttribute("listStatus", listStatus);
         request.getRequestDispatcher("feedback_list.jsp").forward(request, response);
