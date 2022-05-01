@@ -34,9 +34,9 @@
                 <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb" class="main-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/SWP391-Bl5-ChildrenCare/userlist">User</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                        <li class="breadcrumb-item"><a href="/SWP391-Bl5-ChildrenCare/HomePageController">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/SWP391-Bl5-ChildrenCare/feedbacklist">Feedback List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Feedback</li>
                     </ol>
                 </nav>
                 <!-- /Breadcrumb -->
@@ -151,21 +151,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Status</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <select onchange="myFunction(${feedback.id}, this.value)">
-                                            <c:forEach var="o" items="${listStatus}">
-                                                <option value="${o.id}" ${feedback.status1.id==o.id ? "selected":""}>${o.name}</option>
-                                            </c:forEach>
 
-                                        </select>
-
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -267,21 +253,21 @@
 
         </script>
         <script>
-            function myFunction(feedbackid, statusid) {
-                $.ajax({
-                    url: "/SWP391-Bl5-ChildrenCare/updatestatus",
-                    type: "get", //send it through get method
-                    data: {
-                        fbid: feedbackid,
-                        stid: statusid
-                    },
-                    success: function (data) {
-
-                    },
-                    error: function (xhr) {
-                        //Do Something to handle error
-                    }
-                });
+            function myFunction(feedbackid, statusid) {              
+                    $.ajax({
+                        url: "/SWP391-Bl5-ChildrenCare/updatestatus",
+                        type: "get", //send it through get method
+                        data: {
+                            fbid:feedbackid,
+                            stid:statusid
+                        },
+                        success: function (data) {
+                                            
+                        },
+                        error: function (xhr) {
+                            //Do Something to handle error
+                        }
+                    });
             }
         </script>
     </body>
