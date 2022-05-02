@@ -110,26 +110,25 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Staff</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <c:if test="${sessionScope.account.role_id==2}">
+                                <c:if test="${sessionScope.account.role_id==2}">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Staff</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+
                                             <select onchange="myFunction1(${reservation.id}, this.value)">
                                                 <c:forEach var="o" items="${listStaff}">
                                                     <option value="${o.id}" ${reservation.staff_id==o.id ? "selected":""}>${o.fullname}</option>
                                                 </c:forEach>
                                             </select>
-                                        </c:if>
+
+                                        </div>
                                     </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank" href="/SWP391-Bl5-ChildrenCare-chiennt/userdetailedit?uid=${userDetail.id}">Edit</a>
-                                    </div>
-                                </div>
+                                    <hr>
+                                </c:if>
+
+
                             </div>
                         </div>
 
