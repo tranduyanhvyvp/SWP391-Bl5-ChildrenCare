@@ -34,6 +34,16 @@ public class User {
     private String role;
     private String avatar;
 
+    public User( String fullname, boolean gender, String address, String emaii, String phoneNumber) {
+
+        this.fullname = fullname;
+        this.gender = gender;
+        this.address = address;
+        this.emaii = emaii;
+        this.phoneNumber = phoneNumber;
+
+    }
+
     public int getId() {
         return id;
     }

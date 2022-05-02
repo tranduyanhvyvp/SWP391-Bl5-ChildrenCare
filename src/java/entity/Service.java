@@ -27,6 +27,12 @@ public class Service {
     private String thumbnail;
     private int status_id;
 
+    public Service(String title, String thumbnail) {
+
+        this.title = title;
+        this.thumbnail = thumbnail;
+    }
+
     public Service() {
     }
 
@@ -116,6 +122,11 @@ public class Service {
 
     public void setStatus_id(int status_id) {
         this.status_id = status_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" + "title=" + title + ", thumbnail=" + thumbnail + '}';
     }
     
 

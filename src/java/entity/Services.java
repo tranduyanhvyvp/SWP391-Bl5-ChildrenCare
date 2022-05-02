@@ -104,6 +104,11 @@ public class Services {
     public void setStatus_id(int status_id) {
         this.status_id = status_id;
     }
+
+    @Override
+    public String toString() {
+        return "Services{" + "title=" + title + ", thumbnail=" + thumbnail + '}';
+    }
     
 
 }
