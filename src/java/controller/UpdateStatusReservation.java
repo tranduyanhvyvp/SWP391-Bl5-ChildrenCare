@@ -7,12 +7,8 @@ package controller;
 
 import dao.FeedbackDAO;
 import dao.ReservationDAO;
-import entity.Reservation;
-import entity.Status;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aDMIN
  */
-@WebServlet(name = "ReservationDetails", urlPatterns = {"/reservationdetails"})
-public class ReservationDetails extends HttpServlet {
+@WebServlet(name = "UpdateStatusReservation", urlPatterns = {"/updatestatusreservation"})
+public class UpdateStatusReservation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +39,10 @@ public class ReservationDetails extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ReservationDetails</title>");            
+            out.println("<title>Servlet UpdateStatusReservation</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ReservationDetails at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateStatusReservation at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,16 +60,10 @@ public class ReservationDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String rid = request.getParameter("rid");
+        String reservationId = request.getParameter("rsid");
+        String statusId = request.getParameter("stid");
         ReservationDAO dao = new ReservationDAO();
-        FeedbackDAO Feedbackdao = new FeedbackDAO();
-        Reservation reservation = dao.searchReservationById(rid);
-        List<Status> listStatus = Feedbackdao.getAllStatus();
-        List<User> listStaff = dao.getAllStaff();
-        request.setAttribute("reservation", reservation);
-        request.setAttribute("listStatus", listStatus);
-        request.setAttribute("listStaff", listStaff);
-        request.getRequestDispatcher("reservation_detail_staff.jsp").forward(request, response);
+        dao.updateStatus(reservationId, statusId);
     }
 
     /**
@@ -87,7 +77,10 @@ public class ReservationDetails extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String reservationId = request.getParameter("rsid");
+        String staffId = request.getParameter("stid");
+        ReservationDAO dao = new ReservationDAO();
+        dao.updateStaff(reservationId, staffId);
     }
 
     /**

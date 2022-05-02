@@ -37,6 +37,9 @@
                         <c:if test="${sessionScope.account.role_id==2}">
                         <li><a href="/SWP391-Bl5-ChildrenCare/feedbacklist">Feedback List</a></li>
                         </c:if>
+                        <c:if test="${sessionScope.account.role_id==2||sessionScope.account.role_id==3}">
+                        <li><a href="/SWP391-Bl5-ChildrenCare/reservationlist">Reservation</a></li>
+                        </c:if>
                 </ul>
             </div>
         </div>

@@ -266,7 +266,7 @@
                                     <td>${o.status.name}</td>
 
                                     <td>
-                                        <a href="/SWP391-Bl5-ChildrenCare/usedetail?uid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                        <a href="/SWP391-Bl5-ChildrenCare/reservationdetails?rid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 
                                     </td>
                                 </tr>

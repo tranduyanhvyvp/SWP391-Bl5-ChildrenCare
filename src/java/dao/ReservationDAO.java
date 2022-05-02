@@ -8,6 +8,7 @@ package dao;
 import context.DBContext;
 import entity.Feedback;
 import entity.Reservation;
+import entity.Role;
 import entity.Service;
 import entity.Status;
 import entity.User;
@@ -146,12 +147,73 @@ public class ReservationDAO {
         return list;
     }
 
+    public Reservation searchReservationById(String Id) {
+
+        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date]\n"
+                + "from Accounts a, Reservation r, Services s, [Status] st\n"
+                + "where a.account_id = r.customer_id\n"
+                + "and s.id = r.service_id\n"
+                + "and st.id = r.[status]\n"
+                + "and r.id =?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, Id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new Reservation(
+                        rs.getInt(1),
+                        new User(rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)),
+                        new Service(rs.getString(11), rs.getString(12)),
+                        rs.getInt(3),
+                        rs.getString(2),
+                        rs.getInt(4),
+                        new Status(rs.getInt(13), rs.getString(14)),
+                        rs.getDate(15)
+                );
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public void updateStatus(String reservationId, String statusId) {
+        String query = "UPDATE Reservation\n"
+                + "SET [status] = ?\n"
+                + "WHERE id=?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, statusId);
+            ps.setString(2, reservationId);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public void updateStaff(String reservationId, String staffId) {
+        String query = "UPDATE Reservation\n"
+                + "SET staff_id =? \n"
+                + "WHERE id=?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, staffId);
+            ps.setString(2, reservationId);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
         ReservationDAO dao = new ReservationDAO();
-        List<Reservation> a = dao.getListFilter("st.id", "'2000-10-01'", "r.staff_id");
-        for (Reservation reservation : a) {
-            System.out.println(reservation);
-
+        List<User> a = dao.getAllStaff();
+        for (User user : a) {
+            System.out.println(user);
         }
+
     }
 }
