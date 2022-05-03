@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import entity.Post;
 import entity.Status;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -113,6 +114,23 @@ public class PostDAO extends DBContext {
         return list;
     }
 
+    public List<Status> getAllStatus() {
+        List<Status> list = new ArrayList<>();
+        String query = "select * from Status";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Status(rs.getInt(1),
+                        rs.getString(2)
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public ArrayList<Post> get3LatestPost() throws Exception {
         ArrayList<Post> list = new ArrayList<>();
         try {
@@ -155,6 +173,7 @@ public class PostDAO extends DBContext {
         }
         return list;
     }
+
     public ArrayList<Post> get2LatestPost() throws Exception {
         ArrayList<Post> list = new ArrayList<>();
         try {
@@ -469,7 +488,7 @@ public class PostDAO extends DBContext {
     public int countPostbyCategory(String categoryID) throws Exception {
         String sql = "SELECT count(*)\n"
                 + "FROM Post \n"
-                + "WHERE category_id = "+categoryID+"";
+                + "WHERE category_id = " + categoryID + "";
         try {
             conn = getConnection();
             ps = conn.prepareStatement(sql);
@@ -496,7 +515,7 @@ public class PostDAO extends DBContext {
     public int countPostbyStatus(String statusID) throws Exception {
         String sql = "SELECT count(*)\n"
                 + "FROM Post \n"
-                + "WHERE status_id = "+statusID+"";
+                + "WHERE status_id = " + statusID + "";
         try {
             conn = getConnection();
             ps = conn.prepareStatement(sql);
