@@ -82,7 +82,7 @@ public class EditPostController extends HttpServlet {
                 PostDAO postDAO = new PostDAO();
                 Post post = postDAO.getPostById(id);
                 ArrayList<Category> category = postDAO.getCateName();
-                List<Status> status = postDAO.getAllStatus();
+                ArrayList<Status> status = postDAO.getStatus();
                 request.setAttribute("category", category);
                 request.setAttribute("post", post);
                 request.setAttribute("status", status);

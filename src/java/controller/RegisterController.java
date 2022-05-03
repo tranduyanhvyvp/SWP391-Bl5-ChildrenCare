@@ -48,7 +48,8 @@ public class RegisterController extends HttpServlet {
             int gender = Integer.parseInt(request.getParameter("gender"));
 
             String email = request.getParameter("email");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            String phoneNumber = request.getParameter("phoneNumber");
+//            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
             String address = request.getParameter("address");
 
             if (!pass.equals(rePass)) {

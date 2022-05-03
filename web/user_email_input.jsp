@@ -23,7 +23,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         body {font-family: Arial, Helvetica, sans-serif;}
         form {border: 3px solid #f1f1f1;}
 
-        input[type=text], input[type=password] {
+        input[type=text], input[type=password], input[type=email] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -106,7 +106,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
                     <div class="container">
 
                         <label for="psw"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" required>
+                        <input type="email" placeholder="Enter Email" name="email" required>
 
                         <br>
                         <p class="text-danger">

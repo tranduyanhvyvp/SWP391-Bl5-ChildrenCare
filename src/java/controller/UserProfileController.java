@@ -88,7 +88,7 @@ public class UserProfileController extends HttpServlet {
             String user = request.getParameter("username");
             String dob = request.getParameter("dob");
             String fullName = request.getParameter("fullName");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            String phoneNumber = request.getParameter("phoneNumber");
             int gender = Integer.parseInt(request.getParameter("gender"));
             String address = request.getParameter("address");
             String avatar = request.getParameter("avatar");

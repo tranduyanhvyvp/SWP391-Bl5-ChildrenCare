@@ -104,7 +104,8 @@
                                                 <h6 class="mb-0">Phone</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" name="phoneNumber" value="${acc.phoneNumber}">
+                                                <input type="tel" class="form-control" id="phone" name="phoneNumber" value="${acc.phoneNumber}" placeholder="10 digit character" pattern="[0-9]{10}" required>
+<!--                                                <input type="text" class="form-control" name="phoneNumber" value="${acc.phoneNumber}">-->
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -123,7 +124,9 @@
                                                 <h6 class="mb-0">Date of birth</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" name="dob" value="${acc.dob}">
+<!--                                                <input type="text" class="form-control" name="dob" value="${acc.dob}">-->
+                                                
+                                                <input type="date" class="form-control" name="dob" value="${acc.dob}">
                                             </div>
                                         </div>            
                                         <div class="row mb-3">
