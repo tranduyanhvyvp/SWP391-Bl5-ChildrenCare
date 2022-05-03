@@ -122,7 +122,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank" href="/SWP391-Bl5-ChildrenCare-chiennt/userdetailedit?uid=${userDetail.id}">Edit</a>
+                                        <a class="btn btn-info " target="__blank" href="/SWP391-Bl5-ChildrenCare/userdetailedit?uid=${userDetail.id}">Edit</a>
                                     </div>
                                 </div>
                             </div>
