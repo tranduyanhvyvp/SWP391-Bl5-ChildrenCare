@@ -114,12 +114,19 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
                     <br>    
                     <label for="psw"><b>New Password</b></label>
 
-                    <input type="password" placeholder="Enter New Password" name="password" id="password" required>
+                    <input type="password" placeholder="Enter New Password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    
+<!--                    <input type="password" placeholder="Enter New Password" name="password" id="password" required>-->
                     <input type="checkbox" onclick="myFunction()">Show Password
 
                     <br>
                     <label for="psw"><b>Confirm New Password</b></label>
-                    <input type="password" placeholder="Enter Confirm New Password" name="newPassword" id="newPassword" required>
+                    
+                    <input type="password" placeholder="Enter Confirm New Password" name="newPassword" id="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    
+<!--                    <input type="password" placeholder="Enter Confirm New Password" name="newPassword" id="newPassword" required>-->
                     <input type="checkbox" onclick="myFunction1()">Show Password
 
                     <br>
