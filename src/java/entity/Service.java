@@ -27,6 +27,13 @@ public class Service {
     private String thumbnail;
     private int status_id;
 
+    public Service(int id, String title, String thumbnail) {
+        this.id = id;
+        this.title = title;
+        this.thumbnail = thumbnail;
+    }
+
+    
     public Service(String title, String thumbnail) {
 
         this.title = title;

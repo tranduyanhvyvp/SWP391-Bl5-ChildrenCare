@@ -30,7 +30,7 @@ public class ReservationDAO {
 
     public List<Reservation> getListReservation() {
         List<Reservation> list = new ArrayList<>();
-        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date]\n"
+        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date], s.id\n"
                 + "from Accounts a, Reservation r, Services s, [Status] st\n"
                 + "where a.account_id = r.customer_id\n"
                 + "and s.id = r.service_id\n"
@@ -43,7 +43,7 @@ public class ReservationDAO {
                 list.add(new Reservation(
                         rs.getInt(1),
                         new User(rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)),
-                        new Service(rs.getString(11), rs.getString(12)),
+                        new Service(rs.getInt(16),rs.getString(11), rs.getString(12)),
                         rs.getInt(3),
                         rs.getString(2),
                         rs.getInt(4),
@@ -82,7 +82,7 @@ public class ReservationDAO {
 
     public List<Reservation> getListFilter(String statusId, String date, String staffId) {
         List<Reservation> list = new ArrayList<>();
-        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date]\n"
+        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date], s.id\n"
                 + "from Accounts a, Reservation r, Services s, [Status] st\n"
                 + "where a.account_id = r.customer_id\n"
                 + "and s.id = r.service_id\n"
@@ -103,7 +103,7 @@ public class ReservationDAO {
                 list.add(new Reservation(
                         rs.getInt(1),
                         new User(rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)),
-                        new Service(rs.getString(11), rs.getString(12)),
+                        new Service(rs.getInt(16),rs.getString(11), rs.getString(12)),
                         rs.getInt(3),
                         rs.getString(2),
                         rs.getInt(4),
@@ -118,7 +118,7 @@ public class ReservationDAO {
 
     public List<Reservation> searchReservationByName(String name) {
         List<Reservation> list = new ArrayList<>();
-        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date]\n"
+        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date], s.id\n"
                 + "from Accounts a, Reservation r, Services s, [Status] st\n"
                 + "where a.account_id = r.customer_id\n"
                 + "and s.id = r.service_id\n"
@@ -134,7 +134,7 @@ public class ReservationDAO {
                 list.add(new Reservation(
                         rs.getInt(1),
                         new User(rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)),
-                        new Service(rs.getString(11), rs.getString(12)),
+                        new Service(rs.getInt(16),rs.getString(11), rs.getString(12)),
                         rs.getInt(3),
                         rs.getString(2),
                         rs.getInt(4),
@@ -149,7 +149,7 @@ public class ReservationDAO {
 
     public Reservation searchReservationById(String Id) {
 
-        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date]\n"
+        String query = "select r.id, r.description, r.staff_id, r.total, a.fullname, a.gender, a.[address], a.email, a.phonenumber, a.role_id, s.title, s.thumbnail, st.id, st.[name], r.[date], s.id\n"
                 + "from Accounts a, Reservation r, Services s, [Status] st\n"
                 + "where a.account_id = r.customer_id\n"
                 + "and s.id = r.service_id\n"
@@ -165,7 +165,7 @@ public class ReservationDAO {
                 return new Reservation(
                         rs.getInt(1),
                         new User(rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)),
-                        new Service(rs.getString(11), rs.getString(12)),
+                        new Service(rs.getInt(16),rs.getString(11), rs.getString(12)),
                         rs.getInt(3),
                         rs.getString(2),
                         rs.getInt(4),

@@ -85,6 +85,16 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
+                                        <h6 class="mb-0">Service</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary" ><a href="/SWP391-Bl5-ChildrenCare/detail.jsp?id=${reservation.service.id}">
+                                            ${reservation.service.title}
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
                                         <h6 class="mb-0">Total</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
