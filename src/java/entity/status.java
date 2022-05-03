@@ -9,16 +9,16 @@ package entity;
  *
  * @author aDMIN
  */
-public class status {
+public class Status {
     private int id;
     private String name;
 
-    public status(int id, String name) {
+    public Status(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public status() {
+    public Status() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

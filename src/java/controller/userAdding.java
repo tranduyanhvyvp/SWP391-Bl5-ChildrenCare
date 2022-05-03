@@ -7,7 +7,8 @@ package controller;
 
 import JavaFunc.randomString;
 import JavaFunc.sendEmail;
-import dao.Admin_DAO;
+import dao.AdminDAO;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,15 +20,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.role;
-import entity.user;
+import entity.Role;
+import entity.User;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author aDMIN
  */
 @WebServlet(name = "userAdding", urlPatterns = {"/useradding"})
-public class userAdding extends HttpServlet {
+public class UserAdding extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,7 +48,7 @@ public class userAdding extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet userAdding</title>");            
+            out.println("<title>Servlet userAdding</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet userAdding at " + request.getContextPath() + "</h1>");
@@ -67,11 +69,20 @@ public class userAdding extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Admin_DAO dao = new Admin_DAO();
-        List<role> listRole = dao.ListRole();
-        
-        request.setAttribute("listRole", listRole);
-        request.getRequestDispatcher("user_adding.jsp").forward(request, response);
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 1) {
+            response.sendRedirect("home.jsp");
+        } else {
+            AdminDAO dao = new AdminDAO();
+            List<Role> listRole = dao.ListRole();
+
+            request.setAttribute("listRole", listRole);
+            request.getRequestDispatcher("user_adding.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -85,29 +96,29 @@ public class userAdding extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullname= request.getParameter("fullname");
-        String email= request.getParameter("email");
-        String phonenumber= request.getParameter("phonenumber");
-        String role= request.getParameter("role");
-        String address= request.getParameter("address");
-        String dob= request.getParameter("dob");
-        String gender= request.getParameter("gender");
-        String username= request.getParameter("username");
-        
-        Admin_DAO dao = new Admin_DAO();
+        String fullname = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        String phonenumber = request.getParameter("phonenumber");
+        String role = request.getParameter("role");
+        String address = request.getParameter("address");
+        String dob = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String username = request.getParameter("username");
+
+        AdminDAO dao = new AdminDAO();
         randomString ran = new randomString();
         sendEmail mail = new sendEmail();
-        user check = dao.checkUsernameExist(username);
-        if(check==null){
+        User check = dao.checkUsernameExist(username);
+        if (check == null) {
             try {
                 String password = ran.GennPass();
                 dao.insertUser(fullname, gender, address, email, dob, phonenumber, username, password, role);
                 mail.sendText(email, password);
                 response.sendRedirect("userlist");
             } catch (MessagingException ex) {
-                Logger.getLogger(userAdding.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserAdding.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             response.sendRedirect("useradding");
         }
     }

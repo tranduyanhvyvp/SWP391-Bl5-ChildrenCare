@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.Feedback_DAO;
+import dao.FeedbackDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author aDMIN
  */
 @WebServlet(name = "updateStatusFeedback", urlPatterns = {"/updatestatus"})
-public class updateStatusFeedback extends HttpServlet {
+public class UpdateStatusFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -61,7 +61,7 @@ public class updateStatusFeedback extends HttpServlet {
             throws ServletException, IOException {
         String feedbackId = request.getParameter("fbid");
         String statusId = request.getParameter("stid");
-        Feedback_DAO dao = new Feedback_DAO();
+        FeedbackDAO dao = new FeedbackDAO();
         dao.update(feedbackId, statusId);
     }
 

@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author aDMIN
  */
-public class feedback {
+public class Feedback {
 
     private int id;
     private String customer_name;
@@ -19,10 +19,10 @@ public class feedback {
     private int star;
     private String content;
     private Date date_post;
-    private status status1;
+    private Status status1;
     private int userId;
 
-    public feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, status status1, int userId) {
+    public Feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, Status status1, int userId) {
         this.id = id;
         this.customer_name = customer_name;
         this.service_name = service_name;
@@ -42,7 +42,7 @@ public class feedback {
     }
     
 
-    public feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, status status1) {
+    public Feedback(int id, String customer_name, String service_name, int star, String content, Date date_post, Status status1) {
         this.id = id;
         this.customer_name = customer_name;
         this.service_name = service_name;
@@ -100,11 +100,11 @@ public class feedback {
         this.date_post = date_post;
     }
 
-    public status getStatus1() {
+    public Status getStatus1() {
         return status1;
     }
 
-    public void setStatus1(status status1) {
+    public void setStatus1(Status status1) {
         this.status1 = status1;
     }
 

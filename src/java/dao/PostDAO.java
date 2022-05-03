@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import entity.Post;
-import entity.status;
+import entity.Status;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -409,8 +409,8 @@ public class PostDAO extends DBContext {
         return list;
     }
 
-    public ArrayList<status> getStatus() throws SQLException {
-        ArrayList<status> list = new ArrayList<>();
+    public ArrayList<Status> getStatus() throws SQLException {
+        ArrayList<Status> list = new ArrayList<>();
         try {
             String sql = "SELECT DISTINCT  Status.id,Status.name\n"
                     + "FROM Post \n"
@@ -420,7 +420,7 @@ public class PostDAO extends DBContext {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                status status1 = new status();
+                Status status1 = new Status();
                 status1.setId(rs.getInt("id"));
                 status1.setName(rs.getString("name"));
                 list.add(status1);

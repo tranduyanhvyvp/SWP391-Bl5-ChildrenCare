@@ -6,19 +6,31 @@
     </servlet>
     <servlet>
         <servlet-name>blogList</servlet-name>
-        <servlet-class>controller.blogList</servlet-class>
+        <servlet-class>controller.BlogList</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>viewBlog</servlet-name>
-        <servlet-class>controller.viewBlog</servlet-class>
+        <servlet-class>controller.ViewBlog</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>manageCustomer</servlet-name>
-        <servlet-class>controller.manageCustomer</servlet-class>
+        <servlet-class>controller.ManageCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicesServlet</servlet-name>
+        <servlet-class>controller.ServicesServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addCustomer</servlet-name>
-        <servlet-class>controller.addCustomer</servlet-class>
+        <servlet-class>controller.AddCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicesController</servlet-name>
+        <servlet-class>controller.ServicesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.CartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -42,7 +54,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>userList</servlet-name>
-        <servlet-class>controller.userList</servlet-class>
+        <servlet-class>controller.UserList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -51,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>userList</servlet-name>
         <url-pattern>/userlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicesController</servlet-name>
+        <url-pattern>/ServicesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

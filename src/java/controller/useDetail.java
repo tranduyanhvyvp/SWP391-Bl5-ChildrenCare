@@ -5,7 +5,9 @@
  */
 package controller;
 
-import dao.Admin_DAO;
+import dao.AdminDAO;
+import entity.Account;
+import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,14 +15,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.user;
+import entity.User;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author aDMIN
  */
 @WebServlet(name = "useDetail", urlPatterns = {"/usedetail"})
-public class useDetail extends HttpServlet {
+public class UseDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +43,7 @@ public class useDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet useDetail</title>");            
+            out.println("<title>Servlet useDetail</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet useDetail at " + request.getContextPath() + "</h1>");
@@ -60,11 +64,20 @@ public class useDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String uid = request.getParameter("uid");
-        Admin_DAO dao = new Admin_DAO();
-        user userDetail = dao.searchUser(uid);
-        request.setAttribute("userDetail", userDetail);
-        request.getRequestDispatcher("user_detail.jsp").forward(request, response);
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 1) {
+            response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
+        } else {
+            String uid = request.getParameter("uid");
+            AdminDAO dao = new AdminDAO();
+            User userDetail = dao.searchUser(uid);
+            request.setAttribute("userDetail", userDetail);
+            request.getRequestDispatcher("user_detail.jsp").forward(request, response);
+        }
+
     }
 
     /**

@@ -11,9 +11,9 @@ import java.sql.Date;
  *
  * @author aDMIN
  */
-public class user {
+public class User {
 
-    public user(int id, String fullname, boolean gender, String address, String emaii, Date dob, String phoneNumber, String role, String avatar) {
+    public User(int id, String fullname, boolean gender, String address, String emaii, Date dob, String phoneNumber, String role, String avatar) {
         this.id = id;
         this.fullname = fullname;
         this.gender = gender;
@@ -33,6 +33,16 @@ public class user {
     private String phoneNumber;
     private String role;
     private String avatar;
+
+    public User( String fullname, boolean gender, String address, String emaii, String phoneNumber) {
+
+        this.fullname = fullname;
+        this.gender = gender;
+        this.address = address;
+        this.emaii = emaii;
+        this.phoneNumber = phoneNumber;
+
+    }
 
     public int getId() {
         return id;

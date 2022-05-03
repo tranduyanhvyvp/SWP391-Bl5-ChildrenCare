@@ -5,22 +5,27 @@
  */
 package controller;
 
+import dao.AdminDAO;
 import dao.CustomerDAO;
+import entity.Account;
 import entity.Customer;
+import entity.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ADMIN
  */
-public class manageCustomer extends HttpServlet {
+public class ManageCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,11 +65,20 @@ public class manageCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CustomerDAO dao = new CustomerDAO();
-        ArrayList<Customer> ListUser = dao.getAllCustomer();
-        System.out.println(ListUser);
-        request.setAttribute("ListUser", ListUser);
-        request.getRequestDispatcher("manageCustomer.jsp").forward(request, response);
+
+        HttpSession session = request.getSession();
+        Account acc1 = (Account) session.getAttribute("account");
+
+        if (acc1.getRole_id() != 2) {
+            response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
+        } else {
+            CustomerDAO dao = new CustomerDAO();
+            ArrayList<Customer> ListUser = dao.getAllCustomer();
+            System.out.println(ListUser);
+            request.setAttribute("ListUser", ListUser);
+            request.getRequestDispatcher("manageCustomer.jsp").forward(request, response);
+        }
+
     }
 
     /**

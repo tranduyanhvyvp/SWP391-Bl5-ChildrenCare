@@ -9,11 +9,11 @@ package entity;
  *
  * @author aDMIN
  */
-public class role {
+public class Role {
     private int id;
     private String name;
 
-    public role(int id, String name) {
+    public Role(int id, String name) {
         this.id = id;
         this.name = name;
     }

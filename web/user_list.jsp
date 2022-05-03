@@ -248,8 +248,8 @@
                                     <td>${o.phoneNumber}</td>
                                     <td>${o.role}</td>
                                     <td>
-                                        <a href="/SWP391-Bl5-ChildrenCare-chiennt/usedetail?uid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                                        <a href="/SWP391-Bl5-ChildrenCare-chiennt/userdetailedit?uid=${o.id}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a href="/SWP391-Bl5-ChildrenCare/usedetail?uid=${o.id}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                        <a href="/SWP391-Bl5-ChildrenCare/userdetailedit?uid=${o.id}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                         <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                     </td>
                                 </tr>

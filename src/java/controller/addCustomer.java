@@ -8,10 +8,15 @@ package controller;
 import dao.CustomerDAO;
 import JavaFunc.randomString;
 import JavaFunc.sendEmail;
+import dao.FeedbackDAO;
+import entity.Account;
 import entity.Customer;
+import entity.Feedback;
+import entity.Status;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
@@ -19,12 +24,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ADMIN
  */
-public class addCustomer extends HttpServlet {
+public class AddCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +45,14 @@ public class addCustomer extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            request.getRequestDispatcher("addCustomer.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            Account acc1 = (Account) session.getAttribute("account");
+
+            if (acc1.getRole_id() != 1) {
+                response.sendRedirect("/SWP391-Bl5-ChildrenCare/HomePageController");
+            } else {
+                request.getRequestDispatcher("addCustomer.jsp").forward(request, response);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

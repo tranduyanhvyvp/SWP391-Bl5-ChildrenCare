@@ -30,7 +30,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
         body {font-family: Arial, Helvetica, sans-serif;}
         form {border: 3px solid #f1f1f1;}
 
-        input[type=text], input[type=password] {
+        input[type=text], input[type=password], input[type=email] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -112,11 +112,19 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
                         <input type="text" placeholder="Enter Username" name="username" required>
 
                         <label for="psw"><b>Password:</b></label>
-                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+<!--                        <input type="password" placeholder="Enter Password" name="password" id="password" required>-->
+                        
+                        <input type="password" name="password" id="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        
                         <input type="checkbox" onclick="myFunction()">Show Password
                         <br>
                         <label for="psw"><b>Confirm Password:</b></label>
-                        <input type="password" placeholder="Enter Confirm Password" name="rePassword" id ="confirmNewPassword" required>
+<!--                        <input type="password" placeholder="Enter Confirm Password" name="rePassword" id ="confirmNewPassword" required>-->
+                        
+                        <input type="password" placeholder="Enter Confirm Password" name="rePassword" id ="confirmNewPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        
                         <input type="checkbox" onclick="myFunction1()">Show Password
                         <br>
                         <label for="fullname"><b>Full name:</b></label>
@@ -134,9 +142,12 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></scri
                         <br>
                         <br>
                         <label for="email"><b>Email:</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" required>
+                        <input type="email" placeholder="Enter Email" name="email" required>
                         <label for="phone"><b>Mobile:</b></label>
-                        <input  type="text" placeholder="Enter Phone Number" name="phoneNumber" onchange="CheckPhone()" required>
+<!--                        <input  type="text" placeholder="Enter Phone Number" name="phoneNumber" onchange="CheckPhone()" required>
+                        -->
+                        <input type="text" id="phone" name="phoneNumber" placeholder="Enter Phone Number (10 digit character)" pattern="[0-9]{10}" required>
+                        
                         <label for="address"><b>Address:</b></label>
                         <input type="text" placeholder="Enter Address" name="address" required>
 

@@ -39,7 +39,7 @@ public class AccountDAO extends DBContext {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getInt(7),
+                        rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
                         rs.getInt(10),
@@ -68,7 +68,7 @@ public class AccountDAO extends DBContext {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getInt(7),
+                        rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
                         rs.getInt(10),
@@ -82,7 +82,7 @@ public class AccountDAO extends DBContext {
         return null;
     }
 
-    public void register(String user, String pass, String fullName, int gender, String email, int phoneNumber, String address) {
+    public void register(String user, String pass, String fullName, int gender, String email, String phoneNumber, String address) {
         String query = "INSERT INTO Accounts VALUES(?,?,?,?,'04/20/2022',?,?,?,4,'NULL','0')";
         try {
             conn = new DBContext().getConnection();
@@ -91,7 +91,7 @@ public class AccountDAO extends DBContext {
             ps.setInt(2, gender);
             ps.setString(3, address);
             ps.setString(4, email);
-            ps.setInt(5, phoneNumber);
+            ps.setString(5, phoneNumber);
             ps.setString(6, user);
             ps.setString(7, pass);
 
@@ -126,7 +126,7 @@ public class AccountDAO extends DBContext {
         return null;
     }
 
-    public Account updateProfile(String user, String fullname, int gender, String address, String dob, int phonenumber) {
+    public Account updateProfile(String user, String fullname, int gender, String address, String dob, String phonenumber) {
         try {
             String query = "UPDATE Accounts SET  fullname = ?, gender = ?, address = ?, dob = ?, phonenumber = ? WHERE username = ?";
             conn = new DBContext().getConnection();
@@ -135,7 +135,7 @@ public class AccountDAO extends DBContext {
             ps.setInt(2, gender);
             ps.setString(3, address);
             ps.setString(4, dob);
-            ps.setInt(5, phonenumber);
+            ps.setString(5, phonenumber);
             ps.setString(6, user);
             ps.executeUpdate();
         } catch (Exception e) {
@@ -157,7 +157,7 @@ public class AccountDAO extends DBContext {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getInt(7),
+                        rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
                         rs.getInt(10),

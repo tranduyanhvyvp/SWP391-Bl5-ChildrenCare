@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.Admin_DAO;
+import dao.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,15 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.role;
-import entity.user;
+import entity.Role;
+import entity.User;
 
 /**
  *
  * @author aDMIN
  */
 @WebServlet(name = "userDetailEdit", urlPatterns = {"/userdetailedit"})
-public class userDetailEdit extends HttpServlet {
+public class UserDetailEdit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -63,9 +63,9 @@ public class userDetailEdit extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String uid = request.getParameter("uid");
-        Admin_DAO dao = new Admin_DAO();
-        user editUser = dao.searchUser(uid);
-        List<role> listRole = dao.ListRole();
+        AdminDAO dao = new AdminDAO();
+        User editUser = dao.searchUser(uid);
+        List<Role> listRole = dao.ListRole();
         request.setAttribute("editUser", editUser);
         request.setAttribute("listRole", listRole);
         request.getRequestDispatcher("user_detail_edit.jsp").forward(request, response);
@@ -89,9 +89,9 @@ public class userDetailEdit extends HttpServlet {
         String role = request.getParameter("role");
         String address = request.getParameter("address");
         
-        Admin_DAO dao = new Admin_DAO();
+        AdminDAO dao = new AdminDAO();
         dao.update(id, name, address, email, phone, role);
-        user userDetail = dao.searchUser(id);
+        User userDetail = dao.searchUser(id);
         request.setAttribute("userDetail", userDetail);
         request.getRequestDispatcher("user_detail.jsp").forward(request, response);
         

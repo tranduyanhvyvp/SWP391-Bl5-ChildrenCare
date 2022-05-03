@@ -9,12 +9,12 @@ package entity;
  *
  * @author aDMIN
  */
-public class feedbackImage {
+public class FeedbackImage {
     private int id;
     private String image;
     private int feedbackId;
 
-    public feedbackImage(int id, String image, int feedbackId) {
+    public FeedbackImage(int id, String image, int feedbackId) {
         this.id = id;
         this.image = image;
         this.feedbackId = feedbackId;
